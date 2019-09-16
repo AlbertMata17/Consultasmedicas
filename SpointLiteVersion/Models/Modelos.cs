@@ -5,11 +5,10 @@ using System.Web;
 
 namespace SpointLiteVersion.Models
 {
-    public class Modelos
+    public class modelos
     {
-        public clientes clientes { get; set; }
-        public ciudad ciudad { get; set; }
+        public Consultas consultas { get; set; }
+        public paciente paciente { get; set; }
 
-      
     }
 }

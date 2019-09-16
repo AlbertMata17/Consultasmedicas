@@ -1,0 +1,160 @@
+﻿@model IEnumerable<SpointLiteVersion.Models.paciente>
+
+@{
+    /**/
+
+    /**/
+
+    /**/
+
+    ViewBag.Title = "VistaImpresion";
+}
+<div class="clasefactura">
+    <div class="principal">
+
+        <h3 class="h3">Reporte Historial Clínico</h3>
+    </div>
+</div>
+<div class="clasefactura">
+    <div class="pr">
+        @foreach (var item in Model)
+        {
+
+            <p class="datospaciente nombre">
+                <span class="bold">  Nombre: </span> @Html.DisplayFor(modelItem => item.nombre)
+            </p>
+            <div class="padre1">
+                <div class="hijo hijo1">
+                    <p class="datospaciente"><span class="bold">Sexo:</span> @Html.DisplayFor(modelItem => item.sexo)</p>
+                </div>
+                <div class="hijo hijo2">
+
+                    <p class="datospaciente"><span class="bold">Edad:</span> @Html.DisplayFor(modelItem => item.edad)</p>
+                </div>
+            </div>
+            <div class="padre1">
+                <div class="hijo hijo1">
+
+                    <p class="datospaciente"><span class="bold">Fecha</span> @Html.DisplayFor(modelItem => item.fechanacimiento)</p>
+                </div>
+                <div class="hijo hijo2">
+
+                    <p class="datospaciente"><span class="bold">Estado Civil:</span> @Html.DisplayFor(modelItem => item.EstadoCivil)</p>
+                </div>
+            </div>
+            <div class="padre1">
+                <div class="hijo hijo1">
+                    <p class="datospaciente"><span class="bold">ID:</span> @Html.DisplayFor(modelItem => item.cedula)</p>
+                </div>
+                <div class="hijo hijo2">
+                    <p class="datospaciente"><span class="bold">Aseguradora:</span> <span id="consulta"></span></p>
+
+                </div>
+            </div>
+            <p class="datospaciente"><span class="bold">Telefono:</span> @Html.DisplayFor(modelItem => item.telefono)</p>
+            <p class="datospaciente"><span class="bold">Telefono:</span><span id="fechadelpaciente"></span></p>
+
+
+        }
+    </div>
+    <div>
+        <p><strong>Nota de consulta:</strong></p>
+        <p>Motivo de consulta: <span id="motivoconsulta"></span></p>
+        <p>Antecedentes Personales: <span id="antecedentesp"></span></p>
+        <p>Antecedentes heredofamiliares: <span id="antecedentesfamiliares"></span></p>
+        <p>Padecimiento Actual: <span id="padecimiento"></span></p>
+        <p>Exámenes Físico: <span id="examenfisico"></span> </p>
+        <p>Diagnóstico: <span id="diagnostico"></span></p>
+        <p>Tratamiento: <span id="tratamiento"></span></p>
+    </div>
+</div>
+
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+
+
+        $.post("GetConsulta", { idpaciente: 5 }, function (data) {
+            $("#consulta").empty();
+            $("#fechaconsulta").empty();
+
+
+
+
+
+            $.each(data, function (create, row) {
+
+                document.getElementById("consulta").innerText = row.Compania;
+                document.getElementById("fechadelpaciente").innerText = row.fechaconsulta;
+                document.getElementById("examenfisico").innerText = row.Examenes;
+                document.getElementById("diagnostico").innerText = row.Diagnostico;
+                document.getElementById("tratamiento").innerText = row.Receta;
+
+
+
+
+
+            });
+        });
+        $.post("Obtenerdatos", { idpaciente: 3 }, function (data) {
+
+
+
+
+
+            $.each(data, function (create, row) {
+
+                document.getElementById("antecedentesp").innerText = row.antsociales;
+                document.getElementById("antecedentesfamiliares").innerText = row.antecedentesfamiliares;
+                document.getElementById("padecimiento").innerText = row.historia;
+                document.getElementById("motivoconsulta").innerText = row.motivoconsulta;
+
+
+
+
+
+
+            });
+        });
+       
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var option = {
+            debug: false,               // show the iframe for debugging
+            importCSS: true,            // import parent page css
+            importStyle: true,         // import style tags
+            printContainer: true,       // print outer container/$.selector
+            loadCSS: "/Content/Style.css",                // path to additional css file - use an array [] for multiple
+            pageTitle: "",              // add title to print page
+            removeInline: false,        // remove inline styles from print elements
+            removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+            printDelay: 333,            // variable print delay
+            header: null,               // prefix to html
+            footer: null,               // postfix to html
+            base: false,                // preserve the BASE tag or accept a string for the URL
+            formValues: true,           // preserve input/form values
+            canvas: false,              // copy canvas content
+            doctypeString: '...',       // enter a different doctype for older markup
+            removeScripts: false,       // remove script tags from print content
+            copyTagClasses: false,      // copy classes from the html & body tag
+            beforePrintEvent: null,     // function for printEvent in iframe
+            beforePrint: null,          // function called before iframe is filled
+            afterPrint: null,            // function called before iframe is removed
+        }
+        $(".clasefactura").printThis(option);
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+
+       
+
+    });
+</script>

@@ -155,25 +155,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ciudads1Controller.cs" />
-    <Compile Include="Controllers\clientes1Controller.cs" />
-    <Compile Include="Controllers\comprasController.cs" />
-    <Compile Include="Controllers\DetalleNcfsController.cs" />
-    <Compile Include="Controllers\facturasController.cs" />
+    <Compile Include="Controllers\CitasAgendadasController.cs" />
+    <Compile Include="Controllers\ciudadsController.cs" />
+    <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\itbisController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
-    <Compile Include="Controllers\NCFs1Controller.cs" />
-    <Compile Include="Controllers\NCFsController.cs" />
-    <Compile Include="Controllers\NcFsecuenciasController.cs" />
-    <Compile Include="Controllers\NcfTipoesController.cs" />
-    <Compile Include="Controllers\productos1Controller.cs" />
-    <Compile Include="Controllers\productosController.cs" />
-    <Compile Include="Controllers\suplidores1Controller.cs" />
-    <Compile Include="Controllers\suplidoresController.cs" />
-    <Compile Include="Controllers\tiposproductosController.cs" />
-    <Compile Include="Controllers\TipoSuplidorsController.cs" />
-    <Compile Include="Controllers\vendedoresController.cs" />
+    <Compile Include="Controllers\pacientesController.cs" />
     <Compile Include="DataSet\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -195,43 +182,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CitasAgendadas.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ciudad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\clientes.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\compras.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\cotizacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DetalleCompra.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DetalleCotizacion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DetalleNcf.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DetallePrefactura.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DetalleVenta.cs">
+    <Compile Include="Models\Consultas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Empresa.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\facturas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Inventario.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\itbis.cs">
+    <Compile Include="Models\HistoriaClinica.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Login.cs">
@@ -252,58 +215,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Modelos.cs" />
-    <Compile Include="Models\modelounidos.cs" />
-    <Compile Include="Models\NCF.cs">
+    <Compile Include="Models\modelos.cs" />
+    <Compile Include="Models\paciente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NcFsecuencia.cs">
+    <Compile Include="Models\RecetasyExamenes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NcfTipo.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\prefactura.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\productos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_reporte_cotizacion_back_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_reporte_prefactura_back_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_reporte_venta_back_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\suplidores.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tiposproductos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TipoSuplidor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vendedores.cs">
+    <Compile Include="Models\TipoConsulta.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RTPFactura\cotizar.aspx.cs">
-      <DependentUpon>cotizar.aspx</DependentUpon>
+    <Compile Include="RTPFactura\Examen.aspx.cs">
+      <DependentUpon>Examen.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RTPFactura\cotizar.aspx.designer.cs">
-      <DependentUpon>cotizar.aspx</DependentUpon>
+    <Compile Include="RTPFactura\Examen.aspx.designer.cs">
+      <DependentUpon>Examen.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RTPFactura\prefactura.aspx.cs">
-      <DependentUpon>prefactura.aspx</DependentUpon>
+    <Compile Include="RTPFactura\Receta.aspx.cs">
+      <DependentUpon>Receta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RTPFactura\prefactura.aspx.designer.cs">
-      <DependentUpon>prefactura.aspx</DependentUpon>
+    <Compile Include="RTPFactura\Receta.aspx.designer.cs">
+      <DependentUpon>Receta.aspx</DependentUpon>
     </Compile>
     <Compile Include="RTPFactura\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
@@ -6656,9 +6591,11 @@
     <Content Include="Content\Login\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
     <Content Include="Content\Login\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
     <Content Include="Content\Login\images\bg-01.jpg" />
+    <Content Include="Content\Login\images\consulta.png" />
     <Content Include="Content\Login\images\icons\favicon.ico" />
     <Content Include="Content\Login\images\icons\map-marker.png" />
     <Content Include="Content\Login\images\logo2.png" />
+    <Content Include="Content\Login\images\medicina.png" />
     <Content Include="Content\Login\images\spoint.png" />
     <Content Include="Content\Login\js\main.js" />
     <Content Include="Content\Login\js\map-custom.js" />
@@ -7471,8 +7408,8 @@
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="RTPFactura\cotizar.aspx" />
-    <Content Include="RTPFactura\prefactura.aspx" />
+    <Content Include="RTPFactura\Examen.aspx" />
+    <Content Include="RTPFactura\Receta.aspx" />
     <Content Include="RTPFactura\WebForm1.aspx" />
     <Content Include="Scripts\alertify\alertify.js" />
     <Content Include="Scripts\alertify\alertify.min.js" />
@@ -7538,13 +7475,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="DataSet\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -7639,6 +7569,13 @@
     </None>
     <Content Include="DataSet\DataSet3.xss">
       <DependentUpon>DataSet3.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -7752,6 +7689,28 @@
     <Content Include="Views\NcfTipoes\Details.cshtml" />
     <Content Include="Views\NcfTipoes\Edit.cshtml" />
     <Content Include="Views\NcfTipoes\Index.cshtml" />
+    <Content Include="Views\Consultas\Create.cshtml" />
+    <Content Include="Views\Consultas\Delete.cshtml" />
+    <Content Include="Views\Consultas\Details.cshtml" />
+    <Content Include="Views\Consultas\Edit.cshtml" />
+    <Content Include="Views\Consultas\Index.cshtml" />
+    <Content Include="Views\pacientes\Create.cshtml" />
+    <Content Include="Views\pacientes\Delete.cshtml" />
+    <Content Include="Views\pacientes\Details.cshtml" />
+    <Content Include="Views\pacientes\Edit.cshtml" />
+    <Content Include="Views\pacientes\Index.cshtml" />
+    <Content Include="Views\ciudads\Create.cshtml" />
+    <Content Include="Views\ciudads\Delete.cshtml" />
+    <Content Include="Views\ciudads\Details.cshtml" />
+    <Content Include="Views\ciudads\Edit.cshtml" />
+    <Content Include="Views\ciudads\Index.cshtml" />
+    <Content Include="Views\CitasAgendadas\Create.cshtml" />
+    <Content Include="Views\CitasAgendadas\Delete.cshtml" />
+    <Content Include="Views\CitasAgendadas\Details.cshtml" />
+    <Content Include="Views\CitasAgendadas\Edit.cshtml" />
+    <Content Include="Views\CitasAgendadas\Index.cshtml" />
+    <Content Include="Views\Consultas\VistaImpresion.cshtml" />
+    <Content Include="Views\Consultas\RecetasyExamen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\bower_components\fullcalendar\dist\fullcalendar.d.ts" />

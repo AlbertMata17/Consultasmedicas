@@ -4,76 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6e20c42e85cb4f96870cd0a6db25e409" Name="Diagram1" ZoomLevel="52">
-        <EntityTypeShape EntityType="spointModel.ciudad" Width="1.5" PointX="11.25" PointY="25.75" />
-        <EntityTypeShape EntityType="spointModel.clientes" Width="1.5" PointX="13.5" PointY="32.375" />
-        <EntityTypeShape EntityType="spointModel.compras" Width="1.5" PointX="5.25" PointY="28.25" />
-        <EntityTypeShape EntityType="spointModel.Inventario" Width="1.5" PointX="21.75" PointY="32.5" />
-        <EntityTypeShape EntityType="spointModel.itbis" Width="1.5" PointX="8.25" PointY="38.75" />
-        <EntityTypeShape EntityType="spointModel.productos" Width="1.5" PointX="16.5" PointY="32.5" />
-        <EntityTypeShape EntityType="spointModel.suplidores" Width="1.5" PointX="13.5" PointY="26.875" />
-        <EntityTypeShape EntityType="spointModel.tiposproductos" Width="1.5" PointX="11.25" PointY="29.75" />
-        <EntityTypeShape EntityType="spointModel.TipoSuplidor" Width="1.5" PointX="8.25" PointY="28.75" />
-        <EntityTypeShape EntityType="spointModel.vendedores" Width="1.5" PointX="11.25" PointY="37.125" />
-        <AssociationConnector Association="spointModel.fk_ciudad" />
-        <AssociationConnector Association="spointModel.fk_compra" />
-        <AssociationConnector Association="spointModel.FK__Inventari__idPro__2DE6D218" />
-        <AssociationConnector Association="spointModel.fk_tipoproducto" />
-        <AssociationConnector Association="spointModel.fk_tipo_suplidor" />
-        <EntityTypeShape EntityType="spointModel.DetalleCompra" Width="1.5" PointX="5.25" PointY="33" />
-        <EntityTypeShape EntityType="spointModel.DetalleCotizacion" Width="1.5" PointX="13.5" PointY="38.375" />
-        <EntityTypeShape EntityType="spointModel.DetallePrefactura" Width="1.5" PointX="7.5" PointY="32.5" />
-        <EntityTypeShape EntityType="spointModel.DetalleVenta" Width="1.5" PointX="24" PointY="32.625" />
-        <EntityTypeShape EntityType="spointModel.Empresa" Width="1.5" PointX="0.75" PointY="33" />
-        <EntityTypeShape EntityType="spointModel.Login" Width="1.5" PointX="3" PointY="32.875" />
-        <AssociationConnector Association="spointModel.fk_usuario_empresa1" />
-        <AssociationConnector Association="spointModel.fk_usuario1" />
-        <AssociationConnector Association="spointModel.fk_usuario12" />
-        <AssociationConnector Association="spointModel.fk_usuarioid" />
-        <AssociationConnector Association="spointModel.fk_su2" />
-        <AssociationConnector Association="spointModel.fk_usuarioid1" />
-        <AssociationConnector Association="spointModel.fk_usuar1" />
-        <AssociationConnector Association="spointModel.fk_usuarioid123" />
-        <AssociationConnector Association="spointModel.fk_usuar12" />
-        <AssociationConnector Association="spointModel.fk_usuarioid1234" />
-        <AssociationConnector Association="spointModel.fk_usuar122" />
-        <AssociationConnector Association="spointModel.fk_usuarioid12345" />
-        <AssociationConnector Association="spointModel.fk_usuar1223" />
-        <AssociationConnector Association="spointModel.fk_usuarioid123456" />
-        <AssociationConnector Association="spointModel.fk_su1322" />
-        <AssociationConnector Association="spointModel.fk_su132232" />
-        <AssociationConnector Association="spointModel.fk_su132432" />
-        <AssociationConnector Association="spointModel.fk_sua1222322" />
-        <AssociationConnector Association="spointModel.fk_sua1322" />
-        <AssociationConnector Association="spointModel.fk_usuar122322" />
-        <AssociationConnector Association="spointModel.fk_usuar2122322" />
-        <AssociationConnector Association="spointModel.fk_usuario_empresa" />
-        <AssociationConnector Association="spointModel.fk_usuarioid12345678" />
-        <AssociationConnector Association="spointModel.fk_usuarioid123456789" />
-        <AssociationConnector Association="spointModel.fk_usuarioid24389" />
-        <AssociationConnector Association="spointModel.fk_usuarioid2439" />
-        <AssociationConnector Association="spointModel.fk_usuarioid245789" />
-        <AssociationConnector Association="spointModel.fk_usuarioid24589" />
-        <AssociationConnector Association="spointModel.fk_usuarioid29" />
-        <EntityTypeShape EntityType="spointModel.cotizacion" Width="1.5" PointX="5.25" PointY="37.625" />
-        <EntityTypeShape EntityType="spointModel.prefactura" Width="1.5" PointX="8.25" PointY="41.625" />
-        <AssociationConnector Association="spointModel.FK__DetalleCo__idcot__51300E55" />
-        <AssociationConnector Association="spointModel.fk_usuario123" />
-        <AssociationConnector Association="spointModel.fk_usuarioid12" />
-        <AssociationConnector Association="spointModel.FK__DetallePr__idfac__59C55456" />
-        <AssociationConnector Association="spointModel.fk_sua122322" />
-        <AssociationConnector Association="spointModel.fk_usuarioid1245789" />
-        <EntityTypeShape EntityType="spointModel.DetalleNcf" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="spointModel.NCF" Width="1.5" PointX="10.625" PointY="33.5" />
-        <EntityTypeShape EntityType="spointModel.NcFsecuencia" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="spointModel.NcfTipo" Width="1.5" PointX="4.75" PointY="0.75" />
-        <AssociationConnector Association="spointModel.fk_usua122322" />
-        <AssociationConnector Association="spointModel.fk_usuarioid12345789" />
-        <EntityTypeShape EntityType="spointModel.facturas" Width="1.5" PointX="18.75" PointY="33.125" />
-        <AssociationConnector Association="spointModel.fk_cliente" />
-        <AssociationConnector Association="spointModel.FK__DetalleVe__idfac__05D8E0BE" />
-        <AssociationConnector Association="spointModel.fk_usuar12232" />
-        <AssociationConnector Association="spointModel.fk_usuarioid1234567" />
+      <Diagram DiagramId="bc6c4bccf4ac415295b911ccd7baef2c" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="5.25" PointY="7.125" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="7.75" PointY="1" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.HistoriaClinica" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.TipoConsulta" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_ciudad" />
+        <AssociationConnector Association="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_empresa" />
+        <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

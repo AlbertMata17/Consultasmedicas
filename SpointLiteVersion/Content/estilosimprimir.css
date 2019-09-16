@@ -13,4 +13,9 @@
         border: none;
         color: var(--flat-text-color-action);
     }
+
+    .aseguradora {
+        text-align: right;
+        color: red !important;
+    }
 }

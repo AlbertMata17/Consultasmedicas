@@ -12,13 +12,11 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
-    public partial class spointEntities : DbContext
+    public partial class ConsultaMedicasEntities : DbContext
     {
-        public spointEntities()
-            : base("name=spointEntities")
+        public ConsultaMedicasEntities()
+            : base("name=ConsultaMedicasEntities")
         {
         }
     
@@ -27,81 +25,14 @@ namespace SpointLiteVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
-        public virtual DbSet<clientes> clientes { get; set; }
-        public virtual DbSet<compras> compras { get; set; }
-        public virtual DbSet<Inventario> Inventario { get; set; }
-        public virtual DbSet<itbis> itbis { get; set; }
-        public virtual DbSet<productos> productos { get; set; }
-        public virtual DbSet<suplidores> suplidores { get; set; }
-        public virtual DbSet<tiposproductos> tiposproductos { get; set; }
-        public virtual DbSet<TipoSuplidor> TipoSuplidor { get; set; }
-        public virtual DbSet<vendedores> vendedores { get; set; }
-        public virtual DbSet<DetalleCompra> DetalleCompra { get; set; }
-        public virtual DbSet<DetalleCotizacion> DetalleCotizacion { get; set; }
-        public virtual DbSet<DetallePrefactura> DetallePrefactura { get; set; }
-        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
+        public virtual DbSet<Consultas> Consultas { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<HistoriaClinica> HistoriaClinica { get; set; }
         public virtual DbSet<Login> Login { get; set; }
-        public virtual DbSet<cotizacion> cotizacion { get; set; }
-        public virtual DbSet<prefactura> prefactura { get; set; }
-        public virtual DbSet<DetalleNcf> DetalleNcf { get; set; }
-        public virtual DbSet<NCF> NCF { get; set; }
-        public virtual DbSet<NcFsecuencia> NcFsecuencia { get; set; }
-        public virtual DbSet<NcfTipo> NcfTipo { get; set; }
-        public virtual DbSet<facturas> facturas { get; set; }
-    
-        public virtual ObjectResult<sp_reporte_cotizacion_back_Result> sp_reporte_cotizacion_back(Nullable<decimal> idVenta)
-        {
-            var idVentaParameter = idVenta.HasValue ?
-                new ObjectParameter("idVenta", idVenta) :
-                new ObjectParameter("idVenta", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_cotizacion_back_Result>("sp_reporte_cotizacion_back", idVentaParameter);
-        }
-    
-        public virtual ObjectResult<sp_reporte_venta_back_Result> sp_reporte_venta_back(Nullable<decimal> idVenta)
-        {
-            var idVentaParameter = idVenta.HasValue ?
-                new ObjectParameter("idVenta", idVenta) :
-                new ObjectParameter("idVenta", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_venta_back_Result>("sp_reporte_venta_back", idVentaParameter);
-        }
-    
-        public virtual int prefacturacalc(Nullable<decimal> idVenta)
-        {
-            var idVentaParameter = idVenta.HasValue ?
-                new ObjectParameter("idVenta", idVenta) :
-                new ObjectParameter("idVenta", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("prefacturacalc", idVentaParameter);
-        }
-    
-        public virtual ObjectResult<sp_reporte_prefactura_back_Result> sp_reporte_prefactura_back(Nullable<decimal> idVenta)
-        {
-            var idVentaParameter = idVenta.HasValue ?
-                new ObjectParameter("idVenta", idVenta) :
-                new ObjectParameter("idVenta", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_prefactura_back_Result>("sp_reporte_prefactura_back", idVentaParameter);
-        }
-    
-        public virtual int NCFCALCULO(Nullable<decimal> numeroSecuencia, Nullable<decimal> idVenta, string prefijo)
-        {
-            var numeroSecuenciaParameter = numeroSecuencia.HasValue ?
-                new ObjectParameter("NumeroSecuencia", numeroSecuencia) :
-                new ObjectParameter("NumeroSecuencia", typeof(decimal));
-    
-            var idVentaParameter = idVenta.HasValue ?
-                new ObjectParameter("idVenta", idVenta) :
-                new ObjectParameter("idVenta", typeof(decimal));
-    
-            var prefijoParameter = prefijo != null ?
-                new ObjectParameter("prefijo", prefijo) :
-                new ObjectParameter("prefijo", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NCFCALCULO", numeroSecuenciaParameter, idVentaParameter, prefijoParameter);
-        }
+        public virtual DbSet<paciente> paciente { get; set; }
+        public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
+        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
     }
 }

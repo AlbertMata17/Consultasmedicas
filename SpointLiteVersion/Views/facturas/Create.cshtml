@@ -94,8 +94,8 @@
                                 @Html.Label("Secuencia", new { @class = "control-label col-md-12", @style = "text-align:left;" })
                                 <input type="text" name="numeracionncf" id="numeracionncf" value="" class="form-control" readonly />
                             </div>
-                            <input type="text" name="pruebancf" id="pruebancf" value="" />
-                            <input type="text" name="idncfenviar" id="idncfenviar" value="" />
+                            <input type="hidden" name="pruebancf" id="pruebancf" value="" />
+                            <input type="hidden" name="idncfenviar" id="idncfenviar" value="" />
                             <select class="description" id="descripcionncf" name="descripcionncf" hidden>
                                 <option value="value">text</option>
                             </select>
@@ -125,6 +125,24 @@
                                 <input type="text" name="name" id="ciudadvendedor" class="form-control" readonly value="" />
 
 
+                            </div>
+                        </div>
+                        <div class="form-row col-md-12" style="padding-left:20px; padding-right:20px;">
+                            <div class="form-group col-md-4">
+
+                                @Html.LabelFor(model => model.observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.observacion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Una Observación" } })
+                                @Html.ValidationMessageFor(model => model.observacion, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(model => model.credito, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                <select class="form-control" name="credito" id="credito">
+                                    <option value="no" selected>No</option>
+                                    <option value="si">Si</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.credito, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -555,7 +573,7 @@
     /**/
 
     $("#descripcionncf").append("<option value='" + row.NombreComp + "'>" + row.NombreComp + "</option>")
-    document.getElementById("pruebancf").value = row.Descripcion;
+    document.getElementById("pruebancf").value = row.Prefijo;
     document.getElementById("idncfenviar").value = row.idNCF;
 
 

@@ -17,11 +17,11 @@ namespace SpointLiteVersion.RTPFactura
         SqlCommand comando;
         SqlDataAdapter adapter;
         SqlParameter param;
-        string idVenta;
+        string idConsulta;
         string nombreempresa;
         protected void Page_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=spoint;Integrated Security=True");
+            con = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=ConsultaMedicas;Integrated Security=True");
             if (!IsPostBack)
             {
                 renderReport();
@@ -32,23 +32,23 @@ namespace SpointLiteVersion.RTPFactura
         }
         public void renderReport()
         {
-            idVenta = Request.QueryString.Get("idventa");
+            idConsulta = Request.QueryString.Get("idconsulta");
 
-            DataTable dt = cargar(idVenta);
+            DataTable dt = cargar(idConsulta);
             ReportDataSource rds = new ReportDataSource("DataSet1", dt);
             ReportViewer1.LocalReport.DataSources.Add(rds);
             ReportViewer1.LocalReport.ReportPath = "RTPFactura/Report2.rdlc";
             PageSettings pg = new PageSettings();
-            pg.Margins.Left = 0;
-            pg.Margins.Right = 40;
-            pg.Margins.Top = 50;
-            pg.Margins.Bottom = 40;
+            pg.Margins.Left = 1;
+            pg.Margins.Right = 1;
+            pg.Margins.Top = 1;
+            pg.Margins.Bottom = 1;
             this.ReportViewer1.SetPageSettings(pg);
 
             //parameters
             ReportParameter[] rptParams = new ReportParameter[]
             {
-                new ReportParameter("idventa",idVenta.ToString())
+                new ReportParameter("idconsulta",idConsulta.ToString())
         };
             ReportViewer1.LocalReport.Refresh();
 
@@ -57,12 +57,12 @@ namespace SpointLiteVersion.RTPFactura
         public DataTable cargar(string codigoventa)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=spoint;Integrated Security=True"))
+            using (SqlConnection cn = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=ConsultaMedicas;Integrated Security=True"))
             {
 
-                SqlCommand cmd = new SqlCommand("sp_reporte_venta_back", con);
+                SqlCommand cmd = new SqlCommand("sp_reporte_HistorialClinico_back", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@idVenta", SqlDbType.Int).Value = idVenta;
+                cmd.Parameters.Add("@idConsulta", SqlDbType.Int).Value = idConsulta;
 
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);

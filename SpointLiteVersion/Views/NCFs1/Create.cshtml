@@ -8,52 +8,378 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-7 modal-content contedor" style=" margin-left:18%; margin-top:2%;">
+        <div class="col-md-7 modal-content contedor" style=" margin-left:6%; width:85%; margin-top:2%;">
+            <center><i class="fas fa-file-invoice-dollar iconousuario"></i></center>
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
-            <div class="form-horizontal" style="margin-top:30px;">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group" style="margin-left:70px;">
-                    <div class="col-md-10">
-                        @Html.Label("Nombre Comprobante", new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                        @Html.EditorFor(model => model.NombreComp, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.NombreComp, "", new { @class = "text-danger" })
+                <div class="form-horizontal" style="margin-top:30px;">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-md-12">
+                        @if (@ViewBag.id != null)
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.idNCF)
+                        }
+
+
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            @Html.Label("Nombre Comprobante", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                            @Html.EditorFor(model => model.NombreComp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NombreComp, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+
+
+
+
+                        <div class="form-group col-md-5">
+                            @Html.Label("Prefijo", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                            <input type="text" name="Prefijo" id="Prefijo" class="form-control" value="" />
+
+                          
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            @Html.Label("Fecha Inicio", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                            <input type="date" name="fecha" id="fecha" value="" class="form-control" />
+                        </div>
+
+
+                        <div class="form-group col-md-3">
+                            @Html.Label("Fecha de Vencimiento", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                            <input type="date" name="fechavence" id="fechavence" value="" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            @Html.Label("Desde", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                            <input type="text" name="desde" id="desde" class="form-control" value="" />
+                        </div>
+
+                        <div class="form-group col-md-3">
+
+                            @Html.Label("Hasta", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                            <input type="text" name="hasta" id="hasta" class="form-control" value="" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            @Html.Label("Autorización", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                            <input type="text" name="autorizacion" id="autorizacion" class="form-control" value="" />
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-md-10">
+
+                        @if (ViewBag.id != null)
+                        {
+
+                            <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","NcFsecuencias",new { id=Model.idNCF})">Eliminar</a>
+                        }
+
+                    </div>
+
+                    <div class="form-group col-md-12" style="margin-left:70%;">
+                        <input type="button" name="name" class="btn btn-primary" onclick="fn_agregar()" id="frm_usu" value="Agregar" />
+
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    @if (@ViewBag.id != null)
-                    {
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => model.idNCF)
-                    }
-
-
-                </div>
-
-
-
-
-
-                <div class="form-group" style="margin-left:70px; margin-bottom:20px;">
-                    <div class="col-md-10">
-                        @Html.Label("Descripción", new { @class = "control-label col-md-12", @style = "text-align:left;" })
-
-                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="form-group col-md-12" style="margin-left:70%;">
-                    <button type="submit" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
-
-                </div>
-            </div>
             }
-            </div>
         </div>
     </div>
-            
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 modal-content contedor" style="width:85%; margin-left:6%; margin-top:2%;">
+            <div class="clasefactura" id="clase">
+                <div class="principal">
+                    <div class="imga"><img src="~/Content/dist/img/carrito3.png" class="imagencarrito" alt="Alternate Text" /></div>
+                    <div class="datosclientes">
+                        <h2>Cliente <span id="cliente2"></span></h2>
+                        <h2>Vendedor <span id="vendedor2"></span></h2>
+
+                    </div>
+                </div>
+                <div class="detallecompra" style="margin-bottom:0px;">
+                    <p style="font-size:15px; margin-top:20px; margin-left:8px;">Detalle de La Compra</p>
+
+                </div>
+                <table id="detalle" class="lista table" style="margin-top:-10px;">
+                    <thead style="font-size:15px;">
+
+                        <tr>
+                            <th class="idprod" style="width:1%;">Prefijo</th>
+                            <th style="width:30%;">Nombre</th>
+                            <th style="width:10%;">Inicio</th>
+                            <th style="width:15%;">Vencimiento</th>
+                            <th>Desde</th>
+                            <th class="itb">Hasta</th>
+                            <th>Autorización</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+
+                </table>
+                <div style="margin-bottom:15px; margin-top:30px;">
+                    <center> <input type="submit" name="name" value="Registrar" id="finalizar" class="btn btn-success" /> </center>
+                </div>
+                @*<div class="row" style="margin-top:4%;">
+                        <div class="form-group col-md-3">
+                            <p class="col-md-2">Subtotal</p>
+                            <input style="margin-top:10px; margin-left:0px; font-weight:700; " class="form-control subtotaldado" type="text" name="descuentodado" id="subtotal" required readonly />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p class="col-md-12">Descuentos por Artículo</p>
+
+                            <input style="margin-top:10px; margin-left:0px; font-weight:700;" class="form-control descuentodado" type="text" name="descuentodado" id="descuentos" required readonly />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p class="col-md-2">ITBIS</p>
+
+                            <input style="margin-top:10px; margin-left:0px; font-weight:700; " class="form-control itbisdado" type="text" name="descuentodado" id="itbisdado" required readonly />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <p class="col-md-2">TOTAL</p>
+
+                            <input style="margin-top:10px; margin-left:0px; font-weight:700; " class="form-control totaldado" type="text" name="descuentodado" id="TotalaPagar" required readonly />
+                        </div>
+                    </div>*@
+                @*<table class="tab">
+                        <tr>
+                            <td><p style="margin-left:2%;">SubTotal</p></td>
+                            <td><p style="margin-left:13%;">Descuentos por Artículo</p></td>
+                            <td><p style="margin-left:21%;">ITBIS</p></td>
+                            <td style="font-size:17px;float:left;margin-top: 17px;margin-left: 15px;" class="tot">Total</td>
+                        </tr>
+                        <tr>
+
+                            <td style="width:8%;"><input style="margin-top:10px; margin-left:0px; font-weight:700; " class="form-control" type="text" name="descuentodado" id="descuentodado" required readonly /></td>
+                            <td style="width:8%;"><input style="margin-top:10px; margin-left:0px; font-weight:700;" class="form-control" type="text" name="descuentodado" id="descuentodado" required readonly /></td>
+                            <td style="width:8%;"><input style="margin-top:10px; margin-left:49px; font-weight:700;" class="form-control" type="text" name="descuentodado" id="descuentodado" required readonly /></td>
+                            <td style="width:8%;"><input style="margin-top:10px; font-weight:700; margin-left:30%;" class="form-control" type="text" name="TotalaPagar" id="TotalaPagar" required readonly /></td>
+
+                        </tr>
+                    </table>*@
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/alertify/alertify.min.js"></script>
+<script src="~/Scripts/autoNumeric/autoNumeric-min.js"></script>
+<script src="~/Scripts/autoNumeric/autoNumeric.js"></script>
+<link href="~/Content/alertify.core.css" rel="stylesheet" />
+<link href="~/Content/alertify.default.css" rel="stylesheet" />
+<script>
+    var total = 0;
+    var valor = 0;
+    var subtotal = 0;
+    var subtotal1 = 0;
+    var subtotalpagar = 0;
+    var valor1 = 0;
+    var valor2 = 0;
+    var descuento = 0;
+    var itbis = 0;
+    var descuento1 = 0;
+    function fn_agregar() {
+
+
+
+
+        cadena = "<tr>"
+
+        //cadena = cadena + "<td class='idprod'>" + $("#idproducto").val() + "</td>";
+        cadena = cadena + "<td>" + $("#Prefijo").val() + "</td>";
+
+        cadena = cadena + "<td>" + $("#NombreComp").val() + "</td>";
+        cadena = cadena + "<td>" + $("#fecha").val() + "</td>";
+        cadena = cadena + "<td>" + $("#fechavence").val() + "</td>";
+        cadena = cadena + "<td>" + $("#desde").val() + "</td>";
+        cadena = cadena + "<td>" + $("#hasta").val() + "</td>";
+        cadena = cadena + "<td>" + $("#autorizacion").val() + "</td>";
+
+
+        //var y = 0;
+        //var x = 0;
+        //var des = 0;
+
+        //y = $("#Cantidad").val();
+        //x = $("#precio1").val();
+        //subtotal = (x * y);
+
+        //cadena = cadena + "<td>" + subtotal + "</td>"
+
+        cadena = cadena + "<td class='botoneliminar'><a class ='elimina'><button class='btn btn-danger' type='button'><span class='fa fa-remove'></span></button></a></td>";
+        $("#detalle tbody").append(cadena);
+        //sumar();
+        fn_dar_eliminar();
+    }
+
+    function sumar() {
+        total = total + subtotal;
+        descuento1 = descuento1 + descuento;
+        subtotalpagar = subtotalpagar + subtotal1;
+        console.info(total);
+        $("#descuentodado").val(descuento1)
+
+        $("#subtotalpagar").val(subtotalpagar)
+        $("#TotalaPagar").val(total);
+
+    }
+    function fn_dar_eliminar() {
+        $("a.elimina").click(function () {
+            valor = $(this).parents("tr").find("td").eq(6).html();
+            valor1 = $(this).parents("tr").find("td").eq(7).html();
+            valor2 = $(this).parents("tr").find("td").eq(4).html();
+            console.info(valor);
+            $(this).parents("tr").fadeOut("normal", function () {
+                $(this).remove();
+                restar();
+            });
+        });
+    };
+    function restar() {
+        total = total - valor;
+        subtotalpagar = subtotalpagar - valor1;
+        descuento1 = descuento1 - valor2;
+        $("#subtotalpagar").val(subtotalpagar);
+        $("#descuentodado").val(descuento1);
+
+        $("#TotalaPagar").val(total);
+        total = 0;
+    }
+    function limpiar() {
+        $("#NombreComp").val("");
+        $("#Prefijo").val("");
+        $("#fecha").val("");
+        $("#fechavence").val("");
+        $("#desde").val("");
+        $("#hasta").val("");
+        $("#autorizacion").val("");
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        var myTable = document.getElementById("detalle");
+        myTable.oldHTML = myTable.innerHTML;
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#finalizar").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+
+            var i = 0;
+            var envio = "{nombrecomp:'" + $("#NombreComp").val() + "',prefijo:'" + $("#Prefijo").val() + "',fecha:'" + $("#fecha").val() + "',fechavence:'" + $("#fechavence").val() + "',desde:'" + $("#desde").val() + "',hasta:'" + $("#hasta").val() +"',IdCabecera:'2',autorizacion:'" + $('#autorizacion').val() + "',";
+            $("#detalle tbody tr").each(function (index) {
+                if (i == 0) {
+                    envio += "ListadoDetalle:[{prefijo:'" + $(this).find('td').eq(0).text() +
+                        "',nombre:'" + $(this).find('td').eq(1).text() +
+                        "',inicio:'" + $(this).find('td').eq(2).text() +
+                        "',vencimiento:'" + $(this).find('td').eq(3).text() +
+                        "',desde:'" + $(this).find('td').eq(4).text() +
+                        "',hasta:'" + $(this).find('td').eq(5).text() +
+                        "',autorizacion:'" + $(this).find('td').eq(6).text() + "'}"
+
+                } else {
+                    envio += ",{prefijo:'" + $(this).find('td').eq(0).text() +
+                        "',nombre:'" + $(this).find('td').eq(1).text() +
+                        "',inicio:'" + $(this).find('td').eq(2).text() +
+                        "',vencimiento:'" + $(this).find('td').eq(3).text() +
+                        "',desde:'" + $(this).find('td').eq(4).text() +
+                        "',hasta:'" + $(this).find('td').eq(5).text() +
+                        "',autorizacion:'" + $(this).find('td').eq(6).text() + "'}"
+                }
+                i = 1;
+            });
+            envio += "]}";
+
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+        var miUrl = '@Url.Action("PDf", "NCFs1")'
+
+            $.ajax({
+
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+
+                    alertify.alert(response);
+
+                        //Swal.fire({
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                        //})
+
+                    valid = response.valid;
+                    if (response == "COMPROBANTE GUARDADO CON EXITO...") {
+                        limpiar();
+                        //if ($("#cliente").val() != "" || $("#vendedor").val() != "") {
+                        //    $("#Suplidor").val("");
+                        //    myTable.innerHTML = myTable.oldHTML;
+                        //    $("#TotalaPagar").val(0);
+                        //    $("#itbisdado").val(0);
+                        //    $("#descuentos").val(0);
+                        //    $("#subtotal").val(0);
+
+                        //    total = 0;
+                        //    valor = 0;
+                        //}
+                    }
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>

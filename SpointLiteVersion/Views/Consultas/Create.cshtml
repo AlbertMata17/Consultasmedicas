@@ -1,0 +1,519 @@
+﻿@model SpointLiteVersion.Models.Consultas
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-7 modal-content contedor" style="width:88%; margin-left:4%; margin-top:2%;">
+            <h2 style="font-size:25px; color:#37bce6; margin-bottom:30px; margin-top:25px;"><i class="fas fa-folder-open" style="color:#3c8dbc; margin-left:95px;"></i><span style="margin-left:10px;"> Consultas</span></h2>
+            <div class="col-md-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-row">
+
+                            @if (ViewBag.idconsulta != null)
+                            {
+                                <div class="form-group col-md-2">
+                                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                                    <input type="text" name="idaciente" class="form-control" readonly value="@ViewBag.idconsulta" />
+                                    @Html.ValidationMessageFor(model => model.idConsulta, "", new { @class = "text-danger" })
+
+                                </div>
+                            }
+                            @if (@ViewBag.id != null)
+                            {
+                                <div class="form-group col-md-2">
+
+
+                                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.idConsulta, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                                </div>
+                            }
+                            <div class="form-group col-md-4">
+                                @Html.Label("Tipo", new { @class = "control-label col-md-2" })
+                                <select class="form-control" name="TipoConsulta" id="TipoConsulta">
+                                    <option value="Consulta en Clínica">Consulta en Clínica</option>
+                                    <option value="Consulta por teléfono">Consulta por teléfono</option>
+                                    <option value="En hospital">En hospital</option>
+                                    <option value="A domicilio">A domicilio</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.TipoConsulta, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                @Html.Label("Fecha", new { @class = "control-label col-md-2" })
+
+                                <input type="date" name="fecha" id="fecha" value="" class="form-control" />
+                                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                @Html.Label("Paciente", new { @class = "control-label col-md-2" })
+                                <input type="text" list="paciente1" name="idpacientes" id="idpacientes" class="form-control" autocomplete="off" />
+
+                                <datalist id="paciente1">
+                                    @foreach (var m in ViewBag.idpaciente)
+                                    {
+                                        <option value="@m.Text" data-id="@m.Value" />
+                                    }
+                                </datalist>
+                                @*@Html.DropDownList("idpaciente", null, htmlAttributes: new { @class = "form-control" })*@
+                                @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" hidden>
+                                @Html.Label("Paciente", new { @class = "control-label col-md-2" })
+
+                                @Html.DropDownList("idpaciente", null, "", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-1">
+                            @Html.Label("Edad", new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.edad, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.edad, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            @Html.Label("Teléfono", new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-row col-md-12">
+                            <div class="form-group col-md-2">
+                                @Html.Label("Seguro Médico", new { @class = "control-label", @style = "margin-top:-10px;" })
+                                <input type="checkbox" name="SeguroMedico" value="" id="michekbox" class="form-check-input validar" style="margin-top:35px; height:15px;width:15px;" />
+                                @Html.ValidationMessageFor(model => model.SeguroMedico, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4" style="margin-left:-50px;">
+                                @Html.Label("Compañia de Seguros", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                                <select class="form-control" name="Compania" id="Compania">
+                                    <option value="ARS HUMANO">ARS HUMANO</option>
+                                    <option value="PALIC">PALIC</option>
+                                    <option value="SENASA">SENASA</option>
+                                    <option value="LA MONUMENTAL">LA MONUMENTAL</option>
+                                    <option value="UNIVERSAL">UNIVERSAL</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Compania, "", new { @class = "text-danger" })
+                            </div>
+                            @*<div class="form-group col-md-3" style="margin-left:-50px;">
+                        @Html.Label("Compañia", new { @class = "control-label col-md-2" })
+
+                        @Html.DropDownList("idcompania", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Compania, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="col-md-1 boton">
+                        <a href="#" class="btn btn-outline-primary Datoscomprobante " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle icono"></i></a>
+
+                    </div>*@
+                            <div class="form-group col-md-4">
+                                @Html.Label("Poliza", new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.Poliza, new { htmlAttributes = new { @class = "form-control", @readonly = true, @style = "width:260px;" } })
+                                @Html.ValidationMessageFor(model => model.Poliza, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="comment" class="control-label" style="margin-left:1px; margin-bottom:5px;">Observaciones:</label>
+                            @if (ViewBag.Observaciones != null)
+                            {
+                                <textarea class="form-control" rows="6" name="Observaciones" id="Observaciones" style="border: 1px solid rgb(128, 128, 128) !important; width: 710px; height: 156px;">@ViewBag.Observaciones</textarea>
+                            }
+                            @if (@ViewBag.Observaciones == null)
+                            {
+                                <textarea class="form-control" rows="6" name="Observaciones" id="Observaciones" style="border: 1px solid rgb(128, 128, 128) !important; width: 710px; height: 156px;"></textarea>
+
+                            }
+                            @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="comment" class="control-label" style="margin-left:1px; margin-bottom:5px;">Diagnóstico:</label>
+                            @if (ViewBag.Diagnostico != null)
+                            {
+                                <textarea class="form-control" rows="6" name="Diagnostico" id="Diagnostico" style="border: 1px solid rgb(128, 128, 128) !important; width: 710px; height: 156px;">@ViewBag.Diagnostico</textarea>
+                            }
+                            @if (ViewBag.Diagnostico == null)
+                            {<textarea class="form-control" rows="6" name="Diagnostico" id="Diagnostico" style="border: 1px solid rgb(128, 128, 128) !important; width: 710px; height: 156px;"></textarea>
+                            }
+                            @Html.ValidationMessageFor(model => model.Diagnostico, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                @Html.LabelFor(model => model.Receta, htmlAttributes: new { @class = "control-label", @style = "margin-left:1px;" })
+                                @if (ViewBag.Receta != null)
+                                {
+                                    <textarea class="form-control" rows="6" name="Receta" id="Receta" style="border: 1px solid rgb(128, 128, 128) !important; width: 328px; height: 267px;">@ViewBag.Receta</textarea>
+                                    <button type="button" class="imprimir btn btn-danger" id="recetaimprimir" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>
+                                }
+                                @if (ViewBag.Receta == null)
+                                {<textarea class="form-control" rows="6" name="Receta" id="Receta" style="border: 1px solid rgb(128, 128, 128) !important; width: 328px; height: 267px;"></textarea>
+                                    <button type="button" class="imprimir btn btn-danger" id="recetaimprimir" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>}
+                                @Html.ValidationMessageFor(model => model.Receta, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-5">
+                                @Html.LabelFor(model => model.Examenes, htmlAttributes: new { @class = "control-label", @style = "margin-left:1px;" })
+                                @if (ViewBag.Examenes != null)
+                                {<textarea class="form-control" rows="6" name="Examenes" id="Examenes" style="border: 1px solid rgb(128, 128, 128) !important; width: 329px; height: 264px;">@ViewBag.Examenes</textarea>
+                                    <button type="buton" class="imprimir btn btn-danger" id="imprimirexamenes" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>
+
+                                }
+                                @if (ViewBag.Examenes == null)
+                                {<textarea class="form-control" rows="6" name="Examenes" id="Examenes" style="border: 1px solid rgb(128, 128, 128) !important; width: 329px; height: 264px;"></textarea>
+                                    <button type="button" class="imprimir btn btn-danger" id="imprimirexamenes" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>
+
+                                }
+
+                                @Html.ValidationMessageFor(model => model.Examenes, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-row col-md-12">
+
+                            <div class="form-group col-md-8">
+
+                                @if (ViewBag.id != null)
+                                {
+
+                                    <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>
+                                }
+
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="submit" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+             
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/alertify/alertify.min.js"></script>
+
+<script src="~/Scripts/inputmask/inputmask.js"></script>
+<script src="~/Scripts/inputmask/inputmask.extensions.js"></script>
+<script src="~/Scripts/inputmask/jquery.inputmask.js"></script>
+<script src="~/Scripts/jquery.numeric.js"></script>
+<script src="~/Scripts/autoNumeric/autoNumeric-min.js"></script>
+<script src="~/Scripts/autoNumeric/autoNumeric.js"></script>
+<link href="~/Content/alertify.core.css" rel="stylesheet" />
+<link href="~/Content/alertify.default.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $(".validar").change(function () {
+            var $input = $(this);
+            if ($('.validar').is(":checked")) {
+                $("#Compania").prop('disabled', false);
+                document.getElementById("Poliza").readOnly = false;
+            } else {
+                $("#Compania").prop('disabled', 'disabled');
+                document.getElementById("Poliza").readOnly = true;
+
+            }
+
+        }).change();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+       
+        var datospaciente =$('select[name="idpaciente"] option:selected').text();
+
+        $("#idpacientes").val(datospaciente);
+        if ($("#paciente1 option[value='" + $('#idpacientes').val() + "']").attr('data-id') != null) {
+
+            $.post("/Consultas/GetPaciente", { idpaciente: $("#paciente1 option[value='" + $('#idpacientes').val() + "']").attr('data-id') }, function (data) {
+                $("#descripcionncf").empty();
+
+                $("#edad").empty();
+                $("#telefono").empty();
+                $("#idpaciente").empty();
+
+
+
+                $.each(data, function (create, row) {
+                    /**/
+                    document.getElementById("edad").value = row.edad;
+                    /**/
+                    $("#idpaciente").append("<option value= '" + row.idPaciente + "'>" + row.nombre + "</option>")
+
+                    document.getElementById("telefono").value = row.telefono;
+
+
+
+                });
+            });
+        }
+        $("#idpacientes").change(function () {
+            $.post("/Consultas/GetPaciente", { idpaciente: $("#paciente1 option[value='" + $('#idpacientes').val() + "']").attr('data-id') }, function (data) {
+                $("#descripcionncf").empty();
+
+                $("#edad").empty();
+                $("#telefono").empty();
+                $("#idpaciente").empty();
+
+
+
+                $.each(data, function (create, row) {
+                    /**/
+                    document.getElementById("edad").value = row.edad;
+                    /**/
+                    $("#idpaciente").append("<option value= '" + row.idPaciente + "'>" + row.nombre + "</option>")
+
+                    document.getElementById("telefono").value = row.telefono;
+
+
+
+                });
+            });
+        })
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#finalizar").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+
+            var i = 0;
+            var envio = "{TipoConsulta:'" + $("#TipoConsulta").val() + "',fecha:'" + $("#fecha").val() + "',idpaciente:'" + $("#idpaciente").val() + "',edad:'" + $("#edad").val() + "',telefono:'" + $("#telefono").val() + "',Compania:'" + $("#Compania").val() + "',Poliza:'" + $("#Poliza").val() + "',Observaciones:'" + $("#Observaciones").val() + "',Diagnostico:'" + $("#Diagnostico").val() + "',Receta:'" + $("#Receta").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarConsultar", "Consultas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+                    alertify.alert(response)
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+
+   var logoutUrl = '@Url.Action("reporteActual", "Consultas")';
+                    window.open(logoutUrl, '_blank');
+                    if (response == "VENTA GUARDADA CON EXITO...") {
+   var log = '@Url.Action("reporteActual", "Consultas")';
+                        window.location.href = log;
+
+                    }
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
+@*Para los Examenes*@
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#imprimirexamenes").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+
+            var i = 0;
+            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarExamen", "Consultas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+                    alertify.alert(response)
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+   var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
+                    window.open(logoutUrl, '_blank');
+                    if (response == "EXAMEN GUARDADO CON EXITO...") {
+                        //limpiar();
+                           @*var log = '@Url.Action("Index", "Consultas")';
+
+                        window.location.href = log;*@
+
+                    }
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
+@*Para las Recetas*@
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#recetaimprimir").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+
+            var i = 0;
+            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Receta:'" + $('#Receta').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarReceta", "Consultas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+                    alertify.alert(response)
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+   var logoutUrl = '@Url.Action("reporteReceta", "Consultas")';
+                    window.open(logoutUrl, '_blank');
+                    if (response == "RECETA GUARDADA CON EXITO...") {
+   @*var log = '@Url.Action("reporteReceta", "Consultas")';
+                        window.location.href = log;*@
+
+                    }
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>

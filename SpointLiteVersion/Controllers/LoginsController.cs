@@ -12,7 +12,7 @@ namespace RentCar.Controllers
 {
     public class LoginsController : Controller
     {
-        private spointEntities db = new spointEntities();
+        private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
 
         // GET: Logins
         public ActionResult Index()
@@ -84,7 +84,7 @@ namespace RentCar.Controllers
                 Session["empresaid"] = empresaid;
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "pacientes");
             }
             else
             {

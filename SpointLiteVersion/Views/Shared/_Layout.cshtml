@@ -25,9 +25,9 @@
             <!-- Logo -->
             <a href="@Url.Action("Index","Home")" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>A</b>Spoint</span>
+                <span class="logo-mini"><b>A</b>Hos</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Spoint</b> Lite</span>
+                <span class="logo-lg"><b>Hospoint</b> </span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -103,18 +103,9 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">Menu De Navegación</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-
-                    </li>
 
                     <li class="">
-                        <a class="collapse-item emp" href="@Url.Action("Index","productos1")"><i class="fas fa-shopping-basket"></i> <span>Producto</span></a>
+                        <a class="collapse-item emp" href="@Url.Action("Index","pacientes")"><i class="fas fa-users"></i> <span>Pacientes</span></a>
 
 
                     </li>
@@ -123,70 +114,27 @@
 
 
                     <li class="">
-                        <a class="collapse-item emp" href="@Url.Action("Index","clientes1")"><i class="fas fa-users"></i> <span>Clientes</span></a>
+                        <a class="collapse-item emp" href="@Url.Action("Index","Consultas")"><i class="fas fa-file-medical"></i> <span>Consultas</span></a>
                     </li>
 
                     <li class="">
-                        <a class="collapse-item emp" href="@Url.Action("Index","suplidores")"><i class="fas fa-store-alt"></i> <span>Suplidores</span></a>
-
+                        <a class="collapse-item emp" href="@Url.Action("Index","CitasAgendadas")"><i class="fas fa-file-medical"></i> <span>Agendar Consultas</span></a>
                     </li>
 
-                    <li>
-                        <a class="collapse-item emp" href="@Url.Action("Index","compras")">
-                            <i class="fas fa-cart-plus"></i>
-                            <span>Compras</span>
-                        </a>
 
+                    <li class="">
+                        <a class="collapse-item emp" href="@Url.Action("RecetasyExamen","Consultas")"><i class="fas fa-file-medical"></i> <span>Recetas y Examenes</span></a>
                     </li>
-                    <li>
-                        <a class="collapse-item emp" href="@Url.Action("Index","vendedores")"><i class="fas fa-id-badge"></i> <span>Vendedores</span></a>
 
-                    </li>
-                    <li>
-                        <a class="collapse-item emp" href="@Url.Action("Inventario","productos1")"><i class="fas fa-clipboard"></i> <span>Inventario</span></a>
 
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fas fa-shopping-cart"></i> <span>Factura</span>
-                        </a>
-                        <ul class="treeview-menu">
 
-                            <li class="">
-                                <a class="collapse-item emp" href="@Url.Action("Index","facturas")"><i class="fas fa-shopping-cart"></i> <span>Facturas</span></a>
 
-                            </li>
-                            <li class="">
-                                <a class="collapse-item emp" href="@Url.Action("CotizacionesIndex","facturas")"><i class="fas fa-shopping-cart"></i> <span>Cotizaciones</span></a>
 
-                            </li>
-                            <li class="">
-                                <a class="collapse-item emp" href="@Url.Action("PrefacturaIndex","facturas")"><i class="far fa-newspaper"></i> <span>Prefactura</span></a>
 
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fas fa-shopping-cart"></i> <span>NCF</span>
-                        </a>
-                        <ul class="treeview-menu">
-
-                            <li class="">
-                                <a class="collapse-item emp" href="@Url.Action("Index","NCFs1")"><i class="fas fa-shopping-cart"></i> <span>NCF</span></a>
-
-                            </li>
-                            <li class="">
-                                <a class="collapse-item emp" href="@Url.Action("Index","NcFsecuencias")"><i class="fas fa-shopping-cart"></i> <span>NCF Secuencias</span></a>
-
-                            </li>
-                            
-                        </ul>
-                    </li>
                     @*<li class="">
-                        <a class="collapse-item emp" href="@Url.Action("Index","facturas")"><i class="fas fa-cogs"></i> <span>Preferencias</span></a>
+            <a class="collapse-item emp" href="@Url.Action("Index","facturas")"><i class="fas fa-cogs"></i> <span>Preferencias</span></a>
 
-                    </li>*@
+        </li>*@
                 </ul>
 </section>
             <!-- /.sidebar -->
@@ -195,7 +143,7 @@
         <!-- =============================================== -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @RenderBody();
+            @RenderBody()
             <!-- Content Header (Page header) -->
             <!-- /.content -->
         </div>
