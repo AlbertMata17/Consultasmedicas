@@ -189,7 +189,7 @@ namespace SpointLiteVersion.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             CitasAgendadas citasAgendadas = db.CitasAgendadas.Find(id);
-            db.CitasAgendadas.Remove(citasAgendadas);
+            citasAgendadas.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

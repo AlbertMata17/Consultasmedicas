@@ -54,7 +54,7 @@
                             <div class="form-group col-md-3">
                                 @Html.Label("Fecha", new { @class = "control-label col-md-2" })
 
-                                <input type="date" name="fecha" id="fecha" value="" class="form-control" />
+                                <input type="date" name="fecha" id="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" class="form-control" />
                                 @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
                             </div>
 
@@ -200,7 +200,7 @@
 
                             </div>
                             <div class="form-group col-md-1">
-                                <button class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
+                                <button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
 
                             </div>
 
@@ -241,7 +241,9 @@
 </script>
 <script>
     $(document).ready(function () {
-       
+        if (@ViewBag.idmostrarseleccion!= null) {
+            $("#idpaciente").val(@ViewBag.idmostrarseleccion);
+        }
         var datospaciente =$('select[name="idpaciente"] option:selected').text();
 
         $("#idpacientes").val(datospaciente);
@@ -343,8 +345,8 @@
 
    var logoutUrl = '@Url.Action("reporteActual", "Consultas")';
                     window.open(logoutUrl, '_blank');
-                    if (response == "VENTA GUARDADA CON EXITO...") {
-   var log = '@Url.Action("reporteActual", "Consultas")';
+                    if (response == "CONSULTA GUARDADA CON EXITO...") {
+   var log = '@Url.Action("Index", "Consultas")';
                         window.location.href = log;
 
                     }

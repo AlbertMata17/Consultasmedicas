@@ -6582,6 +6582,7 @@
     <Content Include="Content\dist\js\pages\dashboard.js" />
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\estilosimprimir.css" />
+    <Content Include="Content\HospitalRed.png" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\util.css" />
     <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -7711,6 +7712,7 @@
     <Content Include="Views\CitasAgendadas\Index.cshtml" />
     <Content Include="Views\Consultas\VistaImpresion.cshtml" />
     <Content Include="Views\Consultas\RecetasyExamen.cshtml" />
+    <Content Include="Views\Consultas\Borrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\bower_components\fullcalendar\dist\fullcalendar.d.ts" />

@@ -51,6 +51,10 @@ namespace SpointLiteVersion.Controllers
             if (ModelState.IsValid)
             {
                 ciudad.Estatus = 1;
+                if (ciudad.Nombre != null)
+                {
+                    ciudad.Nombre = ciudad.Nombre.ToUpper();
+                }
                 db.ciudad.Add(ciudad);
                 db.SaveChanges();
                 return RedirectToAction("Index");

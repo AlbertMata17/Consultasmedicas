@@ -222,7 +222,7 @@ namespace SpointLiteVersion.Controllers
             var empresaid1 = Convert.ToInt32(empresaid);
             if (id == null)
             {
-
+                ViewBag.idmostrarseleccion = idpaciente;
                 ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre");
                 var s = (from datosid in db.Consultas where datosid.Estatus==1 select datosid.idConsulta).FirstOrDefault();
                 var idmostrar = 0;
@@ -277,27 +277,27 @@ namespace SpointLiteVersion.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (consultas.TipoConsulta != "")
+                    if (consultas.TipoConsulta != null)
                     {
                         consultas.TipoConsulta = consultas.TipoConsulta.ToUpper();
                     }
-                    if (consultas.Compania != "")
+                    if (consultas.Compania != null)
                     {
                         consultas.Compania = consultas.Compania.ToUpper();
                     }
-                    if (consultas.Observaciones != "")
+                    if (consultas.Observaciones != null)
                     {
                         consultas.Observaciones = consultas.Observaciones.ToUpper();
                     }
-                    if (consultas.Diagnostico != "")
+                    if (consultas.Diagnostico != null)
                     {
                         consultas.Diagnostico = consultas.Diagnostico.ToUpper();
                     }
-                    if (consultas.Receta != "")
+                    if (consultas.Receta != null)
                     {
                         consultas.Receta = consultas.Receta.ToUpper();
                     }
-                    if (consultas.Examenes != "")
+                    if (consultas.Examenes != null)
                     {
                         consultas.Examenes = consultas.Examenes.ToUpper();
                     }
@@ -311,27 +311,27 @@ namespace SpointLiteVersion.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (consultas.TipoConsulta != "")
+                    if (consultas.TipoConsulta != null)
                     {
                         consultas.TipoConsulta = consultas.TipoConsulta.ToUpper();
                     }
-                    if (consultas.Compania != "")
+                    if (consultas.Compania != null)
                     {
                         consultas.Compania = consultas.Compania.ToUpper();
                     }
-                    if (consultas.Observaciones != "")
+                    if (consultas.Observaciones != null)
                     {
                         consultas.Observaciones = consultas.Observaciones.ToUpper();
                     }
-                    if (consultas.Diagnostico != "")
+                    if (consultas.Diagnostico != null)
                     {
                         consultas.Diagnostico = consultas.Diagnostico.ToUpper();
                     }
-                    if (consultas.Receta != "")
+                    if (consultas.Receta != null)
                     {
                         consultas.Receta = consultas.Receta.ToUpper();
                     }
-                    if (consultas.Examenes != "")
+                    if (consultas.Examenes != null)
                     {
                         consultas.Examenes = consultas.Examenes.ToUpper();
                     }
@@ -339,11 +339,14 @@ namespace SpointLiteVersion.Controllers
                     db.Consultas.Add(consultas);
                     db.SaveChanges();
                     var id = consultas.idpaciente;
+
                     //return RedirectToAction("Index", new { target = "_blank" })
                     if (id != null)
                     {
                         string idPaciente = id.ToString();
                     }
+                    return RedirectToAction("Index");
+
                 }
             }
             ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
@@ -528,11 +531,39 @@ namespace SpointLiteVersion.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Consultas consultas = db.Consultas.Find(id);
-            db.Consultas.Remove(consultas);
+            consultas.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
+        public ActionResult Borrar(int? id)
+        {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            RecetasyExamenes consultas = db.RecetasyExamenes.Find(id);
+            if (consultas == null)
+            {
+                return HttpNotFound();
+            }
+            return View(consultas);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult BorrarConfirmed(int id)
+        {
+            RecetasyExamenes consultas = db.RecetasyExamenes.Find(id);
+            consultas.Estatus = 0;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

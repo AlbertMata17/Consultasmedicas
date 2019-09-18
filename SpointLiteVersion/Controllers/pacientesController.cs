@@ -80,6 +80,16 @@ namespace SpointLiteVersion.Controllers
             {
                 ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1), "idciudad", "Nombre", paciente.idciuddad);
                 ViewBag.id = "algo";
+                var nacimiento = (from s in db.paciente where s.idPaciente == id select s.fechanacimiento).FirstOrDefault();
+                var edad1 = (from s in db.paciente where s.idPaciente == id select s.edad).FirstOrDefault();
+                if (nacimiento != null)
+                {
+                    ViewBag.nacimiento = nacimiento.Value.Date.ToString("yyyy-MM-dd");
+                }
+                if (edad1 != null)
+                {
+                    ViewBag.edad1 = edad1.ToString();
+                }
                 var historia = (from his in db.HistoriaClinica where his.idpaciente == id && his.Estatus==1 select his).FirstOrDefault();
                 if (historia != null)
                 {
@@ -94,6 +104,10 @@ namespace SpointLiteVersion.Controllers
                     ViewBag.familiares = historia.antecedentesfamiliares;
                     ViewBag.vacuna = historia.vacunas;
                     ViewBag.habito = historia.habitos;
+                    ViewBag.estatura = historia.estaturas;
+                    ViewBag.peso = historia.peso;
+                    ViewBag.temperatura = historia.temperatura;
+                    ViewBag.gruposanguineo = historia.gruposanguineo;
                 }
                 return View(paciente);
             }
@@ -256,58 +270,140 @@ namespace SpointLiteVersion.Controllers
             ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1), "idciudad", "Nombre", paciente.idciuddad);
             return View(paciente);
         }
-        public ActionResult GuardarConsultar(string nombre, string fechanacimiento, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo,string EstadoCivil)
+        public ActionResult GuardarConsultar(string nombre, string fechanacimiento, string idpaciente, string idPacient, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email, string sexo, string EstadoCivil)
         {
             string mensaje = "";
+            int idpacientebuscar = 0;
+            int ciudad = 0;
+            if (idpaciente!= "undefined")
+            {
+                idpacientebuscar = Convert.ToInt32(idpaciente);
+            } else if (idPacient!= "undefined")
+            {
+                idpacientebuscar = Convert.ToInt32(idPacient);
+            }
+            if (idciuddad != "undefined")
+            {
+                ciudad =Convert.ToInt32(idciuddad);
+            }
             paciente paciente = new paciente();
-            var fech = Convert.ToDateTime(fechanacimiento);
-            if (nombre != "")
+            var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 select s.idPaciente).Count();
+            if (t != 0)
             {
-                paciente.nombre = nombre.ToUpper();
-            }
-            paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
-            if (direccion != "")
-            {
-                paciente.direccion = direccion.ToUpper();
-            }
-            if (sexo != "")
-            {
-                paciente.sexo = sexo.ToUpper();
-            }
-            if (EstadoCivil != "")
-            {
-                paciente.EstadoCivil = EstadoCivil.ToUpper();
-            }
-            paciente.telefono = telefono;
-            paciente.telefono2 = telefono2;
-            paciente.cedula = cedula;
-            if (paciente.fechanacimiento != null)
-            {
-                DateTime now = DateTime.Today;
-                var ano = fech.Year;
-                int edad = DateTime.Today.Year - ano;
-
-                if (DateTime.Today < fech.AddYears(edad))
+                var si = (from db in db.paciente where db.idPaciente == idpacientebuscar select db.idPaciente).FirstOrDefault();
+                paciente.idPaciente = si;
+                if (direccion != null)
                 {
-                    --edad;
+                    paciente.direccion = direccion.ToUpper();
                 }
-                paciente.edad = edad;
+                if (nombre != null)
+                {
+                    paciente.nombre = nombre.ToUpper();
+                }
+                if (email != null)
+                {
+                    paciente.email = email.ToUpper();
+                }
+                if (sexo !=null)
+                {
+                    paciente.sexo = sexo.ToUpper();
+                }
+                if (EstadoCivil !=null)
+                {
+                    paciente.EstadoCivil = EstadoCivil.ToUpper();
+                }
+                if (fechanacimiento != null)
+                {
+                    var fech1 = Convert.ToDateTime(fechanacimiento);
+
+                    DateTime now1 = DateTime.Today;
+                    var ano1 = fech1.Year;
+                    int edad1 = DateTime.Today.Year - ano1;
+
+                    if (DateTime.Today < fech1.AddYears(edad1))
+                    {
+                        --edad1;
+                    }
+                    paciente.edad = edad1;
+                }
+                paciente.telefono = telefono;
+                paciente.telefono2 = telefono2;
+                paciente.cedula = cedula;
+                paciente.Estatus = 1;
+                paciente.idciuddad = ciudad;
+                var usuarioid = Session["userid"].ToString();
+                var empresaid = Session["empresaid"].ToString();
+                db.Entry(paciente).State = EntityState.Modified;
+                db.SaveChanges();
             }
-            if (email != "")
+            else
             {
-                paciente.email = email.ToUpper();
+                if (nombre != "")
+                {
+                    paciente.nombre = nombre.ToUpper();
+                }
+                paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
+                if (direccion != "")
+                {
+                    paciente.direccion = direccion.ToUpper();
+                }
+                if (sexo != null)
+                {
+                    paciente.sexo = sexo.ToUpper();
+                }
+                if (EstadoCivil !=null)
+                {
+                    paciente.EstadoCivil = EstadoCivil.ToUpper();
+                }
+                paciente.telefono = telefono;
+                paciente.telefono2 = telefono2;
+                paciente.cedula = cedula;
+                if (fechanacimiento != null)
+                {
+                    var fech1 = Convert.ToDateTime(fechanacimiento);
+
+                    DateTime now1 = DateTime.Today;
+                    var ano1 = fech1.Year;
+                    int edad1 = DateTime.Today.Year - ano1;
+
+                    if (DateTime.Today < fech1.AddYears(edad1))
+                    {
+                        --edad1;
+                    }
+                    paciente.edad = edad1;
+                }
+                if (email != "")
+                {
+                    paciente.email = email.ToUpper();
+                }
+                paciente.Estatus = 1;
+                paciente.idciuddad = ciudad;
+                db.paciente.Add(paciente);
+                db.SaveChanges();
+                var idPaciente = paciente.idPaciente;
+                mensaje = idPaciente.ToString();
+                ViewBag.idPaciente = idPaciente;
             }
-            paciente.Estatus = 1;
-            db.paciente.Add(paciente);
-            db.SaveChanges();
-            var idPaciente = paciente.idPaciente;
-            mensaje = idPaciente.ToString();
-            ViewBag.idPaciente = idPaciente.ToString();
             return Json(mensaje);
         }
-        public ActionResult Historia(string idpaciente, string consulta, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos) {
+        public ActionResult Historia(string consulta, string idpaciente,string idPacient, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento,string gruposanguineo, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo, string EstadoCivil, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos) {
+            paciente paciente = new paciente();
+
             string mensaje = "";
-            int idpacientebuscar = Convert.ToInt32(idpaciente);
+            int idpacientebuscar = 0;
+            int ciudad=0;
+            if (idpaciente != "undefined")
+            {
+                idpacientebuscar = Convert.ToInt32(idpaciente);
+            }
+            else if (idPacient != "undefined")
+            {
+                idpacientebuscar = Convert.ToInt32(idPacient);
+            }
+            if (idciuddad != "undefined")
+            {
+                ciudad = Convert.ToInt32(idciuddad);
+            }
             if (nombre == "" || fechanacimiento == "")
             {
                 if (nombre == "") mensaje = "ERROR EN EL NOMBRE, INGRESE LOS DATOS DEL FORMULARIO DEL PACIENTE QUE SE ENCUENTRA MAS ARRIBA";
@@ -318,67 +414,210 @@ namespace SpointLiteVersion.Controllers
             }
             else
             {
-                paciente paciente = new paciente();
-                var fech = Convert.ToDateTime(fechanacimiento);
-                paciente.nombre = nombre;
-                paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
-                paciente.direccion = direccion;
-                paciente.telefono = telefono;
-                paciente.telefono2 = telefono2;
-                paciente.cedula = cedula;
-
-                DateTime now = DateTime.Today;
-                var ano = fech.Year;
-                int edad = DateTime.Today.Year - ano;
-
-                if (DateTime.Today < fech.AddYears(edad))
+                var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 select s.idPaciente).Count();
+                if (t != 0)
                 {
-                    --edad;
+                    paciente paciente1 = new paciente();
+
+                    var si = (from db in db.paciente where db.idPaciente == idpacientebuscar select db.idPaciente).FirstOrDefault();
+                    paciente.idPaciente = si;
+                    if (direccion != null)
+                    {
+                        paciente.direccion = direccion.ToUpper();
+                    }
+                    if (nombre != null)
+                    {
+                        paciente.nombre = nombre.ToUpper();
+                    }
+                    if (email != null)
+                    {
+                        paciente.email = email.ToUpper();
+                    }
+                    if (sexo != null)
+                    {
+                        paciente.sexo = sexo.ToUpper();
+                    }
+                    if (EstadoCivil != null)
+                    {
+                        paciente.EstadoCivil = EstadoCivil.ToUpper();
+                    }
+                    if (fechanacimiento != null || fechanacimiento != "")
+                    {
+                        var fech1 = Convert.ToDateTime(fechanacimiento);
+
+                        DateTime now1 = DateTime.Today;
+                        var ano1 = fech1.Year;
+                        int edad1 = DateTime.Today.Year - ano1;
+
+                        if (DateTime.Today < fech1.AddYears(edad1))
+                        {
+                            --edad1;
+                        }
+                        paciente.edad = edad1;
+                        paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
+                    }
+                    paciente.telefono = telefono;
+                    paciente.telefono2 = telefono2;
+                    paciente.cedula = cedula;
+                    paciente.Estatus = 1;
+                    paciente.idciuddad = ciudad;
+                    var usuarioid = Session["userid"].ToString();
+                    var empresaid = Session["empresaid"].ToString();
+                    db.Entry(paciente).State = EntityState.Modified;
+                    db.SaveChanges();
+                    var datosconsultas1 = (from consult in db.HistoriaClinica where consult.idpaciente == idpacientebuscar && consult.Estatus == 1 select consult.idHistorio).FirstOrDefault();
+                    var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s).FirstOrDefault();
+                    if (comprobar != null) {
+                        var si1 = (from db in db.HistoriaClinica where db.idpaciente == idpacientebuscar select db.idHistorio).FirstOrDefault();
+
+                        HistoriaClinica histroiaclicnica = new HistoriaClinica();
+                        histroiaclicnica.idHistorio = si1;
+                        histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
+                        histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;
+                        histroiaclicnica.idpaciente = idpacientebuscar;
+                        histroiaclicnica.alergia = alergias;
+                        histroiaclicnica.medicamentos = Medicamentos;
+                        histroiaclicnica.Revisionporsistema = Revision;
+                        histroiaclicnica.motivoconsulta = consulta;
+                        histroiaclicnica.historia = Enfermedad;
+                        histroiaclicnica.antsociales = personales;
+                        histroiaclicnica.antecedentesfamiliares = familiares;
+                        histroiaclicnica.habitos = Habitos;
+                        histroiaclicnica.estaturas = estatura;
+                        histroiaclicnica.unidad = centimetro;
+                        histroiaclicnica.peso = peso;
+                        histroiaclicnica.cantidadpeso = peso1;
+                        histroiaclicnica.medidatemperatura = temperatura1;
+                        histroiaclicnica.temperatura = temperatura;
+                        histroiaclicnica.Estatus = 1;
+                        histroiaclicnica.vacunas = Vacunas;
+                        histroiaclicnica.gruposanguineo = gruposanguineo;
+
+                        if (fechanacimiento != null || fechanacimiento != "")
+                        {
+                            histroiaclicnica.fecnacimiento = Convert.ToDateTime(fechanacimiento);
+                        }
+                        if (gruposanguineo != null)
+                        {
+                            histroiaclicnica.gruposanguineo = gruposanguineo;
+                        }
+                        db.Entry(histroiaclicnica).State = EntityState.Modified;
+                        db.SaveChanges();
+                        mensaje = "Guardado";
+                    }
+                    else if (comprobar == null) {
+                        HistoriaClinica histroiaclicnica = new HistoriaClinica(); ;
+                        histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
+                        histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;
+                        histroiaclicnica.idpaciente = idpacientebuscar;
+                        histroiaclicnica.alergia = alergias;
+                        histroiaclicnica.medicamentos = Medicamentos;
+                        histroiaclicnica.Revisionporsistema = Revision;
+                        histroiaclicnica.motivoconsulta = consulta;
+                        histroiaclicnica.historia = Enfermedad;
+                        histroiaclicnica.antsociales = personales;
+                        histroiaclicnica.antecedentesfamiliares = familiares;
+                        histroiaclicnica.habitos = Habitos;
+                        histroiaclicnica.estaturas = estatura;
+                        histroiaclicnica.unidad = centimetro;
+                        histroiaclicnica.peso = peso;
+                        histroiaclicnica.cantidadpeso = peso1;
+                        histroiaclicnica.medidatemperatura = temperatura1;
+                        histroiaclicnica.temperatura = temperatura;
+                        histroiaclicnica.Estatus = 1;
+                        histroiaclicnica.gruposanguineo = gruposanguineo;
+                        if (fechanacimiento != null || fechanacimiento != "")
+                        {
+                            histroiaclicnica.fecnacimiento = Convert.ToDateTime(fechanacimiento);
+                        }
+                        if (gruposanguineo != null)
+                        {
+                            histroiaclicnica.gruposanguineo = gruposanguineo;
+                        }
+                        db.HistoriaClinica.Add(histroiaclicnica);
+
+                        db.SaveChanges();
+                        mensaje = "Guardado";
+
+                    }
                 }
-                paciente.edad = edad;
-                paciente.email = email;
-                paciente.Estatus = 1;
-                db.paciente.Add(paciente);
-                db.SaveChanges();
-                var id = paciente.idPaciente;
-                //var s = (from datos in db.paciente where datos.idPaciente == idpacientebuscar select datos).FirstOrDefault();
-                //if (s != null)
-                //{
-                HistoriaClinica histroiaclicnica = new HistoriaClinica(); ;
-                histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
-                histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;
-                histroiaclicnica.idpaciente = id;
-                histroiaclicnica.alergia = alergias;
-                histroiaclicnica.medicamentos = Medicamentos;
-                histroiaclicnica.Revisionporsistema = Revision;
-                histroiaclicnica.motivoconsulta = consulta;
-                histroiaclicnica.historia = Enfermedad;
-                histroiaclicnica.antsociales = personales;
-                histroiaclicnica.antecedentesfamiliares = familiares;
-                histroiaclicnica.habitos = Habitos;
-                histroiaclicnica.estaturas = estatura;
-                histroiaclicnica.unidad = centimetro;
-                histroiaclicnica.peso = peso;
-                histroiaclicnica.cantidadpeso = peso1;
-                histroiaclicnica.medidatemperatura = temperatura1;
-                histroiaclicnica.temperatura = temperatura;
-                histroiaclicnica.Estatus = 1;
-                db.HistoriaClinica.Add(histroiaclicnica);
+                else {
+                    if (nombre != null || nombre != "")
+                    {
+                        paciente.nombre = nombre.ToUpper();
+                    }
+                    if (fechanacimiento != null || fechanacimiento != "")
+                    {
+                        var fech = Convert.ToDateTime(fechanacimiento);
+                        DateTime now = DateTime.Today;
+                        var ano = fech.Year;
+                        int edad = DateTime.Today.Year - ano;
 
-                db.SaveChanges();
+                        if (DateTime.Today < fech.AddYears(edad))
+                        {
+                            --edad;
+                        }
+                        paciente.edad = edad; paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
+                    }
+                    if (direccion != null || direccion != "") {
+                        paciente.direccion = direccion.ToUpper();
+
+                    }
+                    paciente.telefono = telefono;
+                    paciente.telefono2 = telefono2;
+                    paciente.cedula = cedula;
+
+                    if (email != null || email != "")
+                    {
+                        paciente.email = email.ToUpper();
+                    }
+                    paciente.Estatus = 1;
+                    paciente.idciuddad = ciudad;
+                    db.paciente.Add(paciente);
+                    db.SaveChanges();
+                    var id = paciente.idPaciente;
+                    //var s = (from datos in db.paciente where datos.idPaciente == idpacientebuscar select datos).FirstOrDefault();
+                    //if (s != null)
+                    //{
+                    HistoriaClinica histroiaclicnica = new HistoriaClinica(); ;
+                    histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
+                    histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;
+                    histroiaclicnica.idpaciente = id;
+                    histroiaclicnica.alergia = alergias;
+                    histroiaclicnica.medicamentos = Medicamentos;
+                    histroiaclicnica.Revisionporsistema = Revision;
+                    histroiaclicnica.motivoconsulta = consulta;
+                    histroiaclicnica.historia = Enfermedad;
+                    histroiaclicnica.antsociales = personales;
+                    histroiaclicnica.antecedentesfamiliares = familiares;
+                    histroiaclicnica.habitos = Habitos;
+                    histroiaclicnica.estaturas = estatura;
+                    histroiaclicnica.unidad = centimetro;
+                    histroiaclicnica.peso = peso;
+                    histroiaclicnica.cantidadpeso = peso1;
+                    histroiaclicnica.medidatemperatura = temperatura1;
+                    histroiaclicnica.temperatura = temperatura;
+                    histroiaclicnica.Estatus = 1;
+                    histroiaclicnica.vacunas = Vacunas;
+                    histroiaclicnica.gruposanguineo = gruposanguineo;
+                    db.HistoriaClinica.Add(histroiaclicnica);
+
+                    db.SaveChanges();
 
 
-                mensaje = "PACIENTE E HISTORIA CLÍNICA GUARDADA CON EXITO...";
-                //}
-                //else
-                //{
-                //    mensaje = "ERROR INGRESE LOS DATOS DEL PACIENTE EN EL FORMULARIO QUE ESTÁ MÁS ARRIBA...";
+                    mensaje = "PACIENTE E HISTORIA CLÍNICA GUARDADA CON EXITO...";
+                    //}
+                    //else
+                    //{
+                    //    mensaje = "ERROR INGRESE LOS DATOS DEL PACIENTE EN EL FORMULARIO QUE ESTÁ MÁS ARRIBA...";
 
-                //}
+                    //}
+                }
             }
-            return Json(mensaje);
+                return Json(mensaje);
+            }
 
-    }
+    
 
     // GET: pacientes/Delete/5
     public ActionResult Delete(int? id)
@@ -401,7 +640,7 @@ namespace SpointLiteVersion.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             paciente paciente = db.paciente.Find(id);
-            db.paciente.Remove(paciente);
+            paciente.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

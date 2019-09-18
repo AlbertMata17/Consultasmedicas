@@ -72,16 +72,15 @@
 
                         <div class="form-group col-md-5">
                             @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control nombre" } })
+                            @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control nombre", tabindex = 1 } })
                             @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
 
                         </div>
-
                         <div class="form-group col-md-4" style="width:35%;">
 
                             @Html.Label("Dirección", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", tabindex = 2 } })
                             @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -89,7 +88,7 @@
                         <div class="form-group col-md-3">
                             @Html.Label("Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999" } })
+                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 3 } })
                             @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
 
 
@@ -97,21 +96,21 @@
                         <div class="form-group col-md-3">
                             @Html.Label("Teléfono #2", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
 
-                            @Html.EditorFor(model => model.telefono2, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999" } })
+                            @Html.EditorFor(model => model.telefono2, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 4 } })
                             @Html.ValidationMessageFor(model => model.telefono2, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-2">
                             @Html.Label("Cédula", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control", @placeholder = "000-0000000-0" } })
+                            @Html.EditorFor(model => model.cedula, new { htmlAttributes = new { @class = "form-control", @placeholder = "000-0000000-0", tabindex = 5 } })
                             @Html.ValidationMessageFor(model => model.cedula, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-2 form1">
                             @Html.Label("Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.DropDownList("idciuddad", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.DropDownList("idciuddad", null, htmlAttributes: new { @class = "form-control", tabindex = 6 })
                             @Html.ValidationMessageFor(model => model.idciuddad, "", new { @class = "text-danger" })
 
 
@@ -125,21 +124,31 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             @Html.Label("Nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @if (ViewBag.nacimiento != null)
+                            {
+                                <input type="date" name="fechanacimiento" id="fechanacimiento" value="@ViewBag.nacimiento" class="form-control" tabindex="7" />
+                            }@if (ViewBag.nacimiento == null)
+                            {
+                                <input type="date" name="fechanacimiento" id="fechanacimiento" value="" class="form-control" tabindex="7" />
 
-                            <input type="date" name="fechanacimiento" id="fechanacimiento" value="" class="form-control" />
+                            }
                             @Html.ValidationMessageFor(model => model.fechanacimiento, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-1">
                             @Html.Label("Edad", htmlAttributes: new { @class = "control-label col-md-2" })
-
-                            <input type="text" name="edad1" id="edad1" value="" class="form-control" readonly />
+                            @if (ViewBag.edad1 != null)
+                            {
+                                <input type="text" name="edad1" id="edad1" value="@ViewBag.edad1" class="form-control" readonly disabled />
+                            }@if (ViewBag.edad1 == null)
+                            {<input type="text" name="edad1" id="edad1" value="" class="form-control" readonly disabled />
+                            }
                             @Html.ValidationMessageFor(model => model.fechanacimiento, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-3">
                             @Html.Label("Género", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <select class="form-control" name="sexo" id="sexo">
+                            <select class="form-control" name="sexo" id="sexo" tabindex = "8">
                                 <option value="MASCULINO">MASCULINO</option>
                                 <option value="FEMENINO">FEMENINO</option>
                                 <option value="PREFIERO NO DECIRLO">PREFIERO NO DECIRLO</option>
@@ -149,7 +158,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             @Html.Label("Estado Civil", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                            <select class="form-control" name="EstadoCivil" id="EstadoCivil">
+                            <select class="form-control" name="EstadoCivil" id="EstadoCivil" tabindex = "9">
                                 <option value="SOLTERO">SOLTERO</option>
                                 <option value="CASADO">CASADO</option>
                                 <option value="DIVORCIADO">DIVORCIADO</option>
@@ -197,7 +206,7 @@
                         <div class="form-group col-md-7">
                             @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
 
-                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:90%;" } })
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @style = "width:90%;", tabindex = 10 } })
                             @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
 
                         </div>
@@ -217,7 +226,7 @@
                             @if (ViewBag.id != null)
                             {
 
-                                <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","clientes1",new { id=Model.idPaciente})">Eliminar</a>
+                                <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","pacientes",new { id=Model.idPaciente})">Eliminar</a>
                             }
 
                         </div>
@@ -268,10 +277,10 @@
                     <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Motivo de Consulta:</label>
                     @if (@ViewBag.consulta != null)
                     {
-                    <textarea class="form-control" rows="6" name="consulta" id="consulta" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.consulta</textarea>
+                        <textarea class="form-control" tabindex = "11" rows="6" name="consulta" id="consulta" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.consulta</textarea>
                     }
                     @if (@ViewBag.consulta == null)
-                    {<textarea class="form-control" rows="6" name="consulta" id="consulta" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
+                    {<textarea class="form-control" tabindex = "11" rows="6" name="consulta" id="consulta" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
                     }
 
                 </div>
@@ -281,10 +290,10 @@
                         @if (@ViewBag.medico != null)
                         {
 
-                            <textarea class="form-control" rows="3" name="antecedentesmedicos" id="antecedentesmedicos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.medico</textarea>
+                            <textarea class="form-control" tabindex = "13" rows="3" name="antecedentesmedicos" id="antecedentesmedicos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.medico</textarea>
                         }
                         @if (@ViewBag.medico == null)
-                        {<textarea class="form-control" rows="3" name="antecedentesmedicos" id="antecedentesmedicos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "13" rows="3" name="antecedentesmedicos" id="antecedentesmedicos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
 
                     </div>
@@ -292,10 +301,10 @@
                         <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Antecedentes Ginecológico:</label>
                         @if (@ViewBag.ginecologico != null)
                         {
-                        <textarea class="form-control" rows="3" name="antecedentesginecologico" id="antecedentesginecologico" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.ginecologico</textarea>
+                            <textarea class="form-control" tabindex = "14" rows="3" name="antecedentesginecologico" id="antecedentesginecologico" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.ginecologico</textarea>
                         }
                         @if (@ViewBag.ginecologico == null)
-                        {<textarea class="form-control" rows="3" name="antecedentesginecologico" id="antecedentesginecologico" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "14" rows="3" name="antecedentesginecologico" id="antecedentesginecologico" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
                     </div>
                 </div>
@@ -305,39 +314,103 @@
                         @if (@ViewBag.alergia != null)
                         {
 
-                        <textarea class="form-control" rows="3" name="alergias" id="alergias" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.alergia</textarea>
+                            <textarea class="form-control" tabindex = "17" rows="3" name="alergias" id="alergias" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.alergia</textarea>
                         }
                         @if (@ViewBag.alergia == null)
-                        {<textarea class="form-control" rows="3" name="alergias" id="alergias" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "17" rows="3" name="alergias" id="alergias" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
                     </div>
                     <div class="form-group col-md-6">
                         <label for="comment" class="control-label medicamento" style="margin-left:1px; margin-bottom:5px;">Medicamentos:</label>
                         @if (@ViewBag.medicamento != null)
                         {
-                        <textarea class="form-control" rows="3" name="Medicamentos" id="Medicamentos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.medicamento</textarea>
-                        }                        
+                            <textarea class="form-control" tabindex = "18" rows="3" name="Medicamentos" id="Medicamentos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.medicamento</textarea>
+                        }
                         @if (@ViewBag.medicamento == null)
-                        {<textarea class="form-control" rows="3" name="Medicamentos" id="Medicamentos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "18" rows="3" name="Medicamentos" id="Medicamentos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
 
                     </div>
                 </div>
-                <div class="form-group col-md-12">
-                    <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Revision Por Sistema:</label>
-                    @if (@ViewBag.revision != null)
-                    {
+                <div class="form-row">
 
-                    <textarea class="form-control" rows="6" name="Revision" id="Revision" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.revision</textarea>
-                    }
-                    @if (@ViewBag.revision == null)
-                    {
-                        <textarea class="form-control" rows="6" name="Revision" id="Revision" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
+                    <div class="form-group col-md-4 est">
+                        <h6>Estatura:</h6>
+                        @if (ViewBag.estatura != null)
+                        {
+                            <input type="text" name="" class="datosseleccion" id="estatura" value="@ViewBag.estatura" tabindex="21" />
 
-                    }
+                        }
+                        @if (ViewBag.estatura == null)
+                        {
+                        <input type="text" name="" class="datosseleccion" id="estatura" value="" tabindex="21" />
+                        }
+                        @*<select class="datosseleccion" id="estatura">
+            <option value="6.0">6.0</option>
+            <option value="6.0">6.0</option>
+
+        </select>*@
+                        <select class="datosseleccion" id="centimetro">
+                            <option value="cms">cms</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 est">
+                        <h6>Peso:</h6>
+                        @if (ViewBag.peso != null)
+                        {
+                            <input type="number" name="" class="datosseleccion" id="peso" value="@ViewBag.peso" tabindex="22" />
+
+                        }
+                        @if (ViewBag.peso == null)
+                        {
+                            <input type="number" name="" class="datosseleccion" id="peso" value="" tabindex="22" />
+
+                        }
+                        <select class="datosseleccion" id="peso1">
+                            <option value="Libra">Kg</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4 est">
+                        <h6>Temp.(C):</h6>
+                        @if (ViewBag.temperatura != null)
+                        {
+                            <input type="number" name="" class="datosseleccion" id="temperatura" value="@ViewBag.temperatura" tabindex="23" />
+
+                        }
+                        @if (ViewBag.temperatura == null)
+                        {
+                            <input type="number" name="" class="datosseleccion" id="temperatura" value="" tabindex="23" />
+
+                        }
+
+                        <select class="datosseleccion" id="temperatura1">
+                            <option value="Oral">Oral</option>
+                            <option value="Axilar">Axilar</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label grupo">Grupo Sanguíneo</label>
+                    <select class="form-control opcion1" id="gruposanguineo" tabindex = "24">
+                        <option value="O-">O-</option>
+                        <option value="O+">O+</option>
+                        <option value="A-">A-</option>
+                        <option value="A+">A+</option>
+                        <option value="B-">B-</option>
+                        <option value="B+">B+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="AB+">AB+</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label grupo">Superficie Corporal</label>
+                    <input type="text" name="superficie" value="" id="superficie" class="form-control opcion1" readonly />
+
                 </div>
                 <div class="form-group col-md-12">
-                    <button class="btn btn-info" id="finalizar">Guardar Cambios</button>
+                    <button type="button" class="btn btn-info" id="finalizar">Guardar Cambios</button>
                     <button class="btn btn-default">Cancelar</button>
 
                 </div>
@@ -348,10 +421,10 @@
                     <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Historia/Enfermedad:</label>
                     @if (@ViewBag.enfermedad != null)
                     {
-                        <textarea class="form-control" rows="6" name="Enfermedad" id="Enfermedad" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.enfermedad</textarea>
+                        <textarea tabindex = "12" class="form-control" rows="6" name="Enfermedad" id="Enfermedad" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.enfermedad</textarea>
                     }
                     @if (@ViewBag.enfermedad == null)
-                    {<textarea class="form-control" rows="6" name="Enfermedad" id="Enfermedad" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
+                    {<textarea class="form-control" tabindex = "12" rows="6" name="Enfermedad" id="Enfermedad" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
                     }
                 </div>
                 <div class="form-row">
@@ -359,20 +432,20 @@
                         <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Ant. Sociales/personales:</label>
                         @if (@ViewBag.personales != null)
                         {
-                            <textarea class="form-control" rows="3" name="personales" placeholder="Antecedentes Sociales O Personales" id="personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.personales</textarea>
+                            <textarea class="form-control" tabindex = "15" rows="3" name="personales" placeholder="Antecedentes Sociales O Personales" id="personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.personales</textarea>
                         }
                         @if (@ViewBag.personales == null)
-                        {<textarea class="form-control" rows="3" name="personales" placeholder="Antecedentes Sociales O Personales" id="personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "15" rows="3" name="personales" placeholder="Antecedentes Sociales O Personales" id="personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
                     </div>
                     <div class="form-group col-md-6">
                         <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Antecedentes familiares:</label>
                         @if (@ViewBag.familiares != null)
                         {
-                            <textarea class="form-control" rows="3" name="familiares" id="familiares" placeholder="Antecedentes Sociales O Personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.familiares</textarea>
+                            <textarea class="form-control" tabindex = "16" rows="3" name="familiares" id="familiares" placeholder="Antecedentes Sociales O Personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.familiares</textarea>
                         }
                         @if (@ViewBag.familiares == null)
-                        {<textarea class="form-control" rows="3" name="familiares" id="familiares" placeholder="Antecedentes Sociales O Personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea class="form-control" tabindex = "16" rows="3" name="familiares" id="familiares" placeholder="Antecedentes Sociales O Personales" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
                     </div>
                 </div>
@@ -381,73 +454,41 @@
                         <label for="comment" class="control-label vacuna" style="margin-left:1px; margin-bottom:5px;">Vacunas:</label>
                         @if (@ViewBag.vacuna != null)
                         {
-                            <textarea class="form-control" rows="3" name="Vacunas" id="Vacunas" placeholder="Vacunas" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.vacuna</textarea>
+                            <textarea tabindex = "19" class="form-control" rows="3" name="Vacunas" id="Vacunas" placeholder="Vacunas" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.vacuna</textarea>
                         }
                         @if (@ViewBag.vacuna == null)
-                        {<textarea class="form-control" rows="3" name="Vacunas" id="Vacunas" placeholder="Vacunas" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                        {<textarea tabindex = "19" class="form-control" rows="3" name="Vacunas" id="Vacunas" placeholder="Vacunas" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
                         }
                     </div>
                     <div class="form-group col-md-6">
                         <label for="comment" class="control-label habito" style="margin-left:1px; margin-bottom:5px;">Hábitos/Estilo de Vida:</label>
                         @if (@ViewBag.habito != null)
                         {
-                            <textarea class="form-control" rows="3" name="Habitos" id="Habitos" placeholder="Hábitos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.habito</textarea>
+                            <textarea tabindex = "20" class="form-control" rows="3" name="Habitos" id="Habitos" placeholder="Hábitos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;">@ViewBag.habito</textarea>
                         }
                         @if (@ViewBag.habito == null)
                         {
-                            <textarea class="form-control" rows="3" name="Habitos" id="Habitos" placeholder="Hábitos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
+                            <textarea tabindex = "20" class="form-control" rows="3" name="Habitos" id="Habitos" placeholder="Hábitos" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 223px; height: 105px;"></textarea>
 
                         }
 
                     </div>
                 </div>
-                <div class="form-row">
 
-                    <div class="form-group col-md-4 est">
-                        <h6>Estatura:</h6>
-                        <select class="datosseleccion" id="estatura">
-                            <option value="6.0">6.0</option>
-                            <option value="6.0">6.0</option>
+                   <div class="form-group col-md-12">
+            <label for="comment" class="control-label label1" style="margin-left:1px; margin-bottom:5px;">Observaciones:</label>
+            @if (@ViewBag.revision != null)
+            {
 
-                        </select>
-                        <select class="datosseleccion" id="centimetro">
-                            <option value="cms">cms</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4 est">
-                        <h6>Peso:</h6>
+            <textarea class="form-control" tabindex = "25" rows="6" name="Revision" id="Revision" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;">@ViewBag.revision</textarea>
+            }
+            @if (@ViewBag.revision == null)
+            {
+                <textarea class="form-control" tabindex = "25" rows="6" name="Revision" id="Revision" style="border: 1px solid rgba(91, 90, 90, 0.45) !important; width: 457px; height: 109px;"></textarea>
 
-                        <select class="datosseleccion" id="peso">
-                            <option value="100">100</option>
-                        </select>
-                        <select class="datosseleccion" id="peso1">
-                            <option value="Libra">Libra</option>
-                            <option value="Libra">Kg</option>
-
-                        </select>
-                    </div>
-                    <div class="form-group col-md-4 est">
-                        <h6>Temp.(C):</h6>
-
-                        <select class="datosseleccion" id="temperatura">
-                            <option value="4.0">4.0</option>
-                        </select>
-                        <select class="datosseleccion" id="temperatura1">
-                            <option value="Oral">Oral</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label grupo">Grupo Sanguíneo</label>
-                    <select class="form-control opcion1">
-                        <option value="A+">A+</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-5">
-                    <label class="control-label grupo">Superficie Corporal</label>
-                    <input type="text" name="superficie" value="" id="superficie" class="form-control opcion1" readonly />
-                   
-                </div>
+            }
+        </div>
+               
             </div>
         </div>
     </div>
@@ -494,7 +535,10 @@
     });
 </script>
 <script>
-            $(document).ready(function () {
+    $(document).ready(function () {
+        if ('@ViewBag.gruposanguineo.ToString()'!= null) {
+            $("#gruposanguineo").val('@ViewBag.gruposanguineo');
+        }
                 var m = document.getElementById("estatura").value;
                 var s = document.getElementById("peso").value;
                 //var m = new Date(document.getElementById("Fecha_Cierre").value);
@@ -510,7 +554,7 @@
                     document.getElementById("superficie").value = t.toFixed(3);
 
                 }
-        $("#estatura").change(function () {
+                $("#estatura").keyup(function () {
             var m = document.getElementById("estatura").value;
             var s = document.getElementById("peso").value;
             //var m = new Date(document.getElementById("Fecha_Cierre").value);
@@ -518,6 +562,44 @@
       
 
     
+            if (s == 0 || m == 0) {
+                document.getElementById("superficie").value = 0;
+
+            } else {
+                var t = Math.sqrt((s * m) / 3600);
+                document.getElementById("superficie").value = t.toFixed(3);
+
+            }
+
+
+        })
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var m = document.getElementById("estatura").value;
+        var s = document.getElementById("peso").value;
+        //var m = new Date(document.getElementById("Fecha_Cierre").value);
+        //var s = new Date(document.getElementById("Fecha_Inicio").value);
+
+
+
+        if (s == 0 || m == 0) {
+            document.getElementById("superficie").value = 0;
+
+        } else {
+            var t = Math.sqrt((s * m) / 3600);
+            document.getElementById("superficie").value = t.toFixed(3);
+
+        }
+        $("#peso").keyup(function () {
+            var m = document.getElementById("estatura").value;
+            var s = document.getElementById("peso").value;
+            //var m = new Date(document.getElementById("Fecha_Cierre").value);
+            //var s = new Date(document.getElementById("Fecha_Inicio").value);
+
+
+
             if (s == 0 || m == 0) {
                 document.getElementById("superficie").value = 0;
 
@@ -591,29 +673,27 @@
 
 </script>
 <script>
-    $(document).ready(function () {
-
-      
-        $("#fechanacimiento").change(function () {
-            $.post("Getedad", { fechanacimiento:$("#fechanacimiento").val() }, function (data) {
-                $("#edad1").empty();
-
-                
+   
+    $("#fechanacimiento").change(function () {
+        $.post("Getedad", { fechanacimiento: $("#fechanacimiento").val() }, function (data) {
+            $("#edad1").empty();
 
 
 
-                $.each(data, function (create, row) {
-                    /**/
-                    document.getElementById("edad1").value = row.edad;
-                    /**/
-              
+
+
+            $.each(data, function (create, row) {
+                /**/
+                document.getElementById("edad1").value = row.edad;
+                /**/
 
 
 
-                });
+
             });
-        })
+        });
     });
+
 </script>
 <script>
     function leerArchivo() {
@@ -647,7 +727,7 @@
             //console.info('hola');
 
             var i = 0;
-            var envio = "{consulta:'" + $("#consulta").val() + "',antecedentesmedicos:'" + $("#antecedentesmedicos").val() + "',estatura:'" + $("#estatura").val() + "',centimetro:'" + $("#centimetro").val() + "',peso:'" + $("#peso").val() + "',peso1:'" + $("#peso1").val() + "',temperatura:'" + $("#temperatura").val() + "',temperatura1:'" + $("#temperatura1").val() + "',nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',antecedentesginecologico:'" + $("#antecedentesginecologico").val() + "',alergias:'" + $("#alergias").val() + "',Medicamentos:'" + $("#Medicamentos").val() + "',Revision:'" + $("#Revision").val() + "',Enfermedad:'" + $("#Enfermedad").val() + "',personales:'" + $("#personales").val() + "',familiares:'" + $("#familiares").val() + "',Vacunas:'" + "',Vacunas:'" + $("#Vacunas").val() + "',Habitos:'" + $("#Habitos").val() + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
+            var envio = "{consulta:'" + $("#consulta").val() + "',idpaciente:'" + $("#idPaciente").val() + "',idPacient:'" + $("#idpaciente").val() + "',antecedentesmedicos:'" + $("#antecedentesmedicos").val() + "',estatura:'" + $("#estatura").val() + "',centimetro:'" + $("#centimetro").val() + "',peso:'" + $("#peso").val() + "',peso1:'" + $("#peso1").val() + "',temperatura:'" + $("#temperatura").val() + "',temperatura1:'" + $("#temperatura1").val() + "',nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',gruposanguineo:'" + $("#gruposanguineo").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',antecedentesginecologico:'" + $("#antecedentesginecologico").val() + "',alergias:'" + $("#alergias").val() + "',Medicamentos:'" + $("#Medicamentos").val() + "',Revision:'" + $("#Revision").val() + "',Enfermedad:'" + $("#Enfermedad").val() + "',personales:'" + $("#personales").val() + "',familiares:'" + $("#familiares").val()  + "',Vacunas:'" + $("#Vacunas").val() + "',Habitos:'" + $("#Habitos").val() + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
 
 
 
@@ -678,10 +758,9 @@
                         //})
 
                     valid = response.valid;
-                                        window.location.href='@Url.Action("Index","pacientes")'
 
-                    if (response == "VENTA GUARDADA CON EXITO...") {
-                        limpiar();
+                    if (response == "Guardado" || response =="PACIENTE E HISTORIA CLÍNICA GUARDADA CON EXITO...") {
+                                        window.location.href='@Url.Action("Index","pacientes")'
 
 
                     }
@@ -723,7 +802,7 @@
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
             var i = 0;
-            var envio = "{nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val()  + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
+            var envio = "{nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',idpaciente:'" + $("#idPaciente").val() + "',idPacient:'" + $("#idpaciente").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val()  + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
 
 
 
@@ -744,7 +823,8 @@
                 dataType: 'json',
                 success: function (response) {
                     if (@ViewBag.idPaciente!= null) {
-                            var logoutUrl = '@Url.Action("Create", "Consultas",new { id="",idpaciente=@ViewBag.idPaciente})';
+                        alert(@ViewBag.idPaciente);
+                            var logoutUrl = '@Url.Action("Create", "Consultas",new { id="", idpaciente = @ViewBag.idPaciente})';
                         window.location.href = logoutUrl;
 
                         

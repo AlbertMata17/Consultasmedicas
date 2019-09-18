@@ -17,7 +17,7 @@
 
     <!-- Ionicons -->
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="sidebar-mini wysihtml5-supported skin-blue-light">
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -52,7 +52,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
-                                    <img src="~/Content/Login/images/spoint.png" class="img-circle" alt="User Image">
+                                    <img src="~/Content/HospitalRed.png" class="img-circle" alt="User Image">
 
                                     <p>
                                         Desea Cerrar Sesión
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
+                @*<form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
@@ -98,11 +98,12 @@
                             </button>
                         </span>
                     </div>
-                </form>
+                </form>*@
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">Menu De Navegación</li>
+                   <li class="header" style="text-align:center;color: #343131 !important;
+    background: #e0e3e9 !important;">Menu</li>
 
                     <li class="">
                         <a class="collapse-item emp" href="@Url.Action("Index","pacientes")"><i class="fas fa-users"></i> <span>Pacientes</span></a>
@@ -118,12 +119,12 @@
                     </li>
 
                     <li class="">
-                        <a class="collapse-item emp" href="@Url.Action("Index","CitasAgendadas")"><i class="fas fa-file-medical"></i> <span>Agendar Consultas</span></a>
+                        <a class="collapse-item emp" href="@Url.Action("Index","CitasAgendadas")"><i class="far fa-calendar-plus"></i> <span>Agendar Consultas</span></a>
                     </li>
 
 
                     <li class="">
-                        <a class="collapse-item emp" href="@Url.Action("RecetasyExamen","Consultas")"><i class="fas fa-file-medical"></i> <span>Recetas y Examenes</span></a>
+                        <a class="collapse-item emp" href="@Url.Action("RecetasyExamen","Consultas")"><i class="fas fa-notes-medical"></i> <span>Recetas y Examenes</span></a>
                     </li>
 
 
@@ -151,9 +152,9 @@
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
-                <b>Spoint Lite</b>
+                <b>HosPoint</b>
             </div>
-            <strong>Copyright &copy; <a href="https://adminlte.io">Spoint Lite</a>.</strong> All rights
+            <strong>Copyright &copy; <a href="https://adminlte.io">HosPoint</a>.</strong> All rights
             reserved.
         </footer>
 
