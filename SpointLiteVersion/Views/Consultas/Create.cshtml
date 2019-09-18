@@ -50,6 +50,7 @@
                                 </select>
                                 @Html.ValidationMessageFor(model => model.TipoConsulta, "", new { @class = "text-danger" })
                             </div>
+                            <input type="text" name="SeguroMedico" value="" id="pruebadeseguro" hidden />
 
                             <div class="form-group col-md-3">
                                 @Html.Label("Fecha", new { @class = "control-label col-md-2" })
@@ -94,7 +95,15 @@
                         <div class="form-row col-md-12">
                             <div class="form-group col-md-2">
                                 @Html.Label("Seguro Médico", new { @class = "control-label", @style = "margin-top:-10px;" })
-                                <input type="checkbox" name="SeguroMedico" value="" id="michekbox" class="form-check-input validar" style="margin-top:35px; height:15px;width:15px;" />
+                                @if (ViewBag.SeguroMedico != null)
+                                {
+                                    <input type="checkbox" name="" value="" id="michekbox" class="form-check-input validar" checked style="margin-top:35px; height:15px;width:15px;" />
+                                }
+                                @if (ViewBag.SeguroMedico == null)
+                                {
+                                    <input type="checkbox" name="" value="" id="michekbox" class="form-check-input validar"  style="margin-top:35px; height:15px;width:15px;" />
+
+                                }
                                 @Html.ValidationMessageFor(model => model.SeguroMedico, "", new { @class = "text-danger" })
                             </div>
 
@@ -172,7 +181,7 @@
                                 @Html.LabelFor(model => model.Examenes, htmlAttributes: new { @class = "control-label", @style = "margin-left:1px;" })
                                 @if (ViewBag.Examenes != null)
                                 {<textarea class="form-control" rows="6" name="Examenes" id="Examenes" style="border: 1px solid rgb(128, 128, 128) !important; width: 329px; height: 264px;">@ViewBag.Examenes</textarea>
-                                    <button type="buton" class="imprimir btn btn-danger" id="imprimirexamenes" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>
+                                    <button type="button" class="imprimir btn btn-danger" id="imprimirexamenes" style="margin-left:31%;margin-top:10px;"> <i class="fas fa-print"></i> Imprimir</button>
 
                                 }
                                 @if (ViewBag.Examenes == null)
@@ -225,14 +234,17 @@
 <link href="~/Content/alertify.default.css" rel="stylesheet" />
 <script>
     $(document).ready(function () {
+        $("#Compania").val('@ViewBag.Compania');
         $(".validar").change(function () {
             var $input = $(this);
             if ($('.validar').is(":checked")) {
                 $("#Compania").prop('disabled', false);
                 document.getElementById("Poliza").readOnly = false;
+                $("#pruebadeseguro").val("SI");
             } else {
                 $("#Compania").prop('disabled', 'disabled');
                 document.getElementById("Poliza").readOnly = true;
+                $("#pruebadeseguro").val("NO");
 
             }
 
@@ -241,9 +253,8 @@
 </script>
 <script>
     $(document).ready(function () {
-        if (@ViewBag.idmostrarseleccion!= null) {
             $("#idpaciente").val(@ViewBag.idmostrarseleccion);
-        }
+        
         var datospaciente =$('select[name="idpaciente"] option:selected').text();
 
         $("#idpacientes").val(datospaciente);
@@ -315,7 +326,7 @@
             //console.info('hola');
 
             var i = 0;
-            var envio = "{TipoConsulta:'" + $("#TipoConsulta").val() + "',fecha:'" + $("#fecha").val() + "',idpaciente:'" + $("#idpaciente").val() + "',edad:'" + $("#edad").val() + "',telefono:'" + $("#telefono").val() + "',Compania:'" + $("#Compania").val() + "',Poliza:'" + $("#Poliza").val() + "',Observaciones:'" + $("#Observaciones").val() + "',Diagnostico:'" + $("#Diagnostico").val() + "',Receta:'" + $("#Receta").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{TipoConsulta:'" + $("#TipoConsulta").val() + "',idConsulta1:'" + $("#idConsulta").val() +"',fecha:'" + $("#fecha").val() + "',idpaciente:'" + $("#idpaciente").val() + "',edad:'" + $("#edad").val() + "',telefono:'" + $("#telefono").val() + "',SeguroMedico:'" + $("#pruebadeseguro").val() + "',Compania:'" + $("#Compania").val() + "',Poliza:'" + $("#Poliza").val() + "',Observaciones:'" + $("#Observaciones").val() + "',Diagnostico:'" + $("#Diagnostico").val() + "',Receta:'" + $("#Receta").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 

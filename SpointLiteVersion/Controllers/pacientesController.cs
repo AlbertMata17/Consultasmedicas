@@ -325,6 +325,8 @@ namespace SpointLiteVersion.Controllers
                         --edad1;
                     }
                     paciente.edad = edad1;
+                    paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
+
                 }
                 paciente.telefono = telefono;
                 paciente.telefono2 = telefono2;
@@ -335,6 +337,9 @@ namespace SpointLiteVersion.Controllers
                 var empresaid = Session["empresaid"].ToString();
                 db.Entry(paciente).State = EntityState.Modified;
                 db.SaveChanges();
+                var idPaciente = paciente.idPaciente;
+                mensaje = idPaciente.ToString();
+                ViewBag.idPaciente = idPaciente;
             }
             else
             {
@@ -371,6 +376,7 @@ namespace SpointLiteVersion.Controllers
                         --edad1;
                     }
                     paciente.edad = edad1;
+                    paciente.fechanacimiento = Convert.ToDateTime(fechanacimiento);
                 }
                 if (email != "")
                 {
@@ -388,6 +394,7 @@ namespace SpointLiteVersion.Controllers
         }
         public ActionResult Historia(string consulta, string idpaciente,string idPacient, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento,string gruposanguineo, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo, string EstadoCivil, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos) {
             paciente paciente = new paciente();
+            HistoriaClinica HistoriaClinica = new HistoriaClinica();
 
             string mensaje = "";
             int idpacientebuscar = 0;
@@ -465,47 +472,48 @@ namespace SpointLiteVersion.Controllers
                     var empresaid = Session["empresaid"].ToString();
                     db.Entry(paciente).State = EntityState.Modified;
                     db.SaveChanges();
-                    var datosconsultas1 = (from consult in db.HistoriaClinica where consult.idpaciente == idpacientebuscar && consult.Estatus == 1 select consult.idHistorio).FirstOrDefault();
-                    var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s).FirstOrDefault();
-                    if (comprobar != null) {
-                        var si1 = (from db in db.HistoriaClinica where db.idpaciente == idpacientebuscar select db.idHistorio).FirstOrDefault();
+                    var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s.idHistorio).Count();
+                    if (comprobar != 0) {
+                        var comprobar1 = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s.idHistorio).FirstOrDefault();
 
                         HistoriaClinica histroiaclicnica = new HistoriaClinica();
-                        histroiaclicnica.idHistorio = si1;
-                        histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
-                        histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;
-                        histroiaclicnica.idpaciente = idpacientebuscar;
-                        histroiaclicnica.alergia = alergias;
-                        histroiaclicnica.medicamentos = Medicamentos;
-                        histroiaclicnica.Revisionporsistema = Revision;
-                        histroiaclicnica.motivoconsulta = consulta;
-                        histroiaclicnica.historia = Enfermedad;
-                        histroiaclicnica.antsociales = personales;
-                        histroiaclicnica.antecedentesfamiliares = familiares;
-                        histroiaclicnica.habitos = Habitos;
-                        histroiaclicnica.estaturas = estatura;
-                        histroiaclicnica.unidad = centimetro;
-                        histroiaclicnica.peso = peso;
-                        histroiaclicnica.cantidadpeso = peso1;
-                        histroiaclicnica.medidatemperatura = temperatura1;
-                        histroiaclicnica.temperatura = temperatura;
-                        histroiaclicnica.Estatus = 1;
-                        histroiaclicnica.vacunas = Vacunas;
-                        histroiaclicnica.gruposanguineo = gruposanguineo;
+
+
+                        HistoriaClinica.idHistorio = comprobar1;
+                        HistoriaClinica.AntecedentesMedicos = antecedentesmedicos;
+                        HistoriaClinica.antecedentesGinecologico = antecedentesginecologico;
+                        HistoriaClinica.idpaciente = idpacientebuscar;
+                        HistoriaClinica.alergia = alergias;
+                        HistoriaClinica.medicamentos = Medicamentos;
+                        HistoriaClinica.Revisionporsistema = Revision;
+                        HistoriaClinica.motivoconsulta = consulta;
+                        HistoriaClinica.historia = Enfermedad;
+                        HistoriaClinica.antsociales = personales;
+                        HistoriaClinica.antecedentesfamiliares = familiares;
+                        HistoriaClinica.habitos = Habitos;
+                        HistoriaClinica.estaturas = estatura;
+                        HistoriaClinica.unidad = centimetro;
+                        HistoriaClinica.peso = peso;
+                        HistoriaClinica.cantidadpeso = peso1;
+                        HistoriaClinica.medidatemperatura = temperatura1;
+                        HistoriaClinica.temperatura = temperatura;
+                        HistoriaClinica.Estatus = 1;
+                        HistoriaClinica.vacunas = Vacunas;
+                        HistoriaClinica.gruposanguineo = gruposanguineo;
 
                         if (fechanacimiento != null || fechanacimiento != "")
                         {
-                            histroiaclicnica.fecnacimiento = Convert.ToDateTime(fechanacimiento);
+                            HistoriaClinica.fecnacimiento = Convert.ToDateTime(fechanacimiento);
                         }
                         if (gruposanguineo != null)
                         {
-                            histroiaclicnica.gruposanguineo = gruposanguineo;
+                            HistoriaClinica.gruposanguineo = gruposanguineo;
                         }
-                        db.Entry(histroiaclicnica).State = EntityState.Modified;
+                        db.Entry(HistoriaClinica).State = EntityState.Modified;
                         db.SaveChanges();
                         mensaje = "Guardado";
                     }
-                    else if (comprobar == null) {
+                    else if (comprobar <=0) {
                         HistoriaClinica histroiaclicnica = new HistoriaClinica(); ;
                         histroiaclicnica.AntecedentesMedicos = antecedentesmedicos;
                         histroiaclicnica.antecedentesGinecologico = antecedentesginecologico;

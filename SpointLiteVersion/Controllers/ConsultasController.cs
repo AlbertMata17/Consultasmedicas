@@ -132,12 +132,10 @@ namespace SpointLiteVersion.Controllers
                 return Redirect("~/RTPFactura/WebForm1.aspx?idconsulta=" + idconsulta);
 
             }
-            else
-            {
-                return View("Index");
-            }
-            //return Redirect("~/RTPFactura/WebForm1.aspx?idventa="+001);
 
+                return View("Index");
+            
+            //return Redirect("~/RTPFactura/WebForm1.aspx?idventa="+001);
 
 
 
@@ -248,13 +246,16 @@ namespace SpointLiteVersion.Controllers
                 ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre",paciente.idpaciente);
                 ViewBag.id = "algo";
 
-                var historia = (from his in db.Consultas where his.idpaciente == id && his.Estatus==1 select his).FirstOrDefault();
+                var historia = (from his in db.Consultas where his.idConsulta == id && his.Estatus==1 select his).FirstOrDefault();
                 if (historia != null)
                 {
                     ViewBag.Observaciones = historia.Observaciones;
                     ViewBag.Diagnostico = historia.Diagnostico;
                     ViewBag.Receta = historia.Receta;
                     ViewBag.Examenes = historia.Examenes;
+                    ViewBag.SeguroMedico = historia.SeguroMedico;
+                    ViewBag.Compania = historia.Compania;
+
                 }
 
                 return View(paciente);
@@ -389,64 +390,132 @@ namespace SpointLiteVersion.Controllers
             ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
             return View(consultas);
         }
-        public ActionResult GuardarConsultar(string TipoConsulta,string fecha,string idpaciente,string edad,string telefono,string SeguroMedico,string Compania,string Poliza,string Observaciones,string Diagnostico,string Receta,string Examenes)
+        public ActionResult GuardarConsultar(string TipoConsulta,string idConsulta1,string fecha,string idpaciente,string edad,string telefono,string SeguroMedico,string Compania,string Poliza,string Observaciones,string Diagnostico,string Receta,string Examenes)
         {
             string mensaje = "";
-            Consultas consulta = new Consultas();
-            if (TipoConsulta != "")
+            Consultas consult = new Consultas();
+            var consultas = 0;
+            if (idConsulta1 != "undefined")
             {
-                consulta.TipoConsulta = TipoConsulta.ToUpper();
+                 consultas = Convert.ToInt32(idConsulta1);
             }
-            if (fecha != "")
+            var t = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).Count();
+            if (t != 0)
             {
-                consulta.fecha = Convert.ToDateTime(fecha);
-            }
-            if (idpaciente != "")
-            {
-                consulta.idpaciente = Convert.ToInt32(idpaciente);
-            }
-            if (edad != "")
-            {
-                consulta.edad = edad;
-            }
-            if (telefono != "")
-            {
-                consulta.telefono = telefono;
-            }
-            if (SeguroMedico != "")
-            {
-                consulta.SeguroMedico = SeguroMedico;
-            }
-            if (Compania != "")
-            {
-                consulta.Compania = Compania.ToUpper();
-            }
-            if (Poliza != "")
-            {
-                consulta.Poliza = Poliza.ToUpper();
-            }
-            if (Observaciones != "")
-            {
-                consulta.Observaciones = Observaciones.ToUpper();
-            }
-            if (Diagnostico != "")
-            {
-                consulta.Diagnostico = Diagnostico.ToUpper();
-            }
-            if (Examenes != "")
-            {
-                consulta.Examenes = Examenes.ToUpper();
-            }
+                var consultaval = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).FirstOrDefault();
+                System.Diagnostics.Debug.Write("El Seguro es:" + SeguroMedico.ToUpper());
 
+                consult.idConsulta = consultaval;
+                if (TipoConsulta != "undefined")
+                {
+                    consult.TipoConsulta = TipoConsulta.ToUpper();
+                }
+                consult.fecha = Convert.ToDateTime(fecha);
+                if (idpaciente != "undefined")
+                {
+                    consult.idpaciente = Convert.ToInt32(idpaciente);
+                }
+                if (telefono != "undefined")
+                {
+                    consult.telefono = telefono;
+                }
+                if (SeguroMedico != "undefined")
+                {
+                    consult.SeguroMedico = SeguroMedico.ToUpper();
+                }
+                if (Compania != "undefined")
+                {
+                    consult.Compania = Compania.ToUpper();
+                }
+                if (Poliza != "undefined")
+                {
+                    consult.Poliza = Poliza.ToUpper();
+                }
+                if (Observaciones != "undefined")
+                {
+                    consult.Observaciones = Observaciones.ToUpper();
+                }
+                if (Diagnostico != "undefined")
+                {
+                    consult.Diagnostico = Diagnostico.ToUpper();
+                }
+                if (Receta != "undefined")
+                {
+                    consult.Receta = Receta.ToUpper();
+                }
+                if (Examenes != "undefined")
+                {
+                    consult.Examenes = Examenes.ToUpper();
+                }
+                if (edad != "undefined")
+                {
+                    consult.edad = edad;
+                }
+                consult.Estatus = 1;
 
-            consulta.Estatus = 1;
-         
-            db.Consultas.Add(consulta);
-            db.SaveChanges();
-            var idConsulta = consulta.idConsulta;
-            mensaje = "CONSULTA GUARDADA CON EXITO...";
-            ViewBag.idPacientes = idConsulta.ToString();
-            Session["idConsulta"] = idConsulta;
+                db.Entry(consult).State = EntityState.Modified;
+                db.SaveChanges();
+                var idConsulta = consult.idConsulta;
+                mensaje = "CONSULTA GUARDADA CON EXITO...";
+                ViewBag.idPacientes = idConsulta.ToString();
+                Session["idConsulta"] = idConsulta;
+            }
+            else
+            {
+                if (TipoConsulta != "undefined")
+                {
+                    consult.TipoConsulta = TipoConsulta.ToUpper();
+                }
+                consult.fecha = Convert.ToDateTime(fecha);
+                if (idpaciente != "undefined")
+                {
+                    consult.idpaciente = Convert.ToInt32(idpaciente);
+                }
+                if (telefono != "undefined")
+                {
+                    consult.telefono = telefono;
+                }
+                if (SeguroMedico != "undefined")
+                {
+                    consult.SeguroMedico = SeguroMedico.ToUpper();
+                }
+                if (Compania != "undefined")
+                {
+                    consult.Compania = Compania.ToUpper();
+                }
+                if (Poliza != "undefined")
+                {
+                    consult.Poliza = Poliza.ToUpper();
+                }
+                if (Observaciones != "undefined")
+                {
+                    consult.Observaciones = Observaciones.ToUpper();
+                }
+                if (Diagnostico != "undefined")
+                {
+                    consult.Diagnostico = Diagnostico.ToUpper();
+                }
+                if (Receta != "undefined")
+                {
+                    consult.Receta = Receta.ToUpper();
+                }
+                if (Examenes != "undefined")
+                {
+                    consult.Examenes = Examenes.ToUpper();
+                }
+                if (edad != "undefined")
+                {
+                    consult.edad = edad;
+                }
+                consult.Estatus = 1;
+                db.Consultas.Add(consult);
+                db.SaveChanges();
+
+                var idConsulta = consult.idConsulta;
+                mensaje = "CONSULTA GUARDADA CON EXITO...";
+                ViewBag.idPacientes = idConsulta.ToString();
+                Session["idConsulta"] = idConsulta;
+            }
             return Json(mensaje);
         }
 

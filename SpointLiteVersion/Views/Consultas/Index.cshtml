@@ -63,11 +63,11 @@
                                 </td>
 
                                 <td>
-                                    <a hidden href="@Url.Action("Create","Consultas",new { id=item.idConsulta,idpaciente=""})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+                                    <p id="editar">
+                                        <a hidden href="@Url.Action("Create","Consultas",new { id=item.idConsulta,idpaciente=""})" class="edit" id="edita"><i class="fas fa-edit eliminar"></i></a>
 
-                                    <a href="@Url.Action("Delete","Consultas")" class="facturar" title="Facturar"><i class="fas fa-trash-alt eliminar"></i></a> |
-
-                                    <a href="@Url.Action("reporteActual","Consultas",new {id=item.idConsulta })" target="_blank" class="facturar" title="Facturar"><i class="fas fa-trash-alt"></i></a> |
+                                    </p>
+                                    <a href="@Url.Action("reporteActual","Consultas",new {id=item.idConsulta })"  class="" title="Ver"><i class="fas fa-eye eliminar"></i></a>
 
                                 </td>
                             </tr>
@@ -112,12 +112,15 @@
 <script>
     $(document).ready(function () {
 
-        $('#tabla tr').click(function () {
-            var href = $(this).find("a").attr("href");
+        $('#tabla tr').click(function (e) {
+            e.preventDefault;
+            var href = $(this).find(".edit").attr("href");
             if (href) {
                 window.location = href;
             }
         });
 
     });
+
+   
 </script>

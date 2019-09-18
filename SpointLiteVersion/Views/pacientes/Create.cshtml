@@ -536,9 +536,8 @@
 </script>
 <script>
     $(document).ready(function () {
-        if ('@ViewBag.gruposanguineo.ToString()'!= null) {
             $("#gruposanguineo").val('@ViewBag.gruposanguineo');
-        }
+        
                 var m = document.getElementById("estatura").value;
                 var s = document.getElementById("peso").value;
                 //var m = new Date(document.getElementById("Fecha_Cierre").value);
@@ -675,7 +674,7 @@
 <script>
    
     $("#fechanacimiento").change(function () {
-        $.post("Getedad", { fechanacimiento: $("#fechanacimiento").val() }, function (data) {
+        $.post("/pacientes/Getedad", { fechanacimiento: $("#fechanacimiento").val() }, function (data) {
             $("#edad1").empty();
 
 
@@ -822,8 +821,8 @@
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 success: function (response) {
-                    if (@ViewBag.idPaciente!= null) {
-                        alert(@ViewBag.idPaciente);
+                    if ($("#idPaciente").val() != null || $("#idPaciente").val() > 0) {
+                        alert($("#idPaciente").val())
                             var logoutUrl = '@Url.Action("Create", "Consultas",new { id="", idpaciente = @ViewBag.idPaciente})';
                         window.location.href = logoutUrl;
 
