@@ -8,7 +8,14 @@
 
     <div class="row">
         <div class="col-md-7 modal-content contedor" style="width:88%; margin-left:4%; margin-top:2%;">
-            <h2 style="font-size:25px; color:#37bce6; margin-bottom:30px; margin-top:25px;"><i class="fas fa-folder-open" style="color:#3c8dbc; margin-left:95px;"></i><span style="margin-left:10px;"> Consultas</span></h2>
+            <div class="form-row col-md-12">
+                <div class="form-group col-md-9">
+
+                    <h2 style="font-size:25px; color:#37bce6; margin-bottom:30px; margin-top:25px;"><i class="fas fa-folder-open" style="color:#3c8dbc;"></i><span style="margin-left:10px;"> Consultas</span></h2>
+                </div>
+
+
+            </div>
             <div class="col-md-12">
                 @using (Html.BeginForm())
                 {
@@ -17,6 +24,28 @@
                     <div class="form-horizontal">
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-row col-md-2" style="float:right; margin-top:-80px; margin-right: 20px;">
+
+                            <div class="form-group col-md-1">
+
+                                @if (ViewBag.id != null)
+                                {
+
+                                    <a class="btn btn-danger btnelimina" id="elimin" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})"><i class="fas fa-trash"></i></a>
+                                }
+
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="submit" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+
+                            </div>
+                            <div class="form-group col-md-1">
+                                <button type="button" class="btn btn-info btnfin" style="margin-left:54px" ; id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
+
+
+                            </div>
+                        </div>
                         <div class="form-row">
 
                             @if (ViewBag.idconsulta != null)
@@ -101,7 +130,7 @@
                                 }
                                 @if (ViewBag.SeguroMedico == null)
                                 {
-                                    <input type="checkbox" name="" value="" id="michekbox" class="form-check-input validar"  style="margin-top:35px; height:15px;width:15px;" />
+                                    <input type="checkbox" name="" value="" id="michekbox" class="form-check-input validar" style="margin-top:35px; height:15px;width:15px;" />
 
                                 }
                                 @Html.ValidationMessageFor(model => model.SeguroMedico, "", new { @class = "text-danger" })
@@ -119,17 +148,17 @@
                                 @Html.ValidationMessageFor(model => model.Compania, "", new { @class = "text-danger" })
                             </div>
                             @*<div class="form-group col-md-3" style="margin-left:-50px;">
-                        @Html.Label("Compañia", new { @class = "control-label col-md-2" })
+                                    @Html.Label("Compañia", new { @class = "control-label col-md-2" })
 
-                        @Html.DropDownList("idcompania", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Compania, "", new { @class = "text-danger" })
+                                    @Html.DropDownList("idcompania", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Compania, "", new { @class = "text-danger" })
 
 
-                    </div>
-                    <div class="col-md-1 boton">
-                        <a href="#" class="btn btn-outline-primary Datoscomprobante " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle icono"></i></a>
+                                </div>
+                                <div class="col-md-1 boton">
+                                    <a href="#" class="btn btn-outline-primary Datoscomprobante " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle icono"></i></a>
 
-                    </div>*@
+                                </div>*@
                             <div class="form-group col-md-4">
                                 @Html.Label("Poliza", new { @class = "control-label col-md-2" })
 
@@ -194,30 +223,61 @@
                             </div>
                         </div>
                         <div class="form-row col-md-12">
+                            <a href="#" class="btn btn-info  Datoscomprobante " id="agendarconsult" data-toggle="modal" data-target="#exampleModal">Agendar Consulta</a>
 
-                            <div class="form-group col-md-8">
-
-                                @if (ViewBag.id != null)
-                                {
-
-                                    <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>
-                                }
-
-                            </div>
-                            <div class="form-group col-md-1">
-                                <button type="submit" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
-
-                            </div>
-                            <div class="form-group col-md-1">
-                                <button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
-
-                            </div>
+                            @*<a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>*@
 
                         </div>
+                        @*<div class="form-row col-md-12">
+
+                                <div class="form-group col-md-8">
+
+                                    @if (ViewBag.id != null)
+                                    {
+
+                                        <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>
+                                    }
+
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <button type="submit" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
+
+                                </div>
+
+                            </div>*@
+
+
                     </div>
                 }
-             
+
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modalciudad" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:139%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante" id="contenido">
+
+
+                </div>
+
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
         </div>
     </div>
 </div>
@@ -254,7 +314,7 @@
 <script>
     $(document).ready(function () {
             $("#idpaciente").val(@ViewBag.idmostrarseleccion);
-        
+
         var datospaciente =$('select[name="idpaciente"] option:selected').text();
 
         $("#idpacientes").val(datospaciente);
@@ -528,5 +588,13 @@
 
         });
 
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        $(".Datoscomprobante").click(function () {
+            $(".comprobante").load("/CitasAgendadas/Create")
+        });
     });
 </script>

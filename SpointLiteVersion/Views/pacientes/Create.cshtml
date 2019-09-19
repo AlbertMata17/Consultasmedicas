@@ -15,34 +15,58 @@
                 <div class="form-horizontal">
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @if (ViewBag.foto != null)
-                    {
-                        <center>
-                            <div>
-                                <input type="file" accept="image/*" id="fotosubir" />
-                                <label for="fotosubir">
-                                    <img src="@ViewBag.foto" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
-                                </label>
-                            </div>
-                            <span>Seleccionar</span>
-                            <input type="hidden" name="Foto" id="Foto" value="@ViewBag.foto" />
+                    <div class="form-row">
+                        @if (ViewBag.foto != null)
+                        {
+                            <center>
+                                <div>
+                                    <input type="file" accept="image/*" id="fotosubir" />
+                                    <label for="fotosubir">
+                                        <img src="@ViewBag.foto" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
+                                    </label>
+                                </div>
+                                <span>Seleccionar</span>
+                                <input type="hidden" name="Foto" id="Foto" value="@ViewBag.foto" />
 
-                        </center>
-                    }
-                    else
-                    {
-                        <center>
-                            <div>
-                                <input type="file" accept="image/*" id="fotosubir" />
-                                <label for="fotosubir">
-                                    <img src="~/Content/user.png" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
-                                </label>
-                            </div>
-                            <span>Seleccionar</span>
-                            <input type="hidden" name="Foto" id="Foto" value="" />
+                            </center>
+                        }
+                        else
+                        {
+                            <center>
+                                <div>
+                                    <input type="file" accept="image/*" id="fotosubir" />
+                                    <label for="fotosubir">
+                                        <img src="~/Content/user.png" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
+                                    </label>
+                                </div>
+                                <span>Seleccionar</span>
+                                <input type="hidden" name="Foto" id="Foto" value="" />
 
-                        </center>
-                    }
+                            </center>
+                        }
+                            <div class="form-row col-md-2" style="float:right; margin-top:-60px; margin-right: 20px;">
+
+                                <div class="form-group col-md-1">
+
+                                    @if (ViewBag.id != null)
+                                    {
+
+                                        <a class="btn btn-danger btnelimina" id="elimin" href="@Url.Action("Delete","pacientes",new { id=Model.idPaciente})"><i class="fas fa-trash"></i></a>
+                                    }
+
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <button type="button" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+                                </div>
+                                <div class="form-group col-md-1" >
+                                    <button type="button" class="btn btn-info" style="margin-left:54px;" id="agregarconsulta" title="Salvar y Consultar"><i class="fas fa-notes-medical"></i></button>
+
+                                </div>
+                            </div>
+                     
+
+                    </div>
                     <div class="col-md-12">
 
 
@@ -219,7 +243,7 @@
                     @Html.ValidationMessageFor(model => model.Observaciones, "", new { @class = "text-danger" })
 
                 </div>*@
-                    <div class="form-row">
+                    @*<div class="form-row">
 
                         <div class="form-group col-md-9">
 
@@ -235,13 +259,13 @@
 
                         </div>
 
-                    </div>
+                    </div>*@
                 </div>
             }
-            <div class="form-group col-md-1">
+            @*<div class="form-group col-md-1">
                 <button class="btn btn-info" style="margin-left:-30px;" id="agregarconsulta" title="Salvar y Consultar"><i class="fas fa-notes-medical"></i></button>
 
-            </div>
+            </div>*@
             <div class="modal fade modalciudad" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog model" role="document">
                     <div class="modal-content">
@@ -338,7 +362,7 @@
                         <h6>Estatura:</h6>
                         @if (ViewBag.estatura != null)
                         {
-                            <input type="text" name="" class="datosseleccion" id="estatura" value="@ViewBag.estatura" tabindex="21" />
+                            <input type="number" name="" class="datosseleccion" id="estatura" value="@ViewBag.estatura" tabindex="21" />
 
                         }
                         @if (ViewBag.estatura == null)
@@ -409,11 +433,11 @@
                     <input type="text" name="superficie" value="" id="superficie" class="form-control opcion1" readonly />
 
                 </div>
-                <div class="form-group col-md-12">
+                @*<div class="form-group col-md-12">
                     <button type="button" class="btn btn-info" id="finalizar">Guardar Cambios</button>
                     <button class="btn btn-default">Cancelar</button>
 
-                </div>
+                </div>*@
             </div>
             <div class="col-md-6">
 
@@ -721,7 +745,7 @@
             return false;
         });
         //botones
-        $("#finalizar").click(function () {
+        $("#crear").click(function () {
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
 
@@ -746,7 +770,6 @@
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 success: function (response) {
-                    alertify.alert(response);
 
                         //Swal.fire({
                         //    position: 'center',
@@ -822,40 +845,51 @@
                 dataType: 'json',
                 success: function (response) {
                     if ($("#idPaciente").val() != null || $("#idPaciente").val() > 0) {
-                        alert($("#idPaciente").val())
-                            var logoutUrl = '@Url.Action("Create", "Consultas",new { id="", idpaciente = @ViewBag.idPaciente})';
+
+                        var logoutUrl = '@Url.Action("Create", "Consultas",new { id="", idpaciente = "param-name"  })';
+                        logoutUrl = logoutUrl.replace("param-name",$("#idPaciente").val());
+
                         window.location.href = logoutUrl;
 
-                        
+
                     }
-                        //Swal.fire({
-                        //    position: 'center',
-                        //    title: response,
-                        //    showConfirmButton: false,
-                        //    timer: 1500
+                    else if ($("#idpaciente").val() != null || $("#idpaciente").val() > 0) {
 
-                        //})
+                        var logoutUrl = '@Url.Action("Create", "Consultas",new { id="", idpaciente = "param-name"  })';
+                        logoutUrl = logoutUrl.replace("param-name",$("#idpaciente").val());
 
-                    valid = response.valid;
+                        window.location.href = logoutUrl;
+
+
+                           }
+                           //Swal.fire({
+                           //    position: 'center',
+                           //    title: response,
+                           //    showConfirmButton: false,
+                           //    timer: 1500
+
+                           //})
+
+                           valid = response.valid;
 
                     if (response == "VENTA GUARDADA CON EXITO...") {
                         limpiar();
 
 
-                    }
+                       }
 
-                },
+                   },
                 error: function (error) {
-                    alertify.alert(error);
-                    //Swal.fire({
-                    //    position: 'top-end',
-                    //    type: 'success',
-                    //    title: error,
-                    //    showConfirmButton: false,
-                    //    timer: 1500
-                    //})
+                       alertify.alert(error);
+                       //Swal.fire({
+                       //    position: 'top-end',
+                       //    type: 'success',
+                       //    title: error,
+                       //    showConfirmButton: false,
+                       //    timer: 1500
+                       //})
 
-                }
+                   }
             });
 
         });

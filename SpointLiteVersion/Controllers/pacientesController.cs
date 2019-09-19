@@ -339,7 +339,7 @@ namespace SpointLiteVersion.Controllers
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
                 mensaje = idPaciente.ToString();
-                ViewBag.idPaciente = idPaciente;
+                TempData["id"] = 5;
             }
             else
             {
@@ -388,7 +388,7 @@ namespace SpointLiteVersion.Controllers
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
                 mensaje = idPaciente.ToString();
-                ViewBag.idPaciente = idPaciente;
+                TempData["id"] = 5;
             }
             return Json(mensaje);
         }

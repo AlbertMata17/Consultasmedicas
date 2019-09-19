@@ -5,91 +5,167 @@
     Layout = null;
 }
 
+<style>
 
-            @using (Html.BeginForm("Create", "CitasAgendadas", FormMethod.Post, new { id = "myForm" }))
+</style>
+@using (Html.BeginForm("Create", "CitasAgendadas", FormMethod.Post, new { id = "myForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <center>
+            <div>
+
+                <label for="fotosubir">
+                    <img src="~/Content/Login/images/consulta.png" alt="Alternate Text" id="fotoejemplo" style="width:90px; height:90px; margin-top:0px; margin-left:-50px;" />
+                </label>
+            </div>
+
+        </center>
+        <div class="form-row">
+            @if (ViewBag.idpaciente != null)
             {
-                @Html.AntiForgeryToken()
+                <div class="form-group col-md-2">
+                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <input type="text" name="idaciente" class="form-control" id="idpaciente" readonly value="@ViewBag.idpaciente" />
+                    @Html.ValidationMessageFor(model => model.idCita, "", new { @class = "text-danger" })
 
-<div class="form-horizontal">
+                </div>
+            }
+            @if (@ViewBag.id != null)
+            {
+                <div class="form-group col-md-2">
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <center>
-        <div>
 
-            <label for="fotosubir">
-                <img src="~/Content/Login/images/consulta.png" alt="Alternate Text" id="fotoejemplo" style="width:90px; height:90px; margin-top:0px; margin-left:-50px;" />
-            </label>
-        </div>
+                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
 
-    </center>
-    <div class="form-row">
-        @if (ViewBag.idpaciente != null)
-        {
-            <div class="form-group col-md-2">
-                @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
-                <input type="text" name="idaciente" class="form-control" id="idpaciente" readonly value="@ViewBag.idpaciente" />
-                @Html.ValidationMessageFor(model => model.idCita, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.idCita, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
 
+                </div>
+            }
+            <div class="col-md-6">
+                @Html.Label("Fecha", new { @class = "control-label col-md-12", @style = "text-align:left;margin-left:-35px;" })
+                <input type="date" name="fecha" class="form-control" style="margin-left:-20px;" id="fecha" value="" />
+                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
             </div>
-        }
-        @if (@ViewBag.id != null)
-        {
-            <div class="form-group col-md-2">
-
-
-                @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.idCita, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-
-            </div>
-        }
-        <div class="col-md-6">
-            @Html.Label("Fecha", new { @class = "control-label col-md-12", @style = "text-align:left;margin-left:-35px;" })
-            <input type="date" name="fecha" class="form-control" style="margin-left:-20px;" id="fecha" value="" />
-            @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
         </div>
-    </div>
-    <div class="form-group">
-       
-    </div>
+        <div class="form-group">
 
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.Label("Paciente", new { @class = "control-label col-md-12", @style = "text-align:left;" })
-
-            @Html.DropDownList("idpaciente1", null, htmlAttributes: new { @class = "form-control",@name="idpaciente" })
-            @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
         </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-12">
-            @Html.Label("Motivo", new { @class = "control-label col-md-12", @style = "text-align:left;" })
-
-            @Html.EditorFor(model => model.MotivoCita, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MotivoCita, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-row">
 
         <div class="form-group">
-            <div class="form-group col-md-10">
+            <div class="col-md-12">
+                @Html.Label("Paciente", new { @class = "control-label col-md-12", @style = "text-align:left;" })
 
-                @if (ViewBag.id != null)
-                {
-
-                    <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","clientes1",new { id=Model.idCita})">Eliminar</a>
-                }
-
+                @Html.DropDownList("idpaciente1", null, htmlAttributes: new { @class = "form-control", @name = "idpaciente" })
+                @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group col-md-1">
-                <button type="submit" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
+        </div>
 
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.Label("Motivo", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+
+                @Html.EditorFor(model => model.MotivoCita, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MotivoCita, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="form-group">
+                <div class="form-group col-md-10">
+
+                    @if (ViewBag.id != null)
+                    {
+
+                        <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","clientes1",new { id=Model.idCita})">Eliminar</a>
+                    }
+
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="button" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
-    }
+}
+
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
 
 
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#crear").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+
+            var i = 0;
+            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarExamen", "Consultas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+                    alertify.alert(response)
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+   var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
+                    window.open(logoutUrl, '_blank');
+                    if (response == "EXAMEN GUARDADO CON EXITO...") {
+                        //limpiar();
+                           @*var log = '@Url.Action("Index", "Consultas")';
+
+                        window.location.href = log;*@
+
+                    }
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>
