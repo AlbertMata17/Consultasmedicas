@@ -25,7 +25,33 @@ namespace SpointLiteVersion.Controllers
             var citasAgendadas = db.CitasAgendadas.Include(c => c.paciente);
             return View(citasAgendadas.ToList());
         }
+        public ActionResult GuardarCita(string fecha, string idpaciente1, string MotivoCita)
+        {
+            string mensaje = "";
+            CitasAgendadas citas = new CitasAgendadas();
+          
+            if (fecha != "undefined")
+            {
+                citas.fecha = Convert.ToDateTime(fecha);
+            }
+            if (idpaciente1 != "undefined")
+            {
+                citas.idpaciente =Convert.ToInt32(idpaciente1);
+            }
+            if (MotivoCita != "undefined")
+            {
+                citas.MotivoCita = MotivoCita.ToUpper();
+            }
+            db.CitasAgendadas.Add(citas);
+            db.SaveChanges();
+            
+                mensaje = "CITA GUARDADA CON EXITO...";
 
+            
+           
+            
+            return Json(mensaje);
+        }
         // GET: CitasAgendadas/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,8 +72,9 @@ namespace SpointLiteVersion.Controllers
         }
 
         // GET: CitasAgendadas/Create
-        public ActionResult Create(int? id)
+        public ActionResult Create(int? id,int? idconsulta)
         {
+            
             if (Session["Username"] == null)
             {
                 return RedirectToAction("Login", "Logins");
@@ -55,7 +82,7 @@ namespace SpointLiteVersion.Controllers
             if (id == null)
             {
 
-                ViewBag.idpaciente1 = new SelectList(db.paciente, "idPaciente", "nombre");
+                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre");
                 var s = (from datosid in db.CitasAgendadas select datosid.idCita).FirstOrDefault();
                 var idmostrar = 0;
                 if (s > 0)
@@ -67,6 +94,8 @@ namespace SpointLiteVersion.Controllers
                     idmostrar = 1;
                 }
                 ViewBag.idpaciente = idmostrar.ToString("D2");
+                TempData["idconsulta"] = idconsulta;
+                
                 return View();
 
             }
@@ -77,7 +106,7 @@ namespace SpointLiteVersion.Controllers
             }
             if (id != null)
             {
-                ViewBag.idpaciente1 = new SelectList(db.paciente, "idPaciente", "nombre",citas.idCita);
+                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre",citas.idCita);
                 ViewBag.id = "algo";
              
                 return View(citas);

@@ -59,25 +59,27 @@
         </div>
     </div>
     <div class="modal fade modalciudad" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog model" role="document">
-            <div class="modal-content" style="width:150%; margin-top:-72px;">
-                <div class="modal-header">
+        <div class="modal-dialog model" id="modal" role="document">
+            <div class="modal-content" id="contentmost" style="width:139%; margin-top:-72px;">
+                <div class="modal-header" id="headmodal">
                     <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="padding:0px !important;">
 
 
-                    <div class="comprobante">
+                    <div class="comprobante" id="contenido">
 
 
                     </div>
-
+                    <div class=" btncrearconsult">
+                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                    </div>
                 </div>
                 @*<div class="modal-footer">
-                        <button class="mybtn" id="mybtn">Cerrar</button>
-                    </div>*@
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
             </div>
         </div>
     </div>

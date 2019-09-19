@@ -271,25 +271,18 @@
 
                 <div class="comprobante" id="contenido">
 
-
                 </div>
-
+                <div class=" btncrearconsult">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="crear1" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                </div>
             </div>
-            @*<div class="modal-footer">
-                    <button class="mybtn" id="mybtn">Cerrar</button>
-                </div>*@
+         
         </div>
     </div>
 </div>
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="~/Scripts/alertify/alertify.min.js"></script>
 
-<script src="~/Scripts/inputmask/inputmask.js"></script>
-<script src="~/Scripts/inputmask/inputmask.extensions.js"></script>
-<script src="~/Scripts/inputmask/jquery.inputmask.js"></script>
-<script src="~/Scripts/jquery.numeric.js"></script>
-<script src="~/Scripts/autoNumeric/autoNumeric-min.js"></script>
-<script src="~/Scripts/autoNumeric/autoNumeric.js"></script>
 <link href="~/Content/alertify.core.css" rel="stylesheet" />
 <link href="~/Content/alertify.default.css" rel="stylesheet" />
 <script>
@@ -380,6 +373,7 @@
 
             return false;
         });
+       
         //botones
         $("#finalizar").click(function () {
             //alertify.alert("Boton Iniciado");
@@ -594,7 +588,84 @@
     $(document).ready(function () {
 
         $(".Datoscomprobante").click(function () {
-            $(".comprobante").load("/CitasAgendadas/Create")
+                    var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name" })";
+                url=url.replace("param-name",0);
+            $(".comprobante").load(url)
         });
+    });
+</script>
+
+
+@*Guardar las Citas*@
+<script>
+
+    $(document).ready(function () {
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#crear1").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+            $("#exampleModal").modal("hide");
+            var i = 0;
+            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val()+ "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarCita", "CitasAgendadas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+
+                    alertify.alert(response);
+
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+               
+                    @*if (response == "Cita Guardada") {
+                        var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
+                        window.location.href=logoutUrl;
+
+
+                    }*@
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
     });
 </script>

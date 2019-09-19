@@ -58,9 +58,16 @@
 
         <div class="form-group">
             <div class="col-md-12">
-                @Html.Label("Paciente", new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                @Html.Label("Paciente", new { @class = "control-label col-md-2" })
+                <input type="text" list="paciente2" name="idpacientes" id="idpacientes1" class="form-control" autocomplete="off" />
 
-                @Html.DropDownList("idpaciente1", null, htmlAttributes: new { @class = "form-control", @name = "idpaciente" })
+                <datalist id="paciente2">
+                    @foreach (var m in ViewBag.idpaciente1)
+                    {
+                        <option value="@m.Text" data-id="@m.Value" />
+                    }
+                </datalist>
+                @*@Html.DropDownList("idpaciente", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -81,25 +88,25 @@
                     @if (ViewBag.id != null)
                     {
 
-                        <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","clientes1",new { id=Model.idCita})">Eliminar</a>
+                        <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","CitasAgendadas",new { id=Model.idCita})">Eliminar</a>
                     }
 
                 </div>
-                <div class="form-group col-md-1">
+                @*<div class="form-group col-md-1">
                     <button type="button" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
 
-                </div>
+                </div>*@
             </div>
         </div>
     </div>
 }
 
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script>
 
     $(document).ready(function () {
-
 
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
@@ -112,9 +119,9 @@
         $("#crear").click(function () {
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
-
+            alert("hola");
             var i = 0;
-            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val()+ "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 
@@ -124,7 +131,7 @@
 
             //alertify.alert("INGRESE DATOS");
             console.info(json);
-            var miUrl = '@Url.Action("GuardarExamen", "Consultas")'
+            var miUrl = '@Url.Action("GuardarCita", "CitasAgendadas")'
 
             $.ajax({
                 url: miUrl,
@@ -134,22 +141,21 @@
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 success: function (response) {
-                    alertify.alert(response)
+                    //alertify.alert(response);
                         //    position: 'center',
                         //    title: response,
                         //    showConfirmButton: false,
                         //    timer: 1500
 
                     //})
-   var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
-                    window.open(logoutUrl, '_blank');
-                    if (response == "EXAMEN GUARDADO CON EXITO...") {
-                        //limpiar();
-                           @*var log = '@Url.Action("Index", "Consultas")';
+                 var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
+                        window.location.href=logoutUrl;
+                    @*if (response == "Cita Guardada") {
+                        var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
+                        window.location.href=logoutUrl;
+                      
 
-                        window.location.href = log;*@
-
-                    }
+                    }*@
 
                 },
                 error: function (error) {

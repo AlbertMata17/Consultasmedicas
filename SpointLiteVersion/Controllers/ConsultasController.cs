@@ -13,6 +13,7 @@ namespace SpointLiteVersion.Controllers
     public class ConsultasController : Controller
     {
         private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
+        RecetasyExamenes receta1 = new RecetasyExamenes();
 
         // GET: Consultas
         public ActionResult Index()
@@ -273,6 +274,7 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes")] Consultas consultas)
         {
+           
             var t = (from s in db.Consultas where s.idConsulta == consultas.idConsulta && s.Estatus==1 select s.idConsulta).Count();
             if (t != 0)
             {
@@ -300,6 +302,8 @@ namespace SpointLiteVersion.Controllers
                     }
                     if (consultas.Examenes != null)
                     {
+                       
+                        
                         consultas.Examenes = consultas.Examenes.ToUpper();
                     }
                     consultas.Estatus = 1;
@@ -330,10 +334,22 @@ namespace SpointLiteVersion.Controllers
                     }
                     if (consultas.Receta != null)
                     {
+                        receta1.Tipo = "RECETA";
+                        receta1.Detalle = consultas.Receta.ToUpper();
+                        receta1.idPaciente = consultas.idpaciente;
+                        receta1.Estatus = 1;
+                        db.RecetasyExamenes.Add(receta1);
+                        db.SaveChanges();
                         consultas.Receta = consultas.Receta.ToUpper();
                     }
                     if (consultas.Examenes != null)
                     {
+                        receta1.Tipo = "EXAMEN";
+                        receta1.Detalle = consultas.Examenes.ToUpper();
+                        receta1.idPaciente = consultas.idpaciente;
+                        receta1.Estatus = 1;
+                        db.RecetasyExamenes.Add(receta1);
+                        db.SaveChanges();
                         consultas.Examenes = consultas.Examenes.ToUpper();
                     }
                     consultas.Estatus = 1;
@@ -441,10 +457,21 @@ namespace SpointLiteVersion.Controllers
                 }
                 if (Receta != "undefined")
                 {
+                    receta1.idPaciente = Convert.ToInt32(idpaciente);
+                    receta1.Detalle = Receta.ToUpper();
+                    receta1.Estatus = 1;
+                    receta1.Tipo = "RECETA";
                     consult.Receta = Receta.ToUpper();
+                    db.SaveChanges();
                 }
                 if (Examenes != "undefined")
                 {
+                    receta1.idPaciente = Convert.ToInt32(idpaciente); 
+                    receta1.Detalle = Examenes.ToUpper();
+                    receta1.Estatus = 1;
+                    receta1.Tipo = "EXAMEN";
+                    db.RecetasyExamenes.Add(receta1);
+                    db.SaveChanges();
                     consult.Examenes = Examenes.ToUpper();
                 }
                 if (edad != "undefined")
