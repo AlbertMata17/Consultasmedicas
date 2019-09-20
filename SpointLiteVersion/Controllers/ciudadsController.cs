@@ -17,7 +17,11 @@ namespace SpointLiteVersion.Controllers
         // GET: ciudads
         public ActionResult Index()
         {
-            return View(db.ciudad.ToList());
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
+            return View(db.ciudad.Where(m=>m.Usuarioid==usuarioid1).ToList());
         }
 
         // GET: ciudads/Details/5
@@ -48,6 +52,10 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idciudad,Nombre")] ciudad ciudad)
         {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             if (ModelState.IsValid)
             {
                 ciudad.Estatus = 1;
@@ -55,6 +63,8 @@ namespace SpointLiteVersion.Controllers
                 {
                     ciudad.Nombre = ciudad.Nombre.ToUpper();
                 }
+                ciudad.Empresaid = empresaid1;
+                ciudad.Usuarioid = usuarioid1;
                 db.ciudad.Add(ciudad);
                 db.SaveChanges();
                 return RedirectToAction("Index");

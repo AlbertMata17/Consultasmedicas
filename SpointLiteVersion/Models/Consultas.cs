@@ -28,7 +28,11 @@ namespace SpointLiteVersion.Models
         public string Receta { get; set; }
         public string Examenes { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public Nullable<int> Empresaid { get; set; }
+        public Nullable<int> Usuarioid { get; set; }
     
         public virtual paciente paciente { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        public virtual Login Login { get; set; }
     }
 }

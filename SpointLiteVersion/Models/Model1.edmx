@@ -14,6 +14,8 @@
           <Property Name="idpaciente" Type="int" />
           <Property Name="MotivoCita" Type="varchar(max)" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="ciudad">
           <Key>
@@ -22,6 +24,8 @@
           <Property Name="idciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar(max)" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="Consultas">
           <Key>
@@ -41,6 +45,8 @@
           <Property Name="Receta" Type="varchar(max)" />
           <Property Name="Examenes" Type="varchar(max)" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -79,6 +85,8 @@
           <Property Name="medidatemperatura" Type="varchar" MaxLength="30" />
           <Property Name="motivoconsulta" Type="varchar(max)" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -109,6 +117,8 @@
           <Property Name="edad" Type="int" />
           <Property Name="sexo" Type="varchar" MaxLength="30" />
           <Property Name="EstadoCivil" Type="varchar" MaxLength="30" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="RecetasyExamenes">
           <Key>
@@ -119,6 +129,8 @@
           <Property Name="Detalle" Type="varchar(max)" />
           <Property Name="idPaciente" Type="int" />
           <Property Name="Estatus" Type="int" />
+          <Property Name="Empresaid" Type="int" />
+          <Property Name="Usuarioid" Type="int" />
         </EntityType>
         <EntityType Name="TipoConsulta">
           <Key>
@@ -188,6 +200,150 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Empresa_id1">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="CitasAgendadas" Type="Self.CitasAgendadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="CitasAgendadas">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id2">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id3">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id4">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="HistoriaClinica" Type="Self.HistoriaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="HistoriaClinica">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id5">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="paciente" Type="Self.paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id6">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="RecetasyExamenes" Type="Self.RecetasyExamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="RecetasyExamenes">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id1">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="CitasAgendadas" Type="Self.CitasAgendadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="CitasAgendadas">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id2">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="ciudad" Type="Self.ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id3">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id4">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="HistoriaClinica" Type="Self.HistoriaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="HistoriaClinica">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id5">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="paciente" Type="Self.paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id6">
+          <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
+          <End Role="RecetasyExamenes" Type="Self.RecetasyExamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="RecetasyExamenes">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ConsultaMedicasModelStoreContainer">
           <EntitySet Name="CitasAgendadas" EntityType="Self.CitasAgendadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="dbo" store:Type="Tables" />
@@ -218,12 +374,61 @@
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Login" EntitySet="Login" />
           </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id1" Association="Self.fk_Empresa_id1">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="CitasAgendadas" EntitySet="CitasAgendadas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id2" Association="Self.fk_Empresa_id2">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id3" Association="Self.fk_Empresa_id3">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id4" Association="Self.fk_Empresa_id4">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="HistoriaClinica" EntitySet="HistoriaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id5" Association="Self.fk_Empresa_id5">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id6" Association="Self.fk_Empresa_id6">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id1" Association="Self.fk_Usuario_id1">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="CitasAgendadas" EntitySet="CitasAgendadas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id2" Association="Self.fk_Usuario_id2">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id3" Association="Self.fk_Usuario_id3">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id4" Association="Self.fk_Usuario_id4">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="HistoriaClinica" EntitySet="HistoriaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id5" Association="Self.fk_Usuario_id5">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id6" Association="Self.fk_Usuario_id6">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConsultaMedicasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ConsultaMedicasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TipoConsulta" EntityType="ConsultaMedicasModel.TipoConsulta" />
           <EntitySet Name="CitasAgendadas" EntityType="ConsultaMedicasModel.CitasAgendadas" />
           <EntitySet Name="ciudad" EntityType="ConsultaMedicasModel.ciudad" />
           <EntitySet Name="Consultas" EntityType="ConsultaMedicasModel.Consultas" />
@@ -232,28 +437,83 @@
           <EntitySet Name="Login" EntityType="ConsultaMedicasModel.Login" />
           <EntitySet Name="paciente" EntityType="ConsultaMedicasModel.paciente" />
           <EntitySet Name="RecetasyExamenes" EntityType="ConsultaMedicasModel.RecetasyExamenes" />
-          <EntitySet Name="TipoConsulta" EntityType="ConsultaMedicasModel.TipoConsulta" />
           <AssociationSet Name="FK__CitasAgen__idpac__60A75C0F" Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F">
             <End Role="paciente" EntitySet="paciente" />
+            <End Role="CitasAgendadas" EntitySet="CitasAgendadas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id1" Association="ConsultaMedicasModel.fk_Empresa_id1">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="CitasAgendadas" EntitySet="CitasAgendadas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id1" Association="ConsultaMedicasModel.fk_Usuario_id1">
+            <End Role="Login" EntitySet="Login" />
             <End Role="CitasAgendadas" EntitySet="CitasAgendadas" />
           </AssociationSet>
           <AssociationSet Name="fk_ciudad" Association="ConsultaMedicasModel.fk_ciudad">
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="paciente" EntitySet="paciente" />
           </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id2" Association="ConsultaMedicasModel.fk_Empresa_id2">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id2" Association="ConsultaMedicasModel.fk_Usuario_id2">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="ciudad" EntitySet="ciudad" />
+          </AssociationSet>
           <AssociationSet Name="FK__Consultas__idpac__3F466844" Association="ConsultaMedicasModel.FK__Consultas__idpac__3F466844">
             <End Role="paciente" EntitySet="paciente" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id3" Association="ConsultaMedicasModel.fk_Empresa_id3">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id3" Association="ConsultaMedicasModel.fk_Usuario_id3">
+            <End Role="Login" EntitySet="Login" />
             <End Role="Consultas" EntitySet="Consultas" />
           </AssociationSet>
           <AssociationSet Name="fk_empresa" Association="ConsultaMedicasModel.fk_empresa">
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="Login" EntitySet="Login" />
           </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id4" Association="ConsultaMedicasModel.fk_Empresa_id4">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="HistoriaClinica" EntitySet="HistoriaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id5" Association="ConsultaMedicasModel.fk_Empresa_id5">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Empresa_id6" Association="ConsultaMedicasModel.fk_Empresa_id6">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id4" Association="ConsultaMedicasModel.fk_Usuario_id4">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="HistoriaClinica" EntitySet="HistoriaClinica" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id5" Association="ConsultaMedicasModel.fk_Usuario_id5">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="paciente" EntitySet="paciente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_id6" Association="ConsultaMedicasModel.fk_Usuario_id6">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
           <AssociationSet Name="FK__RecetasyE__idPac__7A672E12" Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12">
             <End Role="paciente" EntitySet="paciente" />
             <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="TipoConsulta">
+          <Key>
+            <PropertyRef Name="idConsulta" />
+          </Key>
+          <Property Name="idConsulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+        </EntityType>
         <EntityType Name="CitasAgendadas">
           <Key>
             <PropertyRef Name="idCita" />
@@ -263,7 +523,11 @@
           <Property Name="idpaciente" Type="Int32" />
           <Property Name="MotivoCita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
           <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" FromRole="CitasAgendadas" ToRole="paciente" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id1" FromRole="CitasAgendadas" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id1" FromRole="CitasAgendadas" ToRole="Login" />
         </EntityType>
         <EntityType Name="ciudad">
           <Key>
@@ -272,7 +536,11 @@
           <Property Name="idciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
           <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.fk_ciudad" FromRole="ciudad" ToRole="paciente" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id2" FromRole="ciudad" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id2" FromRole="ciudad" ToRole="Login" />
         </EntityType>
         <EntityType Name="Consultas">
           <Key>
@@ -292,7 +560,11 @@
           <Property Name="Receta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Examenes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
           <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" FromRole="Consultas" ToRole="paciente" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id3" FromRole="Consultas" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id3" FromRole="Consultas" ToRole="Login" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -304,7 +576,13 @@
           <Property Name="telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TipoEmpresa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CitasAgendadas" Relationship="ConsultaMedicasModel.fk_Empresa_id1" FromRole="Empresa" ToRole="CitasAgendadas" />
+          <NavigationProperty Name="ciudad" Relationship="ConsultaMedicasModel.fk_Empresa_id2" FromRole="Empresa" ToRole="ciudad" />
+          <NavigationProperty Name="Consultas" Relationship="ConsultaMedicasModel.fk_Empresa_id3" FromRole="Empresa" ToRole="Consultas" />
           <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_empresa" FromRole="Empresa" ToRole="Login" />
+          <NavigationProperty Name="HistoriaClinica" Relationship="ConsultaMedicasModel.fk_Empresa_id4" FromRole="Empresa" ToRole="HistoriaClinica" />
+          <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.fk_Empresa_id5" FromRole="Empresa" ToRole="paciente" />
+          <NavigationProperty Name="RecetasyExamenes" Relationship="ConsultaMedicasModel.fk_Empresa_id6" FromRole="Empresa" ToRole="RecetasyExamenes" />
         </EntityType>
         <EntityType Name="HistoriaClinica">
           <Key>
@@ -332,6 +610,10 @@
           <Property Name="medidatemperatura" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="motivoconsulta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id4" FromRole="HistoriaClinica" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id4" FromRole="HistoriaClinica" ToRole="Login" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -344,7 +626,13 @@
           <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Apellido" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="empresaid" Type="Int32" />
+          <NavigationProperty Name="CitasAgendadas" Relationship="ConsultaMedicasModel.fk_Usuario_id1" FromRole="Login" ToRole="CitasAgendadas" />
+          <NavigationProperty Name="ciudad" Relationship="ConsultaMedicasModel.fk_Usuario_id2" FromRole="Login" ToRole="ciudad" />
+          <NavigationProperty Name="Consultas" Relationship="ConsultaMedicasModel.fk_Usuario_id3" FromRole="Login" ToRole="Consultas" />
           <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_empresa" FromRole="Login" ToRole="Empresa" />
+          <NavigationProperty Name="HistoriaClinica" Relationship="ConsultaMedicasModel.fk_Usuario_id4" FromRole="Login" ToRole="HistoriaClinica" />
+          <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.fk_Usuario_id5" FromRole="Login" ToRole="paciente" />
+          <NavigationProperty Name="RecetasyExamenes" Relationship="ConsultaMedicasModel.fk_Usuario_id6" FromRole="Login" ToRole="RecetasyExamenes" />
         </EntityType>
         <EntityType Name="paciente">
           <Key>
@@ -363,9 +651,13 @@
           <Property Name="edad" Type="Int32" />
           <Property Name="sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="EstadoCivil" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
           <NavigationProperty Name="CitasAgendadas" Relationship="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" FromRole="paciente" ToRole="CitasAgendadas" />
           <NavigationProperty Name="ciudad" Relationship="ConsultaMedicasModel.fk_ciudad" FromRole="paciente" ToRole="ciudad" />
           <NavigationProperty Name="Consultas" Relationship="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" FromRole="paciente" ToRole="Consultas" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id5" FromRole="paciente" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id5" FromRole="paciente" ToRole="Login" />
           <NavigationProperty Name="RecetasyExamenes" Relationship="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" FromRole="paciente" ToRole="RecetasyExamenes" />
         </EntityType>
         <EntityType Name="RecetasyExamenes">
@@ -377,15 +669,11 @@
           <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="idPaciente" Type="Int32" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="Empresaid" Type="Int32" />
+          <Property Name="Usuarioid" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="ConsultaMedicasModel.fk_Empresa_id6" FromRole="RecetasyExamenes" ToRole="Empresa" />
+          <NavigationProperty Name="Login" Relationship="ConsultaMedicasModel.fk_Usuario_id6" FromRole="RecetasyExamenes" ToRole="Login" />
           <NavigationProperty Name="paciente" Relationship="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" FromRole="RecetasyExamenes" ToRole="paciente" />
-        </EntityType>
-        <EntityType Name="TipoConsulta">
-          <Key>
-            <PropertyRef Name="idConsulta" />
-          </Key>
-          <Property Name="idConsulta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <Association Name="FK__CitasAgen__idpac__60A75C0F">
           <End Type="ConsultaMedicasModel.paciente" Role="paciente" Multiplicity="0..1" />
@@ -396,6 +684,30 @@
             </Principal>
             <Dependent Role="CitasAgendadas">
               <PropertyRef Name="idpaciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id1">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.CitasAgendadas" Role="CitasAgendadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="CitasAgendadas">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id1">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.CitasAgendadas" Role="CitasAgendadas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="CitasAgendadas">
+              <PropertyRef Name="Usuarioid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -411,6 +723,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Empresa_id2">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.ciudad" Role="ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id2">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.ciudad" Role="ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="ciudad">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Consultas__idpac__3F466844">
           <End Type="ConsultaMedicasModel.paciente" Role="paciente" Multiplicity="0..1" />
           <End Type="ConsultaMedicasModel.Consultas" Role="Consultas" Multiplicity="*" />
@@ -423,6 +759,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Empresa_id3">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.Consultas" Role="Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id3">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.Consultas" Role="Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_empresa">
           <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
           <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="*" />
@@ -432,6 +792,78 @@
             </Principal>
             <Dependent Role="Login">
               <PropertyRef Name="empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id4">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.HistoriaClinica" Role="HistoriaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="HistoriaClinica">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id5">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.paciente" Role="paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Empresa_id6">
+          <End Type="ConsultaMedicasModel.Empresa" Role="Empresa" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.RecetasyExamenes" Role="RecetasyExamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="RecetasyExamenes">
+              <PropertyRef Name="Empresaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id4">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.HistoriaClinica" Role="HistoriaClinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="HistoriaClinica">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id5">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.paciente" Role="paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="paciente">
+              <PropertyRef Name="Usuarioid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_id6">
+          <End Type="ConsultaMedicasModel.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.RecetasyExamenes" Role="RecetasyExamenes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="LoginId" />
+            </Principal>
+            <Dependent Role="RecetasyExamenes">
+              <PropertyRef Name="Usuarioid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -453,9 +885,20 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ConsultaMedicasModelStoreContainer" CdmEntityContainer="ConsultaMedicasEntities">
+          <EntitySetMapping Name="TipoConsulta">
+            <EntityTypeMapping TypeName="ConsultaMedicasModel.TipoConsulta">
+              <MappingFragment StoreEntitySet="TipoConsulta">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idConsulta" ColumnName="idConsulta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CitasAgendadas">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.CitasAgendadas">
               <MappingFragment StoreEntitySet="CitasAgendadas">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="MotivoCita" ColumnName="MotivoCita" />
                 <ScalarProperty Name="idpaciente" ColumnName="idpaciente" />
@@ -467,6 +910,8 @@
           <EntitySetMapping Name="ciudad">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.ciudad">
               <MappingFragment StoreEntitySet="ciudad">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="idciudad" ColumnName="idciudad" />
@@ -476,6 +921,8 @@
           <EntitySetMapping Name="Consultas">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.Consultas">
               <MappingFragment StoreEntitySet="Consultas">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Examenes" ColumnName="Examenes" />
                 <ScalarProperty Name="Receta" ColumnName="Receta" />
@@ -508,6 +955,8 @@
           <EntitySetMapping Name="HistoriaClinica">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.HistoriaClinica">
               <MappingFragment StoreEntitySet="HistoriaClinica">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="motivoconsulta" ColumnName="motivoconsulta" />
                 <ScalarProperty Name="medidatemperatura" ColumnName="medidatemperatura" />
@@ -549,6 +998,8 @@
           <EntitySetMapping Name="paciente">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.paciente">
               <MappingFragment StoreEntitySet="paciente">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="edad" ColumnName="edad" />
@@ -568,20 +1019,13 @@
           <EntitySetMapping Name="RecetasyExamenes">
             <EntityTypeMapping TypeName="ConsultaMedicasModel.RecetasyExamenes">
               <MappingFragment StoreEntitySet="RecetasyExamenes">
+                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
+                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoConsulta">
-            <EntityTypeMapping TypeName="ConsultaMedicasModel.TipoConsulta">
-              <MappingFragment StoreEntitySet="TipoConsulta">
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="idConsulta" ColumnName="idConsulta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

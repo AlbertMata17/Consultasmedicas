@@ -4,20 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bc6c4bccf4ac415295b911ccd7baef2c" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="5.25" PointY="4.25" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="7.75" PointY="1" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.HistoriaClinica" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="10" PointY="1" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="3" PointY="4" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="5.25" PointY="1.25" />
+      <Diagram DiagramId="bc6c4bccf4ac415295b911ccd7baef2c" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="ConsultaMedicasModel.TipoConsulta" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="10.875" PointY="13.25" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="7.875" PointY="13.5" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="15.375" PointY="12.375" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="3.375" PointY="9.375" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.HistoriaClinica" Width="1.5" PointX="7.875" PointY="5.75" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="5.625" PointY="16.375" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="13.125" PointY="12.25" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="18.375" PointY="13.25" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id1" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id1" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_ciudad" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id2" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id2" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id3" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id3" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_empresa" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id4" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id5" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id4" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id5" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
       </Diagram>
     </edmx:Diagrams>

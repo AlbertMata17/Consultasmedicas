@@ -35,12 +35,16 @@ namespace SpointLiteVersion.Models
         public Nullable<int> edad { get; set; }
         public string sexo { get; set; }
         public string EstadoCivil { get; set; }
+        public Nullable<int> Empresaid { get; set; }
+        public Nullable<int> Usuarioid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual ciudad ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consultas> Consultas { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        public virtual Login Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
     }

@@ -25,6 +25,7 @@ namespace SpointLiteVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
         public virtual DbSet<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<Consultas> Consultas { get; set; }
@@ -33,6 +34,5 @@ namespace SpointLiteVersion.Models
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<paciente> paciente { get; set; }
         public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
-        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
     }
 }

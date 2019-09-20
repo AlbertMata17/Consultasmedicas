@@ -22,12 +22,20 @@ namespace SpointLiteVersion.Controllers
             {
                 return RedirectToAction("Login", "Logins");
             }
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             var citasAgendadas = db.CitasAgendadas.Include(c => c.paciente);
-            return View(citasAgendadas.ToList());
+            return View(citasAgendadas.Where(m=>m.Usuarioid==usuarioid1 && m.Estatus==1).ToList());
         }
         public ActionResult GuardarCita(string fecha, string idpaciente1, string MotivoCita)
         {
             string mensaje = "";
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             CitasAgendadas citas = new CitasAgendadas();
           
             if (fecha != "undefined")
@@ -42,6 +50,9 @@ namespace SpointLiteVersion.Controllers
             {
                 citas.MotivoCita = MotivoCita.ToUpper();
             }
+            citas.Empresaid = empresaid1;
+            citas.Usuarioid = usuarioid1;
+            citas.Estatus = 1;
             db.CitasAgendadas.Add(citas);
             db.SaveChanges();
             
@@ -59,6 +70,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return RedirectToAction("Login", "Logins");
             }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -79,10 +91,14 @@ namespace SpointLiteVersion.Controllers
             {
                 return RedirectToAction("Login", "Logins");
             }
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             if (id == null)
             {
 
-                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre");
+                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre");
                 var s = (from datosid in db.CitasAgendadas select datosid.idCita).FirstOrDefault();
                 var idmostrar = 0;
                 if (s > 0)
@@ -106,7 +122,7 @@ namespace SpointLiteVersion.Controllers
             }
             if (id != null)
             {
-                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1), "idPaciente", "nombre",citas.idCita);
+                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",citas.idCita);
                 ViewBag.id = "algo";
              
                 return View(citas);
@@ -121,6 +137,10 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idCita,fecha,idpaciente,MotivoCita")] CitasAgendadas citasAgendadas)
         {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             var t = (from s in db.CitasAgendadas where s.idCita == citasAgendadas.idCita select s.idCita).Count();
             if (t != 0)
             {
@@ -131,6 +151,8 @@ namespace SpointLiteVersion.Controllers
                         citasAgendadas.MotivoCita = citasAgendadas.MotivoCita.ToUpper();
                     }
                     citasAgendadas.Estatus = 1;
+                    citasAgendadas.Empresaid = empresaid1;
+                    citasAgendadas.Usuarioid = usuarioid1;
                     db.Entry(citasAgendadas).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -147,6 +169,8 @@ namespace SpointLiteVersion.Controllers
                         citasAgendadas.MotivoCita = citasAgendadas.MotivoCita.ToUpper();
                     }
                     citasAgendadas.Estatus = 1;
+                    citasAgendadas.Empresaid = empresaid1;
+                    citasAgendadas.Usuarioid = usuarioid1;
                     db.CitasAgendadas.Add(citasAgendadas);
                     db.SaveChanges();
                     return RedirectToAction("Index");

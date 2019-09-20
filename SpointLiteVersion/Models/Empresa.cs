@@ -17,7 +17,13 @@ namespace SpointLiteVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empresa()
         {
+            this.CitasAgendadas = new HashSet<CitasAgendadas>();
+            this.ciudad = new HashSet<ciudad>();
+            this.Consultas = new HashSet<Consultas>();
             this.Login = new HashSet<Login>();
+            this.HistoriaClinica = new HashSet<HistoriaClinica>();
+            this.paciente = new HashSet<paciente>();
+            this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
         }
     
         public int IdEmpresa { get; set; }
@@ -28,6 +34,18 @@ namespace SpointLiteVersion.Models
         public string TipoEmpresa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ciudad> ciudad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Consultas> Consultas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Login> Login { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoriaClinica> HistoriaClinica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<paciente> paciente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
     }
 }

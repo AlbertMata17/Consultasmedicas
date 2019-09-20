@@ -21,8 +21,12 @@ namespace SpointLiteVersion.Controllers
             {
                 return RedirectToAction("Login", "Logins");
             }
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             var paciente = db.paciente.Include(p => p.ciudad);
-            return View(paciente.Where(m=>m.Estatus==1).ToList());
+            return View(paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1).ToList());
         }
 
         // GET: pacientes/Details/5
@@ -55,12 +59,12 @@ namespace SpointLiteVersion.Controllers
             if (id == null)
             {
 
-                ViewBag.idciuddad = new SelectList(db.ciudad, "idciudad", "Nombre");
+                ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Usuarioid==usuarioid1), "idciudad", "Nombre");
                 var s = (from datosid in db.paciente where datosid.Estatus==1 select datosid.idPaciente).FirstOrDefault();
                 var idmostrar = 0;
                 if (s > 0)
                 {
-                    idmostrar = (from datosid in db.paciente where datosid.Estatus==1 select datosid.idPaciente).Max() + 1;
+                    idmostrar = (from datosid in db.paciente where datosid.Estatus==1  select datosid.idPaciente).Max() + 1;
                 }
                 else
                 {
@@ -78,10 +82,10 @@ namespace SpointLiteVersion.Controllers
 
             if (id != null)
             {
-                ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1), "idciudad", "Nombre", paciente.idciuddad);
+                ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idciudad", "Nombre", paciente.idciuddad);
                 ViewBag.id = "algo";
-                var nacimiento = (from s in db.paciente where s.idPaciente == id select s.fechanacimiento).FirstOrDefault();
-                var edad1 = (from s in db.paciente where s.idPaciente == id select s.edad).FirstOrDefault();
+                var nacimiento = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.fechanacimiento).FirstOrDefault();
+                var edad1 = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.edad).FirstOrDefault();
                 if (nacimiento != null)
                 {
                     ViewBag.nacimiento = nacimiento.Value.Date.ToString("yyyy-MM-dd");
@@ -90,7 +94,7 @@ namespace SpointLiteVersion.Controllers
                 {
                     ViewBag.edad1 = edad1.ToString();
                 }
-                var historia = (from his in db.HistoriaClinica where his.idpaciente == id && his.Estatus==1 select his).FirstOrDefault();
+                var historia = (from his in db.HistoriaClinica where his.idpaciente == id && his.Estatus==1 && his.Usuarioid==usuarioid1 select his).FirstOrDefault();
                 if (historia != null)
                 {
                     ViewBag.consulta = historia.motivoconsulta;
@@ -122,7 +126,11 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "idPaciente,nombre,telefono,telefono2,idciuddad,cedula,direccion,email,fechanacimiento,Estatus,sexo,EstadoCivil")] paciente paciente)
         {
-            var t = (from s in db.paciente where s.idPaciente == paciente.idPaciente &&s.Estatus==1 select s.idPaciente).Count();
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
+            var t = (from s in db.paciente where s.idPaciente == paciente.idPaciente &&s.Estatus==1 && s.Usuarioid==usuarioid1 select s.idPaciente).Count();
             if (t != 0)
             {
                 if (ModelState.IsValid)
@@ -160,8 +168,8 @@ namespace SpointLiteVersion.Controllers
                         paciente.edad = edad;
                     }
                     paciente.Estatus = 1;
-                    var usuarioid = Session["userid"].ToString();
-                    var empresaid = Session["empresaid"].ToString();
+                    paciente.Empresaid = empresaid1;
+                    paciente.Usuarioid = usuarioid1;
                     db.Entry(paciente).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -196,22 +204,25 @@ namespace SpointLiteVersion.Controllers
                         paciente.edad = edad;
                     }
                     paciente.Estatus = 1;
-                    var usuarioid = Session["userid"].ToString();
-                    var empresaid = Session["empresaid"].ToString();
-
+                    paciente.Empresaid = empresaid1;
+                    paciente.Usuarioid = usuarioid1;
                     db.paciente.Add(paciente);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
             }
-            ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1), "idciudad", "Nombre", paciente.idciuddad);
+            ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1 ), "idciudad", "Nombre", paciente.idciuddad);
             return View(paciente);
         }
         public JsonResult Getciudad()
         {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             db.Configuration.ProxyCreationEnabled = false;
-            List<ciudad> ciudad = db.ciudad.Where(m=>m.Estatus==1).ToList();
+            List<ciudad> ciudad = db.ciudad.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1).ToList();
 
             //ViewBag.FK_Vehiculo = new SelectList(db.Vehiculo.Where(a => a.Clase == Clase && a.Estatus == "Disponible"), "VehiculoId", "Marca");
             return Json(ciudad, JsonRequestBehavior.AllowGet);
@@ -272,6 +283,10 @@ namespace SpointLiteVersion.Controllers
         }
         public ActionResult GuardarConsultar(string nombre, string fechanacimiento, string idpaciente, string idPacient, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email, string sexo, string EstadoCivil)
         {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             string mensaje = "";
             int idpacientebuscar = 0;
             int ciudad = 0;
@@ -287,10 +302,10 @@ namespace SpointLiteVersion.Controllers
                 ciudad =Convert.ToInt32(idciuddad);
             }
             paciente paciente = new paciente();
-            var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 select s.idPaciente).Count();
+            var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 && s.Usuarioid==usuarioid1 select s.idPaciente).Count();
             if (t != 0)
             {
-                var si = (from db in db.paciente where db.idPaciente == idpacientebuscar select db.idPaciente).FirstOrDefault();
+                var si = (from db in db.paciente where db.idPaciente == idpacientebuscar && db.Usuarioid==usuarioid1 select db.idPaciente).FirstOrDefault();
                 paciente.idPaciente = si;
                 if (direccion != null)
                 {
@@ -333,8 +348,8 @@ namespace SpointLiteVersion.Controllers
                 paciente.cedula = cedula;
                 paciente.Estatus = 1;
                 paciente.idciuddad = ciudad;
-                var usuarioid = Session["userid"].ToString();
-                var empresaid = Session["empresaid"].ToString();
+                paciente.Empresaid = empresaid1;
+                paciente.Usuarioid = usuarioid1;
                 db.Entry(paciente).State = EntityState.Modified;
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
@@ -384,6 +399,8 @@ namespace SpointLiteVersion.Controllers
                 }
                 paciente.Estatus = 1;
                 paciente.idciuddad = ciudad;
+                paciente.Empresaid = empresaid1;
+                paciente.Usuarioid = usuarioid1;
                 db.paciente.Add(paciente);
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
@@ -393,6 +410,10 @@ namespace SpointLiteVersion.Controllers
             return Json(mensaje);
         }
         public ActionResult Historia(string consulta, string idpaciente,string idPacient, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento,string gruposanguineo, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo, string EstadoCivil, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos) {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             paciente paciente = new paciente();
             HistoriaClinica HistoriaClinica = new HistoriaClinica();
 
@@ -421,34 +442,34 @@ namespace SpointLiteVersion.Controllers
             }
             else
             {
-                var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 select s.idPaciente).Count();
+                var t = (from s in db.paciente where s.idPaciente == idpacientebuscar && s.Estatus == 1 && s.Usuarioid==usuarioid1 select s.idPaciente).Count();
                 if (t != 0)
                 {
                     paciente paciente1 = new paciente();
 
-                    var si = (from db in db.paciente where db.idPaciente == idpacientebuscar select db.idPaciente).FirstOrDefault();
+                    var si = (from db in db.paciente where db.idPaciente == idpacientebuscar && db.Usuarioid==usuarioid1 select db.idPaciente).FirstOrDefault();
                     paciente.idPaciente = si;
-                    if (direccion != null)
+                    if (direccion != "undefined")
                     {
                         paciente.direccion = direccion.ToUpper();
                     }
-                    if (nombre != null)
+                    if (nombre != "undefined")
                     {
                         paciente.nombre = nombre.ToUpper();
                     }
-                    if (email != null)
+                    if (email != "undefined")
                     {
                         paciente.email = email.ToUpper();
                     }
-                    if (sexo != null)
+                    if (sexo != "undefined")
                     {
                         paciente.sexo = sexo.ToUpper();
                     }
-                    if (EstadoCivil != null)
+                    if (EstadoCivil != "undefined")
                     {
                         paciente.EstadoCivil = EstadoCivil.ToUpper();
                     }
-                    if (fechanacimiento != null || fechanacimiento != "")
+                    if (fechanacimiento != "undefined" || fechanacimiento != "")
                     {
                         var fech1 = Convert.ToDateTime(fechanacimiento);
 
@@ -468,13 +489,13 @@ namespace SpointLiteVersion.Controllers
                     paciente.cedula = cedula;
                     paciente.Estatus = 1;
                     paciente.idciuddad = ciudad;
-                    var usuarioid = Session["userid"].ToString();
-                    var empresaid = Session["empresaid"].ToString();
+                    paciente.Empresaid = empresaid1;
+                    paciente.Usuarioid = usuarioid1;
                     db.Entry(paciente).State = EntityState.Modified;
                     db.SaveChanges();
-                    var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s.idHistorio).Count();
+                    var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 && s.Usuarioid==usuarioid1 select s.idHistorio).Count();
                     if (comprobar != 0) {
-                        var comprobar1 = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 select s.idHistorio).FirstOrDefault();
+                        var comprobar1 = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 && s.Usuarioid==usuarioid1 select s.idHistorio).FirstOrDefault();
 
                         HistoriaClinica histroiaclicnica = new HistoriaClinica();
 
@@ -509,6 +530,8 @@ namespace SpointLiteVersion.Controllers
                         {
                             HistoriaClinica.gruposanguineo = gruposanguineo;
                         }
+                        HistoriaClinica.Empresaid = empresaid1;
+                        HistoriaClinica.Usuarioid = usuarioid1;
                         db.Entry(HistoriaClinica).State = EntityState.Modified;
                         db.SaveChanges();
                         mensaje = "Guardado";
@@ -542,6 +565,8 @@ namespace SpointLiteVersion.Controllers
                         {
                             histroiaclicnica.gruposanguineo = gruposanguineo;
                         }
+                        histroiaclicnica.Empresaid = empresaid1;
+                        histroiaclicnica.Usuarioid = usuarioid1;
                         db.HistoriaClinica.Add(histroiaclicnica);
 
                         db.SaveChanges();
@@ -581,6 +606,15 @@ namespace SpointLiteVersion.Controllers
                     }
                     paciente.Estatus = 1;
                     paciente.idciuddad = ciudad;
+                    paciente.Empresaid = empresaid1;
+                    paciente.Usuarioid = usuarioid1;
+                    if (sexo!="undefinded") {
+                        paciente.sexo = sexo.ToUpper();
+                    }
+                    if (EstadoCivil != "undefinded")
+                    {
+                        paciente.EstadoCivil = EstadoCivil.ToUpper();
+                    }
                     db.paciente.Add(paciente);
                     db.SaveChanges();
                     var id = paciente.idPaciente;
@@ -608,6 +642,8 @@ namespace SpointLiteVersion.Controllers
                     histroiaclicnica.Estatus = 1;
                     histroiaclicnica.vacunas = Vacunas;
                     histroiaclicnica.gruposanguineo = gruposanguineo;
+                    histroiaclicnica.Empresaid = empresaid1;
+                    histroiaclicnica.Usuarioid = usuarioid1;
                     db.HistoriaClinica.Add(histroiaclicnica);
 
                     db.SaveChanges();
@@ -660,6 +696,6 @@ namespace SpointLiteVersion.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }   
     }
 }
