@@ -36,6 +36,7 @@ namespace SpointLiteVersion.RTPFactura
 
             DataTable dt = cargar(idConsulta);
             ReportDataSource rds = new ReportDataSource("DataSet1", dt);
+            
             ReportViewer1.LocalReport.DataSources.Add(rds);
             ReportViewer1.LocalReport.ReportPath = "RTPFactura/Report2.rdlc";
             PageSettings pg = new PageSettings();

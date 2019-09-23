@@ -46,13 +46,31 @@ namespace RentCar.Controllers
         }
 
         // GET: Logins/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             if (Session["Username"] == null)
             {
                 return RedirectToAction("Login");
             }
+            if (id == null)
+            {
+                ViewBag.empresaid = new SelectList(db.Empresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre");
+                return View();
 
+            }
+            Login login = db.Login.Find(id);
+            if (login == null)
+            {
+                return HttpNotFound();
+            }
+            if (id != null)
+            {
+                ViewBag.empresaid = new SelectList(db.Empresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre",login.empresaid);
+                ViewBag.id = "algo";
+                ViewBag.foto = login.Foto;
+
+                return View(login);
+            }
             return View();
         }
 
@@ -107,15 +125,32 @@ namespace RentCar.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio")] Login login)
+        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid,Foto")] Login login)
         {
-
-            if (ModelState.IsValid)
+            var t = (from s in db.Login where s.LoginId == login.LoginId select s.LoginId).Count();
+            if (t != 0)
             {
-                db.Login.Add(login);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {
+                    login.estatus = 1;
+                    db.Entry(login).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+               
+                }
             }
+            else if(login.LoginId<=0)
+            {
+                if (ModelState.IsValid)
+                {
+                    login.estatus = 1;
+                    db.Login.Add(login);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            ViewBag.empresaid = new SelectList(db.Empresa.Where(m=>m.estatus==1), "IdEmpresa", "Nombre", login.empresaid);
 
             return View(login);
         }

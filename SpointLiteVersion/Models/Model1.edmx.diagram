@@ -9,29 +9,29 @@
         <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="10.875" PointY="13.25" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="7.875" PointY="13.5" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="15.375" PointY="12.375" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="3.375" PointY="9.375" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.HistoriaClinica" Width="1.5" PointX="7.875" PointY="5.75" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="5.625" PointY="16.375" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="13.125" PointY="12.25" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="18.375" PointY="13.25" />
-        <AssociationConnector Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="5.625" PointY="9.625" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id1" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id2" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id3" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id4" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="7.875" PointY="17.375" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="13.125" PointY="13" />
+        <AssociationConnector Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id1" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_ciudad" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id2" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id2" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id3" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id3" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_empresa" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id4" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id5" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id4" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id5" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="18.375" PointY="14" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

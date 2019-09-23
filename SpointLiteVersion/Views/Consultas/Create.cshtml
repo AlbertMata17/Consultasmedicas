@@ -24,24 +24,27 @@
                     <div class="form-horizontal">
 
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-row col-md-2" style="float:right; margin-top:-80px; margin-right: 20px;">
+                        <div class="form-row col-md-offset-9" style="margin-top:-60px;">
+                            @if (ViewBag.id != null)
+                            {
+                            <div class="form-group col-md-4 botonesacciones">
 
-                            <div class="form-group col-md-1">
 
-                                @if (ViewBag.id != null)
-                                {
 
-                                    <a class="btn btn-danger btnelimina" id="elimin" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})"><i class="fas fa-trash"></i></a>
-                                }
-
-                            </div>
-                            <div class="form-group col-md-1">
-                                <button type="submit" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+                                <a class="btn btn-danger btnelimina modaleliminar" id="elimin" data-toggle="modal" href="#" data-target="#exampleModal1"><i class="fas fa-trash"></i></a>
 
 
                             </div>
-                            <div class="form-group col-md-1">
-                                <button type="button" class="btn btn-info btnfin" style="margin-left:54px" ; id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>
+                            }
+                            <div class="form-group col-md-4 botonesacciones">
+                                <button type="button" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+
+                            </div>
+                            <div class="form-group col-md-2 botonesacciones">
+                                <button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="fas fa-notes-medical"></i></button>
+
+                                @*<button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>*@
 
 
                             </div>
@@ -90,7 +93,7 @@
 
                             <div class="form-group col-md-4">
                                 @Html.Label("Paciente", new { @class = "control-label col-md-2" })
-                                <input type="text" list="paciente1" name="idpacientes" id="idpacientes" class="form-control" autocomplete="off" />
+                                <input type="text" list="paciente1" name="idpacientes" required id="idpacientes" class="form-control" autocomplete="off" />
 
                                 <datalist id="paciente1">
                                     @foreach (var m in ViewBag.idpaciente)
@@ -258,6 +261,39 @@
         </div>
     </div>
 </div>
+<div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante" id="contenido">
+
+
+                </div>
+                @*<div class=" btncrearconsult">
+                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                    </div>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
 <div class="modal fade modalciudad" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog model" id="modal" role="document">
         <div class="modal-content" id="contentmost" style="width:139%; margin-top:-72px;">
@@ -306,8 +342,8 @@
 </script>
 <script>
     $(document).ready(function () {
-        alert(@ViewBag.idreceta);
             $("#idpaciente").val(@ViewBag.idmostrarseleccion);
+        
 
         var datospaciente =$('select[name="idpaciente"] option:selected').text();
 
@@ -409,9 +445,10 @@
 
                     //})
 
-   var logoutUrl = '@Url.Action("reporteActual", "Consultas")';
-                    window.open(logoutUrl, '_blank');
+ 
                     if (response == "CONSULTA GUARDADA CON EXITO...") {
+                          var logoutUrl = '@Url.Action("reporteActual", "Consultas")';
+                    window.open(logoutUrl, '_blank');
    var log = '@Url.Action("Index", "Consultas")';
                         window.location.href = log;
 
@@ -456,7 +493,7 @@
             //console.info('hola');
 
             var i = 0;
-            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',fecha:'" + $("#fecha").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 
@@ -483,9 +520,10 @@
                         //    timer: 1500
 
                     //})
-   var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
-                    window.open(logoutUrl, '_blank');
+ 
                     if (response == "EXAMEN GUARDADO CON EXITO...") {
+                          var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
+                    window.open(logoutUrl, '_blank');
                         //limpiar();
                            @*var log = '@Url.Action("Index", "Consultas")';
 
@@ -532,7 +570,7 @@
             //console.info('hola');
 
             var i = 0;
-            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',IdCabecera:'2',Receta:'" + $('#Receta').val() + "',";
+            var envio = "{idpaciente:'" + $("#idpaciente").val() + "',fecha:'" + $("#fecha").val() + "',IdCabecera:'2',Receta:'" + $('#Receta').val() + "',";
 
 
 
@@ -559,9 +597,10 @@
                         //    timer: 1500
 
                     //})
-   var logoutUrl = '@Url.Action("reporteReceta", "Consultas")';
-                    window.open(logoutUrl, '_blank');
+
                     if (response == "RECETA GUARDADA CON EXITO...") {
+                           var logoutUrl = '@Url.Action("reporteReceta", "Consultas")';
+                    window.open(logoutUrl, '_blank');
    @*var log = '@Url.Action("reporteReceta", "Consultas")';
                         window.location.href = log;*@
 
@@ -587,10 +626,16 @@
 </script>
 <script>
     $(document).ready(function () {
-
+         $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "Consultas", new { id="param-name"})";
+             var paciente = $("#idConsulta").val();
+                url=url.replace("param-name",paciente);
+            $(".comprobante").load(url)            
+        });
         $(".Datoscomprobante").click(function () {
-                    var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name" })";
-                url=url.replace("param-name",0);
+                    var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name"})";
+            url = url.replace("param-name", $("#idpaciente").val());
             $(".comprobante").load(url)
         });
     });

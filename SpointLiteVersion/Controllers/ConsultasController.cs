@@ -261,7 +261,7 @@ namespace SpointLiteVersion.Controllers
                     ViewBag.Compania = historia.Compania;
                     ViewBag.idreceta = (from recet in db.RecetasyExamenes where recet.idPaciente==paciente.idpaciente && recet.Tipo=="RECETA" && recet.Detalle.ToString().ToUpper()==historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
                     TempData["idejemplo"] = ViewBag.idreceta.ToString();
-                    ViewBag.idreceta1 = (from recet in db.RecetasyExamenes where recet.idPaciente == paciente.idpaciente && recet.Tipo=="EXAMEN" && recet.Detalle.ToString().ToUpper() == historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
+                    ViewBag.idreceta1 = (from recet in db.RecetasyExamenes where recet.idPaciente == paciente.idpaciente && recet.Tipo=="EXAMENES" && recet.Detalle.ToString().ToUpper() == historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
                     TempData["idejemplo1"] = ViewBag.idreceta1.ToString();
                 }
 
@@ -314,6 +314,10 @@ namespace SpointLiteVersion.Controllers
                         receta1.idPaciente = consultas.idpaciente;
                         receta1.Usuarioid = usuarioid1;
                         receta1.Empresaid = empresaid1;
+                        if (consultas.fecha != null)
+                        {
+                            receta1.fecha = consultas.fecha;
+                        }
 
                         db.Entry(receta1).State = EntityState.Modified;
                         db.SaveChanges();
@@ -325,10 +329,14 @@ namespace SpointLiteVersion.Controllers
                         receta1.id = Convert.ToInt32(TempData["idejemplo1"].ToString());
                         receta1.Detalle = consultas.Examenes.ToUpper();
                         receta1.Estatus = 1;
-                        receta1.Tipo = "EXAMEN";
+                        receta1.Tipo = "EXAMENES";
                         receta1.idPaciente = consultas.idpaciente;
                         receta1.Empresaid = empresaid1;
                         receta1.Usuarioid = usuarioid1;
+                        if (consultas.fecha != null)
+                        {
+                            receta1.fecha = consultas.fecha;
+                        }
                         db.Entry(receta1).State = EntityState.Modified;
                         db.SaveChanges();
 
@@ -370,18 +378,26 @@ namespace SpointLiteVersion.Controllers
                         receta1.Estatus = 1;
                         receta1.Empresaid = empresaid1;
                         receta1.Usuarioid = usuarioid1;
+                        if (consultas.fecha != null)
+                        {
+                            receta1.fecha = consultas.fecha;
+                        }
                         db.RecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consultas.Receta = consultas.Receta.ToUpper();
                     }
                     if (consultas.Examenes != null)
                     {
-                        receta1.Tipo = "EXAMEN";
+                        receta1.Tipo = "EXAMENES";
                         receta1.Detalle = consultas.Examenes.ToUpper();
                         receta1.idPaciente = consultas.idpaciente;
                         receta1.Estatus = 1;
                         receta1.Empresaid = empresaid1;
                         receta1.Usuarioid = usuarioid1;
+                        if (consultas.fecha != null)
+                        {
+                            receta1.fecha = consultas.fecha;
+                        }
                         db.RecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consultas.Examenes = consultas.Examenes.ToUpper();
@@ -435,6 +451,7 @@ namespace SpointLiteVersion.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(consultas).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -450,152 +467,167 @@ namespace SpointLiteVersion.Controllers
             var empresaid1 = Convert.ToInt32(empresaid);
             string mensaje = "";
             Consultas consult = new Consultas();
-            var consultas = 0;
-            if (idConsulta1 != "undefined")
+            if (idpaciente == "undefined" || idpaciente=="")
             {
-                 consultas = Convert.ToInt32(idConsulta1);
-            }
-            var t = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).Count();
-            if (t != 0)
-            {
-                var consultaval = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).FirstOrDefault();
-                System.Diagnostics.Debug.Write("El Seguro es:" + SeguroMedico.ToUpper());
-
-                consult.idConsulta = consultaval;
-                if (TipoConsulta != "undefined")
-                {
-                    consult.TipoConsulta = TipoConsulta.ToUpper();
-                }
-                consult.fecha = Convert.ToDateTime(fecha);
-                if (idpaciente != "undefined")
-                {
-                    consult.idpaciente = Convert.ToInt32(idpaciente);
-                }
-                if (telefono != "undefined")
-                {
-                    consult.telefono = telefono;
-                }
-                if (SeguroMedico != "undefined")
-                {
-                    consult.SeguroMedico = SeguroMedico.ToUpper();
-                }
-                if (Compania != "undefined")
-                {
-                    consult.Compania = Compania.ToUpper();
-                }
-                if (Poliza != "undefined")
-                {
-                    consult.Poliza = Poliza.ToUpper();
-                }
-                if (Observaciones != "undefined")
-                {
-                    consult.Observaciones = Observaciones.ToUpper();
-                }
-                if (Diagnostico != "undefined")
-                {
-                    consult.Diagnostico = Diagnostico.ToUpper();
-                }
-                if (Receta != "undefined")
-                {
-                    receta1.idPaciente = Convert.ToInt32(idpaciente);
-                    receta1.Detalle = Receta.ToUpper();
-                    receta1.Estatus = 1;
-                    receta1.Tipo = "RECETA";
-                    consult.Receta = Receta.ToUpper();
-             
-                    receta1.Empresaid = empresaid1;
-                    receta1.Usuarioid = usuarioid1;
-                    db.RecetasyExamenes.Add(receta1);
-                    db.SaveChanges();
-                }
-                if (Examenes != "undefined")
-                {
-                    receta1.idPaciente = Convert.ToInt32(idpaciente); 
-                    receta1.Detalle = Examenes.ToUpper();
-                    receta1.Estatus = 1;
-                    receta1.Tipo = "EXAMEN";
-                    receta1.Empresaid = empresaid1;
-                    receta1.Usuarioid = usuarioid1;
-                    db.RecetasyExamenes.Add(receta1);
-                    db.SaveChanges();
-                    consult.Examenes = Examenes.ToUpper();
-                }
-                if (edad != "undefined")
-                {
-                    consult.edad = edad;
-                }
-                consult.Estatus = 1;
-                consult.Empresaid = empresaid1;
-                consult.Usuarioid = usuarioid1;
-                db.Entry(consult).State = EntityState.Modified;
-                db.SaveChanges();
-                var idConsulta = consult.idConsulta;
-                mensaje = "CONSULTA GUARDADA CON EXITO...";
-                ViewBag.idPacientes = idConsulta.ToString();
-                Session["idConsulta"] = idConsulta;
+                mensaje = "Seleccione Un Paciente";
             }
             else
             {
-                if (TipoConsulta != "undefined")
+                var consultas = 0;
+                if (idConsulta1 != "undefined" || idConsulta1!="")
                 {
-                    consult.TipoConsulta = TipoConsulta.ToUpper();
+                    consultas = Convert.ToInt32(idConsulta1);
                 }
-                consult.fecha = Convert.ToDateTime(fecha);
-                if (idpaciente != "undefined")
+                var t = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).Count();
+                if (t != 0)
                 {
-                    consult.idpaciente = Convert.ToInt32(idpaciente);
-                }
-                if (telefono != "undefined")
-                {
-                    consult.telefono = telefono;
-                }
-                if (SeguroMedico != "undefined")
-                {
-                    consult.SeguroMedico = SeguroMedico.ToUpper();
-                }
-                if (Compania != "undefined")
-                {
-                    consult.Compania = Compania.ToUpper();
-                }
-                if (Poliza != "undefined")
-                {
-                    consult.Poliza = Poliza.ToUpper();
-                }
-                if (Observaciones != "undefined")
-                {
-                    consult.Observaciones = Observaciones.ToUpper();
-                }
-                if (Diagnostico != "undefined")
-                {
-                    consult.Diagnostico = Diagnostico.ToUpper();
-                }
-                if (Receta != "undefined")
-                {
-                    consult.Receta = Receta.ToUpper();
-                }
-                if (Examenes != "undefined")
-                {
-                    consult.Examenes = Examenes.ToUpper();
-                }
-                if (edad != "undefined")
-                {
-                    consult.edad = edad;
-                }
-                consult.Estatus = 1;
-                consult.Empresaid = empresaid1;
-                consult.Usuarioid = usuarioid1;
-                db.Consultas.Add(consult);
-                db.SaveChanges();
+                    var consultaval = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).FirstOrDefault();
 
-                var idConsulta = consult.idConsulta;
-                mensaje = "CONSULTA GUARDADA CON EXITO...";
-                ViewBag.idPacientes = idConsulta.ToString();
-                Session["idConsulta"] = idConsulta;
+                    consult.idConsulta = consultaval;
+                    if (TipoConsulta != "undefined" || TipoConsulta!="")
+                    {
+                        consult.TipoConsulta = TipoConsulta.ToUpper();
+                    }
+                    consult.fecha = Convert.ToDateTime(fecha);
+                    if (idpaciente != "undefined" || idpaciente!="")
+                    {
+                        consult.idpaciente = Convert.ToInt32(idpaciente);
+                    }
+                    if (telefono != "undefined" || telefono!="")
+                    {
+                        consult.telefono = telefono;
+                    }
+                    if (SeguroMedico != "undefined" || SeguroMedico!="")
+                    {
+                        consult.SeguroMedico = SeguroMedico.ToUpper();
+                    }
+                    if (Compania != "undefined" || Compania!="")
+                    {
+                        consult.Compania = Compania.ToUpper();
+                    }
+                    if (Poliza != "undefined" || Poliza!="")
+                    {
+                        consult.Poliza = Poliza.ToUpper();
+                    }
+                    if (Observaciones != "undefined" || Observaciones!="")
+                    {
+                        consult.Observaciones = Observaciones.ToUpper();
+                    }
+                    if (Diagnostico != "undefined" || Diagnostico!="")
+                    {
+                        consult.Diagnostico = Diagnostico.ToUpper();
+                    }
+                    if (Receta != "undefined" || Receta!="")
+                    {
+                        receta1.idPaciente = Convert.ToInt32(idpaciente);
+                        receta1.Detalle = Receta.ToUpper();
+                        receta1.Estatus = 1;
+                        receta1.Tipo = "RECETA";
+                        receta1.fecha = Convert.ToDateTime(fecha);
+                        consult.Receta = Receta.ToUpper();
+                        
+                        receta1.Empresaid = empresaid1;
+                        receta1.Usuarioid = usuarioid1;
+                        if(fecha!="undefined" || fecha != "")
+                        {
+                            receta1.fecha = Convert.ToDateTime(fecha);
+                        }
+                        db.RecetasyExamenes.Add(receta1);
+                        db.SaveChanges();
+                    }
+                    if (Examenes != "undefined" || Examenes!="")
+                    {
+                        receta1.idPaciente = Convert.ToInt32(idpaciente);
+                        receta1.Detalle = Examenes.ToUpper();
+                        receta1.Estatus = 1;
+                        receta1.Tipo = "EXAMEN";
+                        receta1.Empresaid = empresaid1;
+                        receta1.Usuarioid = usuarioid1;
+                        if (fecha != "undefined" || fecha != "")
+                        {
+                            receta1.fecha = Convert.ToDateTime(fecha);
+                        }
+                        db.RecetasyExamenes.Add(receta1);
+                        db.SaveChanges();
+                        consult.Examenes = Examenes.ToUpper();
+                    }
+                    if (edad != "undefined" || edad!="")
+                    {
+                        consult.edad = edad;
+                    }
+                    consult.Estatus = 1;
+                    consult.Empresaid = empresaid1;
+                    consult.Usuarioid = usuarioid1;
+                    db.Entry(consult).State = EntityState.Modified;
+                    db.SaveChanges();
+                    var idConsulta = consult.idConsulta;
+                    mensaje = "CONSULTA GUARDADA CON EXITO...";
+                    ViewBag.idPacientes = idConsulta.ToString();
+                    Session["idConsulta"] = idConsulta;
+                }
+                else
+                {
+                    if (TipoConsulta != "undefined" || TipoConsulta!="")
+                    {
+                        consult.TipoConsulta = TipoConsulta.ToUpper();
+                    }
+                    consult.fecha = Convert.ToDateTime(fecha);
+                    if (idpaciente != "undefined" || idpaciente!="")
+                    {
+                        consult.idpaciente = Convert.ToInt32(idpaciente);
+                    }
+                    if (telefono != "undefined" || telefono!="")
+                    {
+                        consult.telefono = telefono;
+                    }
+                    if (SeguroMedico != "undefined" || SeguroMedico!="")
+                    {
+                        consult.SeguroMedico = SeguroMedico.ToUpper();
+                    }
+                    if (Compania != "undefined" || Compania!="")
+                    {
+                        consult.Compania = Compania.ToUpper();
+                    }
+                    if (Poliza != "undefined" || Poliza!="")
+                    {
+                        consult.Poliza = Poliza.ToUpper();
+                    }
+                    if (Observaciones != "undefined" || Observaciones!="")
+                    {
+                        consult.Observaciones = Observaciones.ToUpper();
+                    }
+                    if (Diagnostico != "undefined" || Diagnostico!="")
+                    {
+                        consult.Diagnostico = Diagnostico.ToUpper();
+                    }
+                    if (Receta != "undefined" || Receta!="")
+                    {
+                        consult.Receta = Receta.ToUpper();
+                    }
+                    if (Examenes != "undefined" || Examenes!="")
+                    {
+                        consult.Examenes = Examenes.ToUpper();
+                    }
+                    if (edad != "undefined" || edad!="")
+                    {
+                        consult.edad = edad;
+                    }
+                    consult.Estatus = 1;
+                    consult.Empresaid = empresaid1;
+                    consult.Usuarioid = usuarioid1;
+                    db.Consultas.Add(consult);
+                    db.SaveChanges();
+
+                    var idConsulta = consult.idConsulta;
+                    mensaje = "CONSULTA GUARDADA CON EXITO...";
+                    ViewBag.idPacientes = idConsulta.ToString();
+                    Session["idConsulta"] = idConsulta;
+                }
             }
             return Json(mensaje);
         }
 
-        public ActionResult GuardarReceta(string idpaciente,string Receta)
+        public ActionResult GuardarReceta(string idpaciente,string Receta,string fecha)
         {
             string mensaje = "";
             var usuarioid = Session["userid"].ToString();
@@ -603,25 +635,38 @@ namespace SpointLiteVersion.Controllers
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
             RecetasyExamenes consulta = new RecetasyExamenes();
-            if (Receta != "")
+            System.Diagnostics.Debug.Write("Id del Paciente"+idpaciente);
+            System.Diagnostics.Debug.Write("Receta"+Receta);
+            if (idpaciente == "undefined" || idpaciente=="" || Receta == "undefined" || Receta=="")
             {
-                consulta.Detalle = Receta.ToUpper();
+                if (idpaciente == "undefined" || idpaciente=="") mensaje = "Seleccione Un Paciente";
+                if (Receta == "undefined" || Receta=="") mensaje = "Ingrese las indicaciones de la Receta";
             }
-            if (idpaciente != null)
+            else
             {
-                consulta.idPaciente = Convert.ToInt32(idpaciente);
+                if (Receta != "undefined" || Receta=="")
+                {
+                    consulta.Detalle = Receta.ToUpper();
+                }
+                if (idpaciente != "undefined" || idpaciente=="")
+                {
+                    consulta.idPaciente = Convert.ToInt32(idpaciente);
+                }
+                if (fecha != "undefined" || fecha == "")
+                {
+                    consulta.fecha =Convert.ToDateTime(fecha);
+                }
+                consulta.Tipo = "RECETA";
+                consulta.Estatus = 1;
+                consulta.Empresaid = empresaid1;
+                consulta.Usuarioid = usuarioid1;
+                db.RecetasyExamenes.Add(consulta);
+                db.SaveChanges();
+                var id = consulta.id;
+                mensaje = "RECETA GUARDADA CON EXITO...";
+                ViewBag.idPacientes = id.ToString();
+                Session["id"] = id;
             }
-
-            consulta.Tipo = "RECETA";
-            consulta.Estatus = 1;
-            consulta.Empresaid = empresaid1;
-            consulta.Usuarioid = usuarioid1;
-            db.RecetasyExamenes.Add(consulta);
-            db.SaveChanges();
-            var id = consulta.id;
-            mensaje = "RECETA GUARDADA CON EXITO...";
-            ViewBag.idPacientes = id.ToString();
-            Session["id"] = id;
             return Json(mensaje);
         }
 
@@ -636,7 +681,7 @@ namespace SpointLiteVersion.Controllers
             var empresaid1 = Convert.ToInt32(empresaid);
             return View(db.RecetasyExamenes.Where(m=>m.Usuarioid==usuarioid1).ToList());
         }
-        public ActionResult GuardarExamen(string idpaciente, string Examenes)
+        public ActionResult GuardarExamen(string idpaciente, string Examenes,string fecha)
         {
             string mensaje = "";
             var usuarioid = Session["userid"].ToString();
@@ -644,25 +689,37 @@ namespace SpointLiteVersion.Controllers
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
             RecetasyExamenes consulta = new RecetasyExamenes();
-            if (Examenes != "")
+            if (idpaciente == "undefined" || idpaciente == "" || Examenes == "undefined" || Examenes=="undefined")
             {
-                consulta.Detalle = Examenes.ToUpper();
+                if (idpaciente == "undefined" || idpaciente=="") mensaje = "Seleccione Un Paciente";
+                if (Examenes == "undefined" || Examenes=="") mensaje = "Ingrese las indicaciones del Examen";
             }
-            if (idpaciente != null)
+            else
             {
-                consulta.idPaciente = Convert.ToInt32(idpaciente);
-            }
-            consulta.Estatus = 1;
-            consulta.Tipo = "EXAMEN";
+                if (Examenes != "")
+                {
+                    consulta.Detalle = Examenes.ToUpper();
+                }
+                if (idpaciente != null && idpaciente!="")
+                {
+                    consulta.idPaciente = Convert.ToInt32(idpaciente);
+                }
+                if(fecha!="undefined" && fecha != "")
+                {
+                    consulta.fecha = Convert.ToDateTime(fecha);
+                }
+                consulta.Estatus = 1;
+                consulta.Tipo = "EXAMENES";
 
-            consulta.Empresaid = empresaid1;
-            consulta.Usuarioid = usuarioid1;
-            db.RecetasyExamenes.Add(consulta);
-            db.SaveChanges();
-            var id = consulta.id;
-            mensaje = "EXAMEN GUARDADO CON EXITO...";
-            ViewBag.idPacientes = id.ToString();
-            Session["id"] = id;
+                consulta.Empresaid = empresaid1;
+                consulta.Usuarioid = usuarioid1;
+                db.RecetasyExamenes.Add(consulta);
+                db.SaveChanges();
+                var id = consulta.id;
+                mensaje = "EXAMEN GUARDADO CON EXITO...";
+                ViewBag.idPacientes = id.ToString();
+                Session["id"] = id;
+            }
             return Json(mensaje);
         }
         // GET: Consultas/Delete/5

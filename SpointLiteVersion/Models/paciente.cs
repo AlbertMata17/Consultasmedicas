@@ -37,6 +37,7 @@ namespace SpointLiteVersion.Models
         public string EstadoCivil { get; set; }
         public Nullable<int> Empresaid { get; set; }
         public Nullable<int> Usuarioid { get; set; }
+        public string Foto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }

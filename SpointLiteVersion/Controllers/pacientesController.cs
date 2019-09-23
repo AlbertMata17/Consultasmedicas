@@ -84,7 +84,8 @@ namespace SpointLiteVersion.Controllers
             {
                 ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idciudad", "Nombre", paciente.idciuddad);
                 ViewBag.id = "algo";
-                var nacimiento = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.fechanacimiento).FirstOrDefault();
+                ViewBag.foto = paciente.Foto;
+              var nacimiento = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.fechanacimiento).FirstOrDefault();
                 var edad1 = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.edad).FirstOrDefault();
                 if (nacimiento != null)
                 {
@@ -124,7 +125,7 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idPaciente,nombre,telefono,telefono2,idciuddad,cedula,direccion,email,fechanacimiento,Estatus,sexo,EstadoCivil")] paciente paciente)
+        public ActionResult Create([Bind(Include = "idPaciente,nombre,telefono,telefono2,idciuddad,cedula,direccion,email,fechanacimiento,Estatus,sexo,EstadoCivil,Foto")] paciente paciente)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
@@ -281,7 +282,7 @@ namespace SpointLiteVersion.Controllers
             ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1), "idciudad", "Nombre", paciente.idciuddad);
             return View(paciente);
         }
-        public ActionResult GuardarConsultar(string nombre, string fechanacimiento, string idpaciente, string idPacient, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email, string sexo, string EstadoCivil)
+        public ActionResult GuardarConsultar(string nombre, string fechanacimiento, string idpaciente, string idPacient, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email, string sexo, string EstadoCivil, string Foto)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
@@ -350,6 +351,7 @@ namespace SpointLiteVersion.Controllers
                 paciente.idciuddad = ciudad;
                 paciente.Empresaid = empresaid1;
                 paciente.Usuarioid = usuarioid1;
+                paciente.Foto = Foto;
                 db.Entry(paciente).State = EntityState.Modified;
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
@@ -401,6 +403,7 @@ namespace SpointLiteVersion.Controllers
                 paciente.idciuddad = ciudad;
                 paciente.Empresaid = empresaid1;
                 paciente.Usuarioid = usuarioid1;
+                paciente.Foto = Foto;
                 db.paciente.Add(paciente);
                 db.SaveChanges();
                 var idPaciente = paciente.idPaciente;
@@ -409,7 +412,7 @@ namespace SpointLiteVersion.Controllers
             }
             return Json(mensaje);
         }
-        public ActionResult Historia(string consulta, string idpaciente,string idPacient, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento,string gruposanguineo, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo, string EstadoCivil, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos) {
+        public ActionResult Historia(string consulta, string idpaciente,string idPacient, string antecedentesmedicos,string estatura,string centimetro,string peso,string peso1,string temperatura, string temperatura1, string nombre, string fechanacimiento,string gruposanguineo, string direccion, string telefono, string telefono2, string cedula, string idciuddad, string email,string sexo, string EstadoCivil, string antecedentesginecologico, string alergias, string Medicamentos, string Revision, string Enfermedad, string personales, string familiares, string Vacunas, string Habitos, string Foto) {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
@@ -491,6 +494,7 @@ namespace SpointLiteVersion.Controllers
                     paciente.idciuddad = ciudad;
                     paciente.Empresaid = empresaid1;
                     paciente.Usuarioid = usuarioid1;
+                    paciente.Foto = Foto;
                     db.Entry(paciente).State = EntityState.Modified;
                     db.SaveChanges();
                     var comprobar = (from s in db.HistoriaClinica where s.idpaciente == idpacientebuscar && s.Estatus == 1 && s.Usuarioid==usuarioid1 select s.idHistorio).Count();
@@ -608,6 +612,7 @@ namespace SpointLiteVersion.Controllers
                     paciente.idciuddad = ciudad;
                     paciente.Empresaid = empresaid1;
                     paciente.Usuarioid = usuarioid1;
+                    paciente.Foto = Foto;
                     if (sexo!="undefinded") {
                         paciente.sexo = sexo.ToUpper();
                     }

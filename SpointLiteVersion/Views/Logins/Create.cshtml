@@ -1,53 +1,193 @@
-﻿@model RentCar.Models.Login
+﻿@model SpointLiteVersion.Models.Login
 
 @{
     ViewBag.Title = "Create";
+    Layout = null;
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Login</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="container">
 
-        <div class="form-group">
+    <div class="row">
+        <div class="col-md-5 ">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal" style="margin-left:30px !important; padding-right:0px !important;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @if (ViewBag.foto != null)
+                {
+                    <center>
+                        <div>
+                            <input type="file" accept="image/*" id="fotosubir" />
+                            <label for="fotosubir">
+                                <img src="@ViewBag.foto" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
+                            </label>
+                        </div>
+                        <span>Seleccionar</span>
+                        <input type="hidden" name="Foto" id="Foto" value="@ViewBag.foto" />
+
+                    </center>
+                }
+                else
+                {
+                    <center>
+                        <div>
+                            <input type="file" accept="image/*" id="fotosubir" />
+                            <label for="fotosubir">
+                                <img src="~/Content/user.png" alt="Alternate Text" id="fotoejemplo" style="width:80px; height:80px; margin-top:15px;" />
+                            </label>
+                        </div>
+                        <span>Seleccionar</span>
+                        <input type="hidden" name="Foto" id="Foto" value="" />
+
+                    </center>
+                }
+                @if (@ViewBag.id != null)
+                {
+                    @Html.HiddenFor(model => model.LoginId)
+                }
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                @*<div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Privilegio, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+            @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select class="form-control" name="Privilegio">
-                    <option value="2">2</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Privilegio, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.Label("Usuario",new { @class="control-label col-md-2"})
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.Label("Empresa", new { @class = "control-label col-md-2" })
+                        @Html.DropDownList("empresaid", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.empresaid, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-5">
+                        @Html.LabelFor(model => model.Privilegio, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Privilegio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Privilegio, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="form-group col-md-9">
+
+                        @if (ViewBag.id != null)
+                        {
+
+                            <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-trash"></i></a>
+                        }
+
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button type="submit" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+
+                    </div>
+                </div>
+                </div>
+                }
+
+              
+
             </div>
+            </div>
+</div>
+<div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante" id="contenido">
+
+
+                </div>
+                @*<div class=" btncrearconsult">
+                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                    </div>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+<script>
+    function leerArchivo() {
+        if (this.files && this.files[0]) {
+            var FR = new FileReader();
+            FR.onload = function (e) {
+                document.getElementById("fotoejemplo").src = e.target.result;
+                document.getElementById("Foto").value = e.target.result;
+                console.log(e.target.result);
+            };
+            FR.readAsDataURL(this.files[0]);
+        }
+    }
+    document.getElementById("fotosubir").addEventListener("change", leerArchivo, false);
+</script>
+<script>
+    $(document).ready(function () {
+        $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "Logins", new { id="param-name"})";
+            var paciente = $("#LoginId").val();
+            url = url.replace("param-name", paciente);
+            $(".comprobante").load(url)
+        });
+    });
+    
+</script>

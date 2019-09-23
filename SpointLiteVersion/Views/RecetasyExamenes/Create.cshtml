@@ -1,0 +1,164 @@
+﻿@model SpointLiteVersion.Models.RecetasyExamenes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-row">
+                @if (ViewBag.idreceta != null)
+                {
+                    <div class="form-group col-md-2">
+                        @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
+                        <input type="text" name="id" class="form-control" readonly value="@ViewBag.idreceta" />
+                        @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+
+                    </div>
+                }
+                @if (@ViewBag.id != null)
+                {
+                    <div class="form-group col-md-2">
+
+
+                        @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.id, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+                    </div>
+                }
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <select class="form-control" name="Tipo" id="Tipo">
+                        <option value="EXAMENES">EXAMEN</option>
+                        <option value="RECETA">RECETA</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-5">
+                    <label class="control-label col-md-2">Fecha</label>
+                    <input type="date" class="form-control" name="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" />                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label class="control-label col-md-2">Paciente</label>
+                    @Html.DropDownList("idPaciente", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idPaciente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(model => model.Detalle, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @if (ViewBag.Detalle == null)
+                    {
+                        <textarea class="form-control" rows="6" name="Detalle" id="Examenes" style="border: 1px solid rgb(128, 128, 128) !important; width: 313px; height: 160px;"></textarea>
+                    }
+                    @if (ViewBag.Detalle != null)
+                    {
+                        <textarea class="form-control" rows="6" name="Detalle" id="Examenes" style="border: 1px solid rgb(128, 128, 128) !important; width: 313px; height: 160px;">@ViewBag.Detalle</textarea>
+                    }
+                    @Html.ValidationMessageFor(model => model.Detalle, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="form-group col-md-9">
+
+                    @if (ViewBag.id != null)
+                    {
+
+                        <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#"><i class="fas fa-trash"></i></a>
+                    }
+
+                </div>
+                <div class="form-group col-md-1">
+                    <button type="submit" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+
+                </div>
+            </div>
+        </div>
+    }
+    <div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog model" id="modal" role="document">
+            <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
+                <div class="modal-header" id="headmodal">
+                    <div class="form-row">
+                        <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                            <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
+                        </div>
+                        <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                            <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" style="padding:0px !important;">
+
+
+                    <div class="comprobante" id="contenido">
+
+
+                    </div>
+                    @*<div class=" btncrearconsult">
+                            <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                        </div>*@
+                </div>
+                @*<div class="modal-footer">
+                        <button class="mybtn" id="mybtn">Cerrar</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ("@ViewBag.tipo" != "") {
+                $("#Tipo").val('@ViewBag.tipo');
+            }
+
+
+
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+         $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "RecetasyExamenes", new { id="param-name"})";
+             var paciente = $("#id").val();
+                url=url.replace("param-name",paciente);
+            $(".comprobante").load(url)
+        });
+     
+    });
+    </script>
+</body>
+</html>
+
+

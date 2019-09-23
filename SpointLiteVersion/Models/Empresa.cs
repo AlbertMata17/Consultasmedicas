@@ -20,8 +20,8 @@ namespace SpointLiteVersion.Models
             this.CitasAgendadas = new HashSet<CitasAgendadas>();
             this.ciudad = new HashSet<ciudad>();
             this.Consultas = new HashSet<Consultas>();
-            this.Login = new HashSet<Login>();
             this.HistoriaClinica = new HashSet<HistoriaClinica>();
+            this.Login = new HashSet<Login>();
             this.paciente = new HashSet<paciente>();
             this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
         }
@@ -32,6 +32,7 @@ namespace SpointLiteVersion.Models
         public string telefono { get; set; }
         public string direccion { get; set; }
         public string TipoEmpresa { get; set; }
+        public Nullable<int> estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
@@ -40,9 +41,9 @@ namespace SpointLiteVersion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consultas> Consultas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Login> Login { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoriaClinica> HistoriaClinica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Login> Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<paciente> paciente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -84,7 +84,7 @@ namespace SpointLiteVersion.Controllers
         }
 
         // GET: CitasAgendadas/Create
-        public ActionResult Create(int? id,int? idconsulta)
+        public ActionResult Create(int? id,int? idconsulta,int? pacientes)
         {
             
             if (Session["Username"] == null)
@@ -95,6 +95,10 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
+            ViewBag.idpacientemost = idconsulta.ToString();
+            System.Diagnostics.Debug.Write("El id de paciente es:"+pacientes);
+            System.Diagnostics.Debug.Write("El id de consulta es:"+idconsulta);
+            System.Diagnostics.Debug.Write("El id de es:"+id);
             if (id == null)
             {
 
@@ -111,7 +115,7 @@ namespace SpointLiteVersion.Controllers
                 }
                 ViewBag.idpaciente = idmostrar.ToString("D2");
                 TempData["idconsulta"] = idconsulta;
-                
+                ViewBag.idpacientemost = idconsulta.ToString();
                 return View();
 
             }
@@ -122,11 +126,14 @@ namespace SpointLiteVersion.Controllers
             }
             if (id != null)
             {
-                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",citas.idCita);
+                ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",citas.idpaciente);
                 ViewBag.id = "algo";
-             
+                ViewBag.idpacientemost = idconsulta.ToString();
+
                 return View(citas);
             }
+            ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m => m.Estatus == 1 && m.Usuarioid == usuarioid1), "idPaciente", "nombre");
+
             return View();
         }
 

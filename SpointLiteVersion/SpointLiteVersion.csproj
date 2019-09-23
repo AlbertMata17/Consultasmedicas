@@ -159,8 +159,10 @@
     <Compile Include="Controllers\ciudadsController.cs" />
     <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Logins1Controller.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\pacientesController.cs" />
+    <Compile Include="Controllers\RecetasyExamenesController.cs" />
     <Compile Include="DataSet\DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -6630,6 +6632,7 @@
     <Content Include="Content\Login\vendor\select2\select2.js" />
     <Content Include="Content\Login\vendor\select2\select2.min.css" />
     <Content Include="Content\Login\vendor\select2\select2.min.js" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\NumeralFormatter.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
@@ -7713,6 +7716,16 @@
     <Content Include="Views\Consultas\VistaImpresion.cshtml" />
     <Content Include="Views\Consultas\RecetasyExamen.cshtml" />
     <Content Include="Views\Consultas\Borrar.cshtml" />
+    <Content Include="Views\Logins1\Create.cshtml" />
+    <Content Include="Views\Logins1\Delete.cshtml" />
+    <Content Include="Views\Logins1\Details.cshtml" />
+    <Content Include="Views\Logins1\Edit.cshtml" />
+    <Content Include="Views\Logins1\Index.cshtml" />
+    <Content Include="Views\RecetasyExamenes\Create.cshtml" />
+    <Content Include="Views\RecetasyExamenes\Delete.cshtml" />
+    <Content Include="Views\RecetasyExamenes\Details.cshtml" />
+    <Content Include="Views\RecetasyExamenes\Edit.cshtml" />
+    <Content Include="Views\RecetasyExamenes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\bower_components\fullcalendar\dist\fullcalendar.d.ts" />

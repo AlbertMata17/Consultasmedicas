@@ -1,0 +1,82 @@
+﻿@model SpointLiteVersion.Models.RecetasyExamenes
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>RecetasyExamenes</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tipo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Detalle)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Detalle)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Estatus)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Estatus)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.fecha)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.fecha)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa.Nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Empresa.Nombre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Login.Username)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Login.Username)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.paciente.nombre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.paciente.nombre)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

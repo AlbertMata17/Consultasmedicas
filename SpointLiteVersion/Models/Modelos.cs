@@ -9,6 +9,8 @@ namespace SpointLiteVersion.Models
     {
         public Consultas consultas { get; set; }
         public paciente paciente { get; set; }
+      
+        private string datos;
 
     }
 }
