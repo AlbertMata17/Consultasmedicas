@@ -7738,6 +7738,7 @@
     <Content Include="Views\especiales\Details.cshtml" />
     <Content Include="Views\especiales\Edit.cshtml" />
     <Content Include="Views\especiales\Index.cshtml" />
+    <Content Include="Views\especiales\especiales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\bower_components\fullcalendar\dist\fullcalendar.d.ts" />

@@ -27,14 +27,14 @@
                         <div class="form-row col-md-offset-9" style="margin-top:-60px;">
                             @if (ViewBag.id != null)
                             {
-                            <div class="form-group col-md-4 botonesacciones">
+                                <div class="form-group col-md-4 botonesacciones">
 
 
 
-                                <a class="btn btn-danger btnelimina modaleliminar" id="elimin" data-toggle="modal" href="#" data-target="#exampleModal1"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-danger btnelimina modaleliminar" id="elimin" data-toggle="modal" href="#" data-target="#exampleModal1"><i class="fas fa-trash"></i></a>
 
 
-                            </div>
+                                </div>
                             }
                             <div class="form-group col-md-4 botonesacciones">
                                 <button type="button" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
@@ -231,6 +231,12 @@
                             @*<a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>*@
 
                         </div>
+                        <div class="form-row col-md-12">
+                            <a href="#" class="btn btn-info especiales" id="especiales" data-toggle="modal" data-target="#exampleModal2">Especiales</a>
+
+                            @*<a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>*@
+
+                        </div>
                         @*<div class="form-row col-md-12">
 
                                 <div class="form-group col-md-8">
@@ -312,7 +318,37 @@
                     <button type="button" class="btn btn-info" data-dismiss="modal" id="crear1" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
                 </div>
             </div>
-         
+
+        </div>
+    </div>
+</div>
+<div class="modal fade modalciudad" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:158%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">DATOS ESPECIALES</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante1" id="contenido" style="padding:13px; padding-left:30px;padding-right:30px;">
+
+                </div>
+                <div class=" btncrearconsult">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="especial" style="margin-bottom:20px; margin-left:50px;"><i class="fas fa-arrow-circle-left"></i></button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -343,7 +379,7 @@
 <script>
     $(document).ready(function () {
             $("#idpaciente").val(@ViewBag.idmostrarseleccion);
-        
+
 
         var datospaciente =$('select[name="idpaciente"] option:selected').text();
 
@@ -398,6 +434,7 @@
     });
 </script>
 
+
 <script>
 
     $(document).ready(function () {
@@ -410,7 +447,7 @@
 
             return false;
         });
-       
+
         //botones
         $("#finalizar").click(function () {
             //alertify.alert("Boton Iniciado");
@@ -445,7 +482,7 @@
 
                     //})
 
- 
+
                     if (response == "CONSULTA GUARDADA CON EXITO...") {
                           var logoutUrl = '@Url.Action("reporteActual", "Consultas")';
                     window.open(logoutUrl, '_blank');
@@ -520,7 +557,7 @@
                         //    timer: 1500
 
                     //})
- 
+
                     if (response == "EXAMEN GUARDADO CON EXITO...") {
                           var logoutUrl = '@Url.Action("reporteExamenes", "Consultas")';
                     window.open(logoutUrl, '_blank');
@@ -631,7 +668,11 @@
             var url = "@Url.Action("Delete", "Consultas", new { id="param-name"})";
              var paciente = $("#idConsulta").val();
                 url=url.replace("param-name",paciente);
-            $(".comprobante").load(url)            
+            $(".comprobante").load(url)
+         });
+         $(".especiales").click(function () {
+                    var url = "@Url.Action("especiales", "especiales")";
+            $(".comprobante1").load(url)
         });
         $(".Datoscomprobante").click(function () {
                     var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name"})";
@@ -689,7 +730,93 @@
                         //    timer: 1500
 
                     //})
-               
+
+                    @*if (response == "Cita Guardada") {
+                        var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
+                        window.location.href=logoutUrl;
+
+
+                    }*@
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+</script>
+
+
+
+@*Datos Especiales*@
+
+<script>
+
+    $(document).ready(function () {
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#especial").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+            var i = 0;
+            var envio = "{fecha:'" + $("#Fecha").val()  + "',IdCabecera:'2',Total:'"+$("#total").val()  + "',";
+            $("#tabla tbody tr").each(function (index) {
+                if (i == 0) {
+                    envio += "ListadoDetalle:[{IdDatosEspeciales:'" + $(this).find('td').eq(0).text() +
+                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val() + "'}";
+                } else {
+                    envio += ",{IdDatosEspeciales:'" + $(this).find('td').eq(0).text() +
+                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val() +"'}"
+                }
+                i = 1;
+            });
+            envio += "]}";
+
+            var json = eval("(" + envio + ')');
+
+
+      
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarEspeciales", "especiales")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+
+                    alertify.alert(response);
+
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                    //})
+
                     @*if (response == "Cita Guardada") {
                         var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
                         window.location.href=logoutUrl;

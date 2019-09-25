@@ -13,6 +13,7 @@ namespace SpointLiteVersion.Controllers
     public class especialesController : Controller
     {
         private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
+        especiales especial = new especiales();
 
         // GET: especiales
         public ActionResult Index()
@@ -28,6 +29,17 @@ namespace SpointLiteVersion.Controllers
             return View(db.especiales.ToList());
         }
 
+        public ActionResult especiales()
+        {
+            return View(db.especiales.ToList());
+        }
+        [HttpPost]
+        public ActionResult especiales(string valor,string nombre)
+        {
+            string mensaje = "";
+
+            return Json(mensaje);
+        }
         // GET: especiales/Details/5
         public ActionResult Details(int? id)
         {
@@ -69,6 +81,32 @@ namespace SpointLiteVersion.Controllers
             return View();
         }
 
+        public ActionResult GuardarEspeciales(List<DatosEspeciales> ListadoDetalle)
+        {
+            string Mensaje = "";
+            var valor="";
+            foreach (var data in ListadoDetalle)
+            {
+                if (data.Valor != "undefined" && data.Valor != null && data.Valor != "")
+                {
+                    var idespecial = Convert.ToInt32(data.IdDatosEspeciales.ToString());
+
+
+                    valor = data.Valor.ToString();
+                    DatosEspeciales especial = new DatosEspeciales(idespecial, valor);
+                    db.DatosEspeciales.Add(especial);
+                    db.SaveChanges();
+                    Mensaje = "Guardado Con Exito";
+
+                }
+                else
+                {
+                    Mensaje = "Debes Llenar Algun Valor";
+                }
+              
+            }
+            return Json(Mensaje);
+        }
         // POST: especiales/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.

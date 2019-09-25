@@ -17,7 +17,17 @@ namespace SpointLiteVersion.Models
         public int Id { get; set; }
         public Nullable<int> IdDatosEspeciales { get; set; }
         public string Valor { get; set; }
-    
+
+        public DatosEspeciales(int? idDatosEspeciales, string valor)
+        {
+            IdDatosEspeciales = idDatosEspeciales;
+            Valor = valor;
+        }
+
+        public DatosEspeciales()
+        {
+        }
+
         public virtual especiales especiales { get; set; }
     }
 }
