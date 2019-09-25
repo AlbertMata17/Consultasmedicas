@@ -48,6 +48,14 @@
           <Property Name="Empresaid" Type="int" />
           <Property Name="Usuarioid" Type="int" />
         </EntityType>
+        <EntityType Name="DatosEspeciales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDatosEspeciales" Type="int" />
+          <Property Name="Valor" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Empresa">
           <Key>
             <PropertyRef Name="IdEmpresa" />
@@ -58,6 +66,15 @@
           <Property Name="telefono" Type="varchar(max)" />
           <Property Name="direccion" Type="varchar(max)" />
           <Property Name="TipoEmpresa" Type="varchar(max)" />
+          <Property Name="estatus" Type="int" />
+        </EntityType>
+        <EntityType Name="especiales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="Tipo" Type="varchar(max)" />
           <Property Name="estatus" Type="int" />
         </EntityType>
         <EntityType Name="HistoriaClinica">
@@ -277,6 +294,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Especiales">
+          <End Role="especiales" Type="Self.especiales" Multiplicity="0..1" />
+          <End Role="DatosEspeciales" Type="Self.DatosEspeciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="especiales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DatosEspeciales">
+              <PropertyRef Name="IdDatosEspeciales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Usuario_id1">
           <End Role="Login" Type="Self.Login" Multiplicity="0..1" />
           <End Role="CitasAgendadas" Type="Self.CitasAgendadas" Multiplicity="*" />
@@ -353,7 +382,9 @@
           <EntitySet Name="CitasAgendadas" EntityType="Self.CitasAgendadas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ciudad" EntityType="Self.ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consultas" EntityType="Self.Consultas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatosEspeciales" EntityType="Self.DatosEspeciales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="especiales" EntityType="Self.especiales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoriaClinica" EntityType="Self.HistoriaClinica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="paciente" EntityType="Self.paciente" Schema="dbo" store:Type="Tables" />
@@ -402,6 +433,10 @@
           <AssociationSet Name="fk_Empresa_id6" Association="Self.fk_Empresa_id6">
             <End Role="Empresa" EntitySet="Empresa" />
             <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Especiales" Association="Self.fk_Especiales">
+            <End Role="especiales" EntitySet="especiales" />
+            <End Role="DatosEspeciales" EntitySet="DatosEspeciales" />
           </AssociationSet>
           <AssociationSet Name="fk_Usuario_id1" Association="Self.fk_Usuario_id1">
             <End Role="Login" EntitySet="Login" />
@@ -509,6 +544,12 @@
           <AssociationSet Name="FK__RecetasyE__idPac__7A672E12" Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12">
             <End Role="paciente" EntitySet="paciente" />
             <End Role="RecetasyExamenes" EntitySet="RecetasyExamenes" />
+          </AssociationSet>
+          <EntitySet Name="DatosEspeciales" EntityType="ConsultaMedicasModel.DatosEspeciales" />
+          <EntitySet Name="especiales" EntityType="ConsultaMedicasModel.especiales" />
+          <AssociationSet Name="fk_Especiales" Association="ConsultaMedicasModel.fk_Especiales">
+            <End Role="especiales" EntitySet="especiales" />
+            <End Role="DatosEspeciales" EntitySet="DatosEspeciales" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="TipoConsulta">
@@ -889,6 +930,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DatosEspeciales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDatosEspeciales" Type="Int32" />
+          <Property Name="Valor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="especiales" Relationship="ConsultaMedicasModel.fk_Especiales" FromRole="DatosEspeciales" ToRole="especiales" />
+        </EntityType>
+        <EntityType Name="especiales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="estatus" Type="Int32" />
+          <NavigationProperty Name="DatosEspeciales" Relationship="ConsultaMedicasModel.fk_Especiales" FromRole="especiales" ToRole="DatosEspeciales" />
+        </EntityType>
+        <Association Name="fk_Especiales">
+          <End Type="ConsultaMedicasModel.especiales" Role="especiales" Multiplicity="0..1" />
+          <End Type="ConsultaMedicasModel.DatosEspeciales" Role="DatosEspeciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="especiales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DatosEspeciales">
+              <PropertyRef Name="IdDatosEspeciales" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1041,6 +1113,25 @@
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatosEspeciales">
+            <EntityTypeMapping TypeName="ConsultaMedicasModel.DatosEspeciales">
+              <MappingFragment StoreEntitySet="DatosEspeciales">
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="IdDatosEspeciales" ColumnName="IdDatosEspeciales" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="especiales">
+            <EntityTypeMapping TypeName="ConsultaMedicasModel.especiales">
+              <MappingFragment StoreEntitySet="especiales">
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -41,7 +41,7 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 .login100-form-title {
-    background-image: url(../images/medicina.png);
+    background-image: url(../../HospitalRed.png);
     background-size: 20vw 25vh;
     background-attachment: fixed;
     margin: 0;
@@ -406,7 +406,7 @@ input.input100 {
     padding: 0 20px;
     min-width: 160px;
     height: 50px;
-    background-color: #266679 !important;
+    background-color: #f4280ddb !important;
     border-radius: 25px;
     font-family: Poppins-Regular;
     font-size: 16px;
@@ -420,7 +420,7 @@ input.input100 {
 }
 
     .login100-form-btn:hover {
-        background-color: #266679 !important;
+        background-color: #f4280ddb !important;
     }
 
 

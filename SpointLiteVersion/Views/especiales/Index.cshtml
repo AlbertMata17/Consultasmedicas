@@ -1,0 +1,132 @@
+﻿@model IEnumerable<SpointLiteVersion.Models.especiales>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 modal-content contedor" style="width:90%; margin-left:4%; margin-top:2%;">
+            <h2 style="margin-left:30px; margin-bottom:35px;">Especiales</h2>
+
+            <p>
+                <a href="#" class="btn btn-success crear Datoscomprobante " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus iconocrear"></i></a>
+
+            </p>
+            <div class="row">
+                <div class="modal-content" style="width:88%; margin-left:4%; margin-top:2%;">
+                    <table class="table  table-hover t tabla" id="tabla">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Tipo)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tipo)
+                                </td>
+                                <td>
+                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modalciudad" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:139%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">DATOS ESPECIALES</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante" id="contenido">
+
+
+                </div>
+               
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tabla').DataTable({
+            "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
+            "language": {
+                "decimal": "",
+                "emptyTable": "NO HAY INFORMACION",
+                "info": "MOSTRANDO _START_ A _END_ de _TOTAL_ ENTRADAS",
+                "infoEmpty": "MOSTRANDO 0 to 0 of 0 ENTRADAS",
+                "infoFiltered": "(FILTRADO DE _MAX_ TOTAL ENTRADAS)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "MOSTRAR _MENU_ ENTRADAS",
+                "loadingRecords": "CARGANDO...",
+                "processing": "PROCESANDO...",
+                "search": "BUSCAR:",
+                "zeroRecords": "SIN RESULTADOS ENCONTRADOS",
+                "paginate": {
+                    "first": "PRIMERO",
+                    "last": "ULTIMO",
+                    "next": "SIGUIENTE",
+                    "previous": "ANTERIOR"
+                }
+            }
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('#tabla tr').click(function () {
+            var href = $(this).find("a").attr("href");
+            if (href) {
+                window.location = href;
+            }
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        $(".Datoscomprobante").click(function () {
+            $(".comprobante").load("/especiales/Create")
+        });
+    });
+</script>

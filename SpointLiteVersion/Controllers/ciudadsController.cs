@@ -70,7 +70,7 @@ namespace SpointLiteVersion.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(ciudad);
+            return new ContentResult() { Content = "Recepción satisfactoria" };
         }
 
         // GET: ciudads/Edit/5

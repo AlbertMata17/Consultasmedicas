@@ -34,5 +34,7 @@ namespace SpointLiteVersion.Models
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<paciente> paciente { get; set; }
         public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
+        public virtual DbSet<DatosEspeciales> DatosEspeciales { get; set; }
+        public virtual DbSet<especiales> especiales { get; set; }
     }
 }

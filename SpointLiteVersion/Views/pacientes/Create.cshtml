@@ -589,9 +589,9 @@
 
 
         $("#mybtn").click(function () {
-            $("#exampleModal").modal("hide");
+            $("#exampleModal1").modal("hide");
         });
-        $("#exampleModal").on('hidden.bs.modal', function () {
+        $("#exampleModal1").on('hidden.bs.modal', function () {
             $(document).ready(function () {
 
                 $.post("Getciudad", {}, function (data) {

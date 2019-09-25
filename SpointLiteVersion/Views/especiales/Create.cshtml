@@ -1,0 +1,61 @@
+﻿@model SpointLiteVersion.Models.especiales
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10" style="margin-top:10px;">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                <select name="Tipo" id="Tipo" class="form-control">
+                    <option value="TEXTO">TEXTO</option>
+                    <option value="NUMERICO">NUMERICO</option>
+                    <option value="FECHA">FECHA</option>
+                    <option value="FECHA Y HORA">FECHA Y HORA</option>
+                    <option value="EMAIL">EMAIL</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-8 col-md-2">
+                <button type="submit" class="btn btn-info" id="enviar" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+<script>
+            $(document).ready(function () {
+
+                $("#Nombre").focus();
+
+                $("#enviar").click(function () {
+                    $("#exampleModal1").modal("hide");
+                });
+            });
+
+
+</script>

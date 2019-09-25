@@ -31,6 +31,9 @@
         <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.DatosEspeciales" Width="1.5" PointX="5.625" PointY="0.875" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.especiales" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_Especiales" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
