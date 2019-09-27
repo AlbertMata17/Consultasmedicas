@@ -305,6 +305,12 @@ namespace SpointLiteVersion.DataSet {
             
             private global::System.Data.DataColumn columnEstadoCivil;
             
+            private global::System.Data.DataColumn columnEmpresaid;
+            
+            private global::System.Data.DataColumn columnUsuarioid;
+            
+            private global::System.Data.DataColumn columnFoto;
+            
             private global::System.Data.DataColumn columnid;
             
             private global::System.Data.DataColumn columnTipo;
@@ -312,6 +318,46 @@ namespace SpointLiteVersion.DataSet {
             private global::System.Data.DataColumn columnDetalle;
             
             private global::System.Data.DataColumn columnidPaciente1;
+            
+            private global::System.Data.DataColumn columnEstatus1;
+            
+            private global::System.Data.DataColumn columnEmpresaid1;
+            
+            private global::System.Data.DataColumn columnUsuarioid1;
+            
+            private global::System.Data.DataColumn columnfecha;
+            
+            private global::System.Data.DataColumn columnidConsulta;
+            
+            private global::System.Data.DataColumn columnTipoConsulta;
+            
+            private global::System.Data.DataColumn columnfecha1;
+            
+            private global::System.Data.DataColumn columnidpaciente2;
+            
+            private global::System.Data.DataColumn columnedad1;
+            
+            private global::System.Data.DataColumn columntelefono1;
+            
+            private global::System.Data.DataColumn columnSeguroMedico;
+            
+            private global::System.Data.DataColumn columnCompania;
+            
+            private global::System.Data.DataColumn columnPoliza;
+            
+            private global::System.Data.DataColumn columnObservaciones;
+            
+            private global::System.Data.DataColumn columnDiagnostico;
+            
+            private global::System.Data.DataColumn columnReceta;
+            
+            private global::System.Data.DataColumn columnExamenes;
+            
+            private global::System.Data.DataColumn columnEstatus2;
+            
+            private global::System.Data.DataColumn columnEmpresaid2;
+            
+            private global::System.Data.DataColumn columnUsuarioid2;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -452,6 +498,30 @@ namespace SpointLiteVersion.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmpresaidColumn {
+                get {
+                    return this.columnEmpresaid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn UsuarioidColumn {
+                get {
+                    return this.columnUsuarioid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FotoColumn {
+                get {
+                    return this.columnFoto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn idColumn {
                 get {
                     return this.columnid;
@@ -479,6 +549,166 @@ namespace SpointLiteVersion.DataSet {
             public global::System.Data.DataColumn idPaciente1Column {
                 get {
                     return this.columnidPaciente1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Estatus1Column {
+                get {
+                    return this.columnEstatus1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Empresaid1Column {
+                get {
+                    return this.columnEmpresaid1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Usuarioid1Column {
+                get {
+                    return this.columnUsuarioid1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn fechaColumn {
+                get {
+                    return this.columnfecha;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn idConsultaColumn {
+                get {
+                    return this.columnidConsulta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TipoConsultaColumn {
+                get {
+                    return this.columnTipoConsulta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn fecha1Column {
+                get {
+                    return this.columnfecha1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn idpaciente2Column {
+                get {
+                    return this.columnidpaciente2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn edad1Column {
+                get {
+                    return this.columnedad1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn telefono1Column {
+                get {
+                    return this.columntelefono1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SeguroMedicoColumn {
+                get {
+                    return this.columnSeguroMedico;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CompaniaColumn {
+                get {
+                    return this.columnCompania;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PolizaColumn {
+                get {
+                    return this.columnPoliza;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesColumn {
+                get {
+                    return this.columnObservaciones;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DiagnosticoColumn {
+                get {
+                    return this.columnDiagnostico;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RecetaColumn {
+                get {
+                    return this.columnReceta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ExamenesColumn {
+                get {
+                    return this.columnExamenes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Estatus2Column {
+                get {
+                    return this.columnEstatus2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Empresaid2Column {
+                get {
+                    return this.columnEmpresaid2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Usuarioid2Column {
+                get {
+                    return this.columnUsuarioid2;
                 }
             }
             
@@ -519,7 +749,44 @@ namespace SpointLiteVersion.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sp_reporte_examenes_backRow Addsp_reporte_examenes_backRow(string nombre, string telefono, string telefono2, int idciuddad, string cedula, string direccion, string email, System.DateTime fechanacimiento, int Estatus, int edad, string sexo, string EstadoCivil, string Tipo, string Detalle, int idPaciente1) {
+            public sp_reporte_examenes_backRow Addsp_reporte_examenes_backRow(
+                        string nombre, 
+                        string telefono, 
+                        string telefono2, 
+                        int idciuddad, 
+                        string cedula, 
+                        string direccion, 
+                        string email, 
+                        System.DateTime fechanacimiento, 
+                        int Estatus, 
+                        int edad, 
+                        string sexo, 
+                        string EstadoCivil, 
+                        int Empresaid, 
+                        int Usuarioid, 
+                        string Foto, 
+                        string Tipo, 
+                        string Detalle, 
+                        int idPaciente1, 
+                        int Estatus1, 
+                        int Empresaid1, 
+                        int Usuarioid1, 
+                        System.DateTime fecha, 
+                        string TipoConsulta, 
+                        System.DateTime fecha1, 
+                        int idpaciente2, 
+                        string edad1, 
+                        string telefono1, 
+                        string SeguroMedico, 
+                        string Compania, 
+                        string Poliza, 
+                        string Observaciones, 
+                        string Diagnostico, 
+                        string Receta, 
+                        string Examenes, 
+                        int Estatus2, 
+                        int Empresaid2, 
+                        int Usuarioid2) {
                 sp_reporte_examenes_backRow rowsp_reporte_examenes_backRow = ((sp_reporte_examenes_backRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -535,21 +802,36 @@ namespace SpointLiteVersion.DataSet {
                         edad,
                         sexo,
                         EstadoCivil,
+                        Empresaid,
+                        Usuarioid,
+                        Foto,
                         null,
                         Tipo,
                         Detalle,
-                        idPaciente1};
+                        idPaciente1,
+                        Estatus1,
+                        Empresaid1,
+                        Usuarioid1,
+                        fecha,
+                        null,
+                        TipoConsulta,
+                        fecha1,
+                        idpaciente2,
+                        edad1,
+                        telefono1,
+                        SeguroMedico,
+                        Compania,
+                        Poliza,
+                        Observaciones,
+                        Diagnostico,
+                        Receta,
+                        Examenes,
+                        Estatus2,
+                        Empresaid2,
+                        Usuarioid2};
                 rowsp_reporte_examenes_backRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsp_reporte_examenes_backRow);
                 return rowsp_reporte_examenes_backRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sp_reporte_examenes_backRow FindByidPacienteid(int idPaciente, int id) {
-                return ((sp_reporte_examenes_backRow)(this.Rows.Find(new object[] {
-                            idPaciente,
-                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -582,10 +864,33 @@ namespace SpointLiteVersion.DataSet {
                 this.columnedad = base.Columns["edad"];
                 this.columnsexo = base.Columns["sexo"];
                 this.columnEstadoCivil = base.Columns["EstadoCivil"];
+                this.columnEmpresaid = base.Columns["Empresaid"];
+                this.columnUsuarioid = base.Columns["Usuarioid"];
+                this.columnFoto = base.Columns["Foto"];
                 this.columnid = base.Columns["id"];
                 this.columnTipo = base.Columns["Tipo"];
                 this.columnDetalle = base.Columns["Detalle"];
                 this.columnidPaciente1 = base.Columns["idPaciente1"];
+                this.columnEstatus1 = base.Columns["Estatus1"];
+                this.columnEmpresaid1 = base.Columns["Empresaid1"];
+                this.columnUsuarioid1 = base.Columns["Usuarioid1"];
+                this.columnfecha = base.Columns["fecha"];
+                this.columnidConsulta = base.Columns["idConsulta"];
+                this.columnTipoConsulta = base.Columns["TipoConsulta"];
+                this.columnfecha1 = base.Columns["fecha1"];
+                this.columnidpaciente2 = base.Columns["idpaciente2"];
+                this.columnedad1 = base.Columns["edad1"];
+                this.columntelefono1 = base.Columns["telefono1"];
+                this.columnSeguroMedico = base.Columns["SeguroMedico"];
+                this.columnCompania = base.Columns["Compania"];
+                this.columnPoliza = base.Columns["Poliza"];
+                this.columnObservaciones = base.Columns["Observaciones"];
+                this.columnDiagnostico = base.Columns["Diagnostico"];
+                this.columnReceta = base.Columns["Receta"];
+                this.columnExamenes = base.Columns["Examenes"];
+                this.columnEstatus2 = base.Columns["Estatus2"];
+                this.columnEmpresaid2 = base.Columns["Empresaid2"];
+                this.columnUsuarioid2 = base.Columns["Usuarioid2"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -617,6 +922,12 @@ namespace SpointLiteVersion.DataSet {
                 base.Columns.Add(this.columnsexo);
                 this.columnEstadoCivil = new global::System.Data.DataColumn("EstadoCivil", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEstadoCivil);
+                this.columnEmpresaid = new global::System.Data.DataColumn("Empresaid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmpresaid);
+                this.columnUsuarioid = new global::System.Data.DataColumn("Usuarioid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioid);
+                this.columnFoto = new global::System.Data.DataColumn("Foto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFoto);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
                 this.columnTipo = new global::System.Data.DataColumn("Tipo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -625,9 +936,46 @@ namespace SpointLiteVersion.DataSet {
                 base.Columns.Add(this.columnDetalle);
                 this.columnidPaciente1 = new global::System.Data.DataColumn("idPaciente1", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidPaciente1);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnidPaciente,
-                                this.columnid}, true));
+                this.columnEstatus1 = new global::System.Data.DataColumn("Estatus1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstatus1);
+                this.columnEmpresaid1 = new global::System.Data.DataColumn("Empresaid1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmpresaid1);
+                this.columnUsuarioid1 = new global::System.Data.DataColumn("Usuarioid1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioid1);
+                this.columnfecha = new global::System.Data.DataColumn("fecha", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha);
+                this.columnidConsulta = new global::System.Data.DataColumn("idConsulta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidConsulta);
+                this.columnTipoConsulta = new global::System.Data.DataColumn("TipoConsulta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoConsulta);
+                this.columnfecha1 = new global::System.Data.DataColumn("fecha1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfecha1);
+                this.columnidpaciente2 = new global::System.Data.DataColumn("idpaciente2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidpaciente2);
+                this.columnedad1 = new global::System.Data.DataColumn("edad1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnedad1);
+                this.columntelefono1 = new global::System.Data.DataColumn("telefono1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntelefono1);
+                this.columnSeguroMedico = new global::System.Data.DataColumn("SeguroMedico", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeguroMedico);
+                this.columnCompania = new global::System.Data.DataColumn("Compania", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompania);
+                this.columnPoliza = new global::System.Data.DataColumn("Poliza", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPoliza);
+                this.columnObservaciones = new global::System.Data.DataColumn("Observaciones", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservaciones);
+                this.columnDiagnostico = new global::System.Data.DataColumn("Diagnostico", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiagnostico);
+                this.columnReceta = new global::System.Data.DataColumn("Receta", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReceta);
+                this.columnExamenes = new global::System.Data.DataColumn("Examenes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnExamenes);
+                this.columnEstatus2 = new global::System.Data.DataColumn("Estatus2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstatus2);
+                this.columnEmpresaid2 = new global::System.Data.DataColumn("Empresaid2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmpresaid2);
+                this.columnUsuarioid2 = new global::System.Data.DataColumn("Usuarioid2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioid2);
                 this.columnidPaciente.AutoIncrement = true;
                 this.columnidPaciente.AutoIncrementSeed = -1;
                 this.columnidPaciente.AutoIncrementStep = -1;
@@ -641,6 +989,7 @@ namespace SpointLiteVersion.DataSet {
                 this.columnemail.MaxLength = 2147483647;
                 this.columnsexo.MaxLength = 30;
                 this.columnEstadoCivil.MaxLength = 30;
+                this.columnFoto.MaxLength = 2147483647;
                 this.columnid.AutoIncrement = true;
                 this.columnid.AutoIncrementSeed = -1;
                 this.columnid.AutoIncrementStep = -1;
@@ -648,6 +997,20 @@ namespace SpointLiteVersion.DataSet {
                 this.columnid.ReadOnly = true;
                 this.columnTipo.MaxLength = 30;
                 this.columnDetalle.MaxLength = 2147483647;
+                this.columnidConsulta.AutoIncrement = true;
+                this.columnidConsulta.AutoIncrementSeed = -1;
+                this.columnidConsulta.AutoIncrementStep = -1;
+                this.columnidConsulta.ReadOnly = true;
+                this.columnTipoConsulta.MaxLength = 50;
+                this.columnedad1.MaxLength = 10;
+                this.columntelefono1.MaxLength = 30;
+                this.columnSeguroMedico.MaxLength = 5;
+                this.columnCompania.MaxLength = 50;
+                this.columnPoliza.MaxLength = 60;
+                this.columnObservaciones.MaxLength = 2147483647;
+                this.columnDiagnostico.MaxLength = 2147483647;
+                this.columnReceta.MaxLength = 2147483647;
+                this.columnExamenes.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1002,6 +1365,56 @@ namespace SpointLiteVersion.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Empresaid {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.EmpresaidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Empresaid\' de la tabla \'sp_reporte_examenes_back\' es DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.EmpresaidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Usuarioid {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.UsuarioidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Usuarioid\' de la tabla \'sp_reporte_examenes_back\' es DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.UsuarioidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Foto {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.FotoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Foto\' de la tabla \'sp_reporte_examenes_back\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.FotoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int id {
                 get {
                     return ((int)(this[this.tablesp_reporte_examenes_back.idColumn]));
@@ -1058,6 +1471,344 @@ namespace SpointLiteVersion.DataSet {
                 }
                 set {
                     this[this.tablesp_reporte_examenes_back.idPaciente1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Estatus1 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Estatus1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Estatus1\' de la tabla \'sp_reporte_examenes_back\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Estatus1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Empresaid1 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Empresaid1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Empresaid1\' de la tabla \'sp_reporte_examenes_back\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Empresaid1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Usuarioid1 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Usuarioid1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Usuarioid1\' de la tabla \'sp_reporte_examenes_back\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Usuarioid1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime fecha {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablesp_reporte_examenes_back.fechaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'fecha\' de la tabla \'sp_reporte_examenes_back\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.fechaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int idConsulta {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.idConsultaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'idConsulta\' de la tabla \'sp_reporte_examenes_back\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.idConsultaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TipoConsulta {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.TipoConsultaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoConsulta\' de la tabla \'sp_reporte_examenes_back\' es D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.TipoConsultaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime fecha1 {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablesp_reporte_examenes_back.fecha1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'fecha1\' de la tabla \'sp_reporte_examenes_back\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.fecha1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int idpaciente2 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.idpaciente2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'idpaciente2\' de la tabla \'sp_reporte_examenes_back\' es DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.idpaciente2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string edad1 {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.edad1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'edad1\' de la tabla \'sp_reporte_examenes_back\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.edad1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string telefono1 {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.telefono1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'telefono1\' de la tabla \'sp_reporte_examenes_back\' es DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.telefono1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SeguroMedico {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.SeguroMedicoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SeguroMedico\' de la tabla \'sp_reporte_examenes_back\' es D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.SeguroMedicoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Compania {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.CompaniaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Compania\' de la tabla \'sp_reporte_examenes_back\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.CompaniaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Poliza {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.PolizaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Poliza\' de la tabla \'sp_reporte_examenes_back\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.PolizaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Observaciones {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.ObservacionesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Observaciones\' de la tabla \'sp_reporte_examenes_back\' es " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.ObservacionesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Diagnostico {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.DiagnosticoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Diagnostico\' de la tabla \'sp_reporte_examenes_back\' es DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.DiagnosticoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Receta {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.RecetaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Receta\' de la tabla \'sp_reporte_examenes_back\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.RecetaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Examenes {
+                get {
+                    try {
+                        return ((string)(this[this.tablesp_reporte_examenes_back.ExamenesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Examenes\' de la tabla \'sp_reporte_examenes_back\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.ExamenesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Estatus2 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Estatus2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Estatus2\' de la tabla \'sp_reporte_examenes_back\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Estatus2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Empresaid2 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Empresaid2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Empresaid2\' de la tabla \'sp_reporte_examenes_back\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Empresaid2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Usuarioid2 {
+                get {
+                    try {
+                        return ((int)(this[this.tablesp_reporte_examenes_back.Usuarioid2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Usuarioid2\' de la tabla \'sp_reporte_examenes_back\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesp_reporte_examenes_back.Usuarioid2Column] = value;
                 }
             }
             
@@ -1207,6 +1958,42 @@ namespace SpointLiteVersion.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmpresaidNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.EmpresaidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmpresaidNull() {
+                this[this.tablesp_reporte_examenes_back.EmpresaidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsUsuarioidNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.UsuarioidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetUsuarioidNull() {
+                this[this.tablesp_reporte_examenes_back.UsuarioidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFotoNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.FotoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFotoNull() {
+                this[this.tablesp_reporte_examenes_back.FotoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsTipoNull() {
                 return this.IsNull(this.tablesp_reporte_examenes_back.TipoColumn);
             }
@@ -1239,6 +2026,246 @@ namespace SpointLiteVersion.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetidPaciente1Null() {
                 this[this.tablesp_reporte_examenes_back.idPaciente1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEstatus1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Estatus1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEstatus1Null() {
+                this[this.tablesp_reporte_examenes_back.Estatus1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmpresaid1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Empresaid1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmpresaid1Null() {
+                this[this.tablesp_reporte_examenes_back.Empresaid1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsUsuarioid1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Usuarioid1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetUsuarioid1Null() {
+                this[this.tablesp_reporte_examenes_back.Usuarioid1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsfechaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.fechaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetfechaNull() {
+                this[this.tablesp_reporte_examenes_back.fechaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsidConsultaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.idConsultaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetidConsultaNull() {
+                this[this.tablesp_reporte_examenes_back.idConsultaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTipoConsultaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.TipoConsultaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTipoConsultaNull() {
+                this[this.tablesp_reporte_examenes_back.TipoConsultaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isfecha1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.fecha1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setfecha1Null() {
+                this[this.tablesp_reporte_examenes_back.fecha1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isidpaciente2Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.idpaciente2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setidpaciente2Null() {
+                this[this.tablesp_reporte_examenes_back.idpaciente2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isedad1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.edad1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setedad1Null() {
+                this[this.tablesp_reporte_examenes_back.edad1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Istelefono1Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.telefono1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Settelefono1Null() {
+                this[this.tablesp_reporte_examenes_back.telefono1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSeguroMedicoNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.SeguroMedicoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSeguroMedicoNull() {
+                this[this.tablesp_reporte_examenes_back.SeguroMedicoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCompaniaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.CompaniaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCompaniaNull() {
+                this[this.tablesp_reporte_examenes_back.CompaniaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPolizaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.PolizaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPolizaNull() {
+                this[this.tablesp_reporte_examenes_back.PolizaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsObservacionesNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.ObservacionesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetObservacionesNull() {
+                this[this.tablesp_reporte_examenes_back.ObservacionesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDiagnosticoNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.DiagnosticoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDiagnosticoNull() {
+                this[this.tablesp_reporte_examenes_back.DiagnosticoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRecetaNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.RecetaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRecetaNull() {
+                this[this.tablesp_reporte_examenes_back.RecetaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsExamenesNull() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.ExamenesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetExamenesNull() {
+                this[this.tablesp_reporte_examenes_back.ExamenesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEstatus2Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Estatus2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEstatus2Null() {
+                this[this.tablesp_reporte_examenes_back.Estatus2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmpresaid2Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Empresaid2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmpresaid2Null() {
+                this[this.tablesp_reporte_examenes_back.Empresaid2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsUsuarioid2Null() {
+                return this.IsNull(this.tablesp_reporte_examenes_back.Usuarioid2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetUsuarioid2Null() {
+                this[this.tablesp_reporte_examenes_back.Usuarioid2Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1414,10 +2441,33 @@ namespace SpointLiteVersion.DataSet.DataSet3TableAdapters {
             tableMapping.ColumnMappings.Add("edad", "edad");
             tableMapping.ColumnMappings.Add("sexo", "sexo");
             tableMapping.ColumnMappings.Add("EstadoCivil", "EstadoCivil");
+            tableMapping.ColumnMappings.Add("Empresaid", "Empresaid");
+            tableMapping.ColumnMappings.Add("Usuarioid", "Usuarioid");
+            tableMapping.ColumnMappings.Add("Foto", "Foto");
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("Tipo", "Tipo");
             tableMapping.ColumnMappings.Add("Detalle", "Detalle");
             tableMapping.ColumnMappings.Add("idPaciente1", "idPaciente1");
+            tableMapping.ColumnMappings.Add("Estatus1", "Estatus1");
+            tableMapping.ColumnMappings.Add("Empresaid1", "Empresaid1");
+            tableMapping.ColumnMappings.Add("Usuarioid1", "Usuarioid1");
+            tableMapping.ColumnMappings.Add("fecha", "fecha");
+            tableMapping.ColumnMappings.Add("idConsulta", "idConsulta");
+            tableMapping.ColumnMappings.Add("TipoConsulta", "TipoConsulta");
+            tableMapping.ColumnMappings.Add("fecha1", "fecha1");
+            tableMapping.ColumnMappings.Add("idpaciente2", "idpaciente2");
+            tableMapping.ColumnMappings.Add("edad1", "edad1");
+            tableMapping.ColumnMappings.Add("telefono1", "telefono1");
+            tableMapping.ColumnMappings.Add("SeguroMedico", "SeguroMedico");
+            tableMapping.ColumnMappings.Add("Compania", "Compania");
+            tableMapping.ColumnMappings.Add("Poliza", "Poliza");
+            tableMapping.ColumnMappings.Add("Observaciones", "Observaciones");
+            tableMapping.ColumnMappings.Add("Diagnostico", "Diagnostico");
+            tableMapping.ColumnMappings.Add("Receta", "Receta");
+            tableMapping.ColumnMappings.Add("Examenes", "Examenes");
+            tableMapping.ColumnMappings.Add("Estatus2", "Estatus2");
+            tableMapping.ColumnMappings.Add("Empresaid2", "Empresaid2");
+            tableMapping.ColumnMappings.Add("Usuarioid2", "Usuarioid2");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

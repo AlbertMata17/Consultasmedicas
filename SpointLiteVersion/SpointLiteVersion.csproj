@@ -6660,6 +6660,7 @@
     <Content Include="Content\Login\vendor\select2\select2.min.css" />
     <Content Include="Content\Login\vendor\select2\select2.min.js" />
     <Content Include="Content\logo.png" />
+    <Content Include="Content\logos.PNG" />
     <Content Include="Content\NumeralFormatter.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />

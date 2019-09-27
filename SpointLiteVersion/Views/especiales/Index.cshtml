@@ -19,31 +19,45 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Nombre)
+                                    @Html.DisplayName("NOMBRE")
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Tipo)
+                                    @Html.DisplayName("TIPO")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("DOCTOR")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("USUARIO")
                                 </th>
                                 <th></th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
                         {
-                            <tr data-toggle="modal" data-target="#exampleModal">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Tipo)
-                                </td>
-                                <td>
-                                    <a hidden href="@Url.Action("Create","especiales",new { id=item.Id})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+                        <tr data-toggle="modal" data-target="#exampleModal">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tipo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Login.Nombre)
+                                @Html.DisplayFor(modelItem => item.Login.Apellido)
 
-                                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                                </td>
-                            </tr>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Login.Username)
+                            </td>
+                            <td>
+                                <a hidden href="@Url.Action("Create","especiales",new { id=item.Id})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+
+                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                            </td>
+                        </tr>
                         }
 
                     </table>

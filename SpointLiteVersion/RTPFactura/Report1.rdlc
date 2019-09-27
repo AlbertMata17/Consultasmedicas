@@ -217,7 +217,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!fechanacimiento.Value, "DataSet2")</Value>
+                  <Value>=First(Fields!fecha.Value, "DataSet2")</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Calibri</FontFamily>
@@ -588,7 +588,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>33f7fb0b-4d4a-4b6d-9dd2-9fb5f9d8e013</rd:DataSourceID>
+      <rd:DataSourceID>92c76330-445b-4ada-bc26-f6cb05648713</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -650,6 +650,18 @@
           <DataField>EstadoCivil</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Empresaid">
+          <DataField>Empresaid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Usuarioid">
+          <DataField>Usuarioid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Foto">
+          <DataField>Foto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="id">
           <DataField>id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -666,14 +678,94 @@
           <DataField>idPaciente1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="Estatus1">
+          <DataField>Estatus1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Empresaid1">
+          <DataField>Empresaid1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Usuarioid1">
+          <DataField>Usuarioid1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="fecha">
+          <DataField>fecha</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="idConsulta">
+          <DataField>idConsulta</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TipoConsulta">
+          <DataField>TipoConsulta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha1">
+          <DataField>fecha1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="idpaciente2">
+          <DataField>idpaciente2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="edad1">
+          <DataField>edad1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="telefono1">
+          <DataField>telefono1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SeguroMedico">
+          <DataField>SeguroMedico</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Compania">
+          <DataField>Compania</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Poliza">
+          <DataField>Poliza</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Observaciones">
+          <DataField>Observaciones</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Diagnostico">
+          <DataField>Diagnostico</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Receta">
+          <DataField>Receta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Examenes">
+          <DataField>Examenes</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Estatus2">
+          <DataField>Estatus2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Empresaid2">
+          <DataField>Empresaid2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Usuarioid2">
+          <DataField>Usuarioid2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet2</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Toshiba\Documents\SpointLiteVersion\SpointLiteVersion\DataSet\DataSet2.xsd</rd:SchemaPath>
-        <rd:TableName>sp_reporte_receta_back</rd:TableName>
+        <rd:TableName>sp_reporte_receta_back </rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>sp_reporte_receta_backTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>sp_reporte_receta_back_TableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

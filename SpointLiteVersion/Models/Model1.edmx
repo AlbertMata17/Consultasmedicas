@@ -230,18 +230,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_consulta123">
-          <End Role="Consultas" Type="Self.Consultas" Multiplicity="0..1" />
-          <End Role="DatosEspeciales" Type="Self.DatosEspeciales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consultas">
-              <PropertyRef Name="idConsulta" />
-            </Principal>
-            <Dependent Role="DatosEspeciales">
-              <PropertyRef Name="idConsulta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_detalles124">
           <End Role="especiales" Type="Self.especiales" Multiplicity="0..1" />
           <End Role="DetalleTemporales" Type="Self.DetalleTemporales" Multiplicity="*" />
@@ -476,9 +464,6 @@
         <Function Name="sp_reporte_HistorialClinico_back" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idConsulta" Type="numeric" Mode="In" />
         </Function>
-        <Function Name="sp_reporte_receta_back" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="numeric" Mode="In" />
-        </Function>
         <Function Name="TemptoEspecial" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="VaciarTablaTemporal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ConsultaMedicasModelStoreContainer">
@@ -509,10 +494,6 @@
           <AssociationSet Name="fk_ciudad" Association="Self.fk_ciudad">
             <End Role="ciudad" EntitySet="ciudad" />
             <End Role="paciente" EntitySet="paciente" />
-          </AssociationSet>
-          <AssociationSet Name="fk_consulta123" Association="Self.fk_consulta123">
-            <End Role="Consultas" EntitySet="Consultas" />
-            <End Role="DatosEspeciales" EntitySet="DatosEspeciales" />
           </AssociationSet>
           <AssociationSet Name="fk_detalles124" Association="Self.fk_detalles124">
             <End Role="especiales" EntitySet="especiales" />
@@ -707,10 +688,10 @@
             <End Role="DetalleTemporales" EntitySet="DetalleTemporales" />
           </AssociationSet>
           <FunctionImport Name="sp_reporte_examenes_back" ReturnType="Collection(ConsultaMedicasModel.sp_reporte_examenes_back_Result)">
-            <Parameter Name="id" Mode="In" Type="Decimal" />
+          <Parameter Name="id" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_reporte_HistorialClinico_back" ReturnType="Collection(ConsultaMedicasModel.sp_reporte_HistorialClinico_back_Result)">
-            <Parameter Name="idConsulta" Mode="In" Type="Decimal" />
+          <Parameter Name="idConsulta" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="sp_reporte_receta_back" ReturnType="Collection(ConsultaMedicasModel.sp_reporte_receta_back_Result)">
             <Parameter Name="id" Mode="In" Type="Decimal" />
@@ -1625,36 +1606,6 @@
                 <ScalarProperty Name="Estatus2" ColumnName="Estatus2" />
                 <ScalarProperty Name="Empresaid2" ColumnName="Empresaid2" />
                 <ScalarProperty Name="Usuarioid2" ColumnName="Usuarioid2" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_reporte_receta_back" FunctionName="ConsultaMedicasModel.Store.sp_reporte_receta_back">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ConsultaMedicasModel.sp_reporte_receta_back_Result">
-                <ScalarProperty Name="idPaciente" ColumnName="idPaciente" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
-                <ScalarProperty Name="idciuddad" ColumnName="idciuddad" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="fechanacimiento" ColumnName="fechanacimiento" />
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="edad" ColumnName="edad" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
-                <ScalarProperty Name="Empresaid" ColumnName="Empresaid" />
-                <ScalarProperty Name="Usuarioid" ColumnName="Usuarioid" />
-                <ScalarProperty Name="Foto" ColumnName="Foto" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
-                <ScalarProperty Name="idPaciente1" ColumnName="idPaciente1" />
-                <ScalarProperty Name="Estatus1" ColumnName="Estatus1" />
-                <ScalarProperty Name="Empresaid1" ColumnName="Empresaid1" />
-                <ScalarProperty Name="Usuarioid1" ColumnName="Usuarioid1" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
