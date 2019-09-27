@@ -30,7 +30,7 @@
 
                             </center>
                         }
-                        else
+                        @if(ViewBag.foto==null)
                         {
                             <center>
                                 <div>
@@ -725,25 +725,9 @@
 <script>
 
     $(document).keyup(function (tecla) {
-        if (tecla.keyCode == 27) {
-            var value = $("#creditoaprobado").val();
-            if (value.indexOf(',') != -1) {
-                $("#creditoaprobado").val(value.replace(/,/g, ''));
-            }
-            if (value.indexOf('$') != -1) {
-                $("#creditoaprobado").val(value.replace(/\$/g, ""));
-            }
-
-            var value = $("#creditoaprobado").val();
-            if (value.indexOf(',') != -1) {
-                $("#creditoaprobado").val(value.replace(/,/g, ''));
-            }
-            if (value.indexOf('$') != -1) {
-                $("#creditoaprobado").val(value.replace(/\$/g, ""));
-            }
-
-            $("#myForm").submit();
-
+        if (tecla.keyCode == 187 || tecla.keyCode == 107) {
+            $(".Datoscomprobante").click();
+         
         }
     });
 

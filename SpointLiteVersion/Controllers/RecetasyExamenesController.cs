@@ -117,7 +117,7 @@ namespace SpointLiteVersion.Controllers
                     recetasyExamenes.Estatus = 1;
                     db.Entry(recetasyExamenes).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RecetasyExamen","Consultas");
 
                 }
 
@@ -138,14 +138,14 @@ namespace SpointLiteVersion.Controllers
                     recetasyExamenes.Estatus = 1;
                     db.RecetasyExamenes.Add(recetasyExamenes);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("RecetasyExamen","Consultas");
                 }
             }
 
             ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
             ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username", recetasyExamenes.Usuarioid);
             ViewBag.idPaciente = new SelectList(db.paciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
-            return View(recetasyExamenes);
+            return RedirectToAction("RecetasyExamen","Consultas");
         }
 
             // GET: RecetasyExamenes/Edit/5

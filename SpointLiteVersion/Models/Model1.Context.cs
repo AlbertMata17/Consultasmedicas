@@ -12,6 +12,8 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ConsultaMedicasEntities : DbContext
     {
@@ -25,7 +27,6 @@ namespace SpointLiteVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
         public virtual DbSet<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
         public virtual DbSet<Consultas> Consultas { get; set; }
@@ -34,7 +35,46 @@ namespace SpointLiteVersion.Models
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<paciente> paciente { get; set; }
         public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
-        public virtual DbSet<DatosEspeciales> DatosEspeciales { get; set; }
         public virtual DbSet<especiales> especiales { get; set; }
+        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
+        public virtual DbSet<DatosEspeciales> DatosEspeciales { get; set; }
+        public virtual DbSet<DetalleTemporales> DetalleTemporales { get; set; }
+    
+        public virtual int TemptoEspecial()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TemptoEspecial");
+        }
+    
+        public virtual int VaciarTablaTemporal()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VaciarTablaTemporal");
+        }
+    
+        public virtual ObjectResult<sp_reporte_examenes_back_Result> sp_reporte_examenes_back(Nullable<decimal> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_examenes_back_Result>("sp_reporte_examenes_back", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_reporte_HistorialClinico_back_Result> sp_reporte_HistorialClinico_back(Nullable<decimal> idConsulta)
+        {
+            var idConsultaParameter = idConsulta.HasValue ?
+                new ObjectParameter("idConsulta", idConsulta) :
+                new ObjectParameter("idConsulta", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_HistorialClinico_back_Result>("sp_reporte_HistorialClinico_back", idConsultaParameter);
+        }
+    
+        public virtual ObjectResult<sp_reporte_receta_back_Result> sp_reporte_receta_back(Nullable<decimal> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_receta_back_Result>("sp_reporte_receta_back", idParameter);
+        }
     }
 }

@@ -29,7 +29,7 @@
                         </thead>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr data-toggle="modal" data-target="#exampleModal">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Nombre)
                                 </td>
@@ -37,9 +37,11 @@
                                     @Html.DisplayFor(modelItem => item.Tipo)
                                 </td>
                                 <td>
+                                    <a hidden href="@Url.Action("Create","especiales",new { id=item.Id})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+
                                     @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                                 </td>
                             </tr>
                         }
@@ -81,6 +83,40 @@
         </div>
     </div>
 </div>
+<div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
+
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante1" id="contenido">
+
+
+                </div>
+                @*<div class=" btncrearconsult">
+                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                    </div>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -110,23 +146,20 @@
         $('.dataTables_length').addClass('bs-select');
     });
 </script>
+
 <script>
     $(document).ready(function () {
-
         $('#tabla tr').click(function () {
             var href = $(this).find("a").attr("href");
             if (href) {
-                window.location = href;
+                $(".comprobante").load(href)
             }
         });
 
-    });
-</script>
-<script>
-    $(document).ready(function () {
-
         $(".Datoscomprobante").click(function () {
+
             $(".comprobante").load("/especiales/Create")
+
         });
     });
 </script>

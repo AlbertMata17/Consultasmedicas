@@ -36,7 +36,7 @@
                         </thead>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr data-toggle="modal" data-target="#exampleModal">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fecha)
                                 </td>
@@ -47,7 +47,7 @@
                                     @Html.DisplayFor(modelItem => item.paciente.nombre)
                                 </td>
                                 <td>
-                                    <a hidden href="@Url.Action("Create","clientes1",new { id=item.idCita})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+                                    <a hidden href="@Url.Action("Create","CitasAgendadas",new { id=item.idCita})" class="edit"><i class="fas fa-edit eliminar"></i></a>
 
                                 </td>
                             </tr>
@@ -74,7 +74,7 @@
 
                     </div>
                     <div class=" btncrearconsult">
-                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                        <button type="submit" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
                     </div>
                 </div>
                 @*<div class="modal-footer">
@@ -119,7 +119,7 @@
         $('#tabla tr').click(function () {
             var href = $(this).find("a").attr("href");
             if (href) {
-                window.location = href;
+                $(".comprobante").load(href);
             }
         });
 

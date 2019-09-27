@@ -10,52 +10,88 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-10" style="margin-top:10px;">
-                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @if (@ViewBag.id != null)
+    {
+        @Html.HiddenFor(model => model.Id)
+    }
+    <div class="form-group">
+        <div class="col-md-10" style="margin-top:10px;">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
 
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                <select name="Tipo" id="Tipo" class="form-control">
-                    <option value="TEXTO">TEXTO</option>
-                    <option value="NUMERICO">NUMERICO</option>
-                    <option value="FECHA">FECHA</option>
-                    <option value="FECHA Y HORA">FECHA Y HORA</option>
-                    <option value="EMAIL">EMAIL</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-8 col-md-2">
-                <button type="submit" class="btn btn-info" id="enviar" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
-
-            </div>
+            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <select name="Tipo" id="Tipo" class="form-control">
+                <option value="TEXTO">TEXTO</option>
+                <option value="NUMERICO">NUMERICO</option>
+                <option value="FECHA">FECHA</option>
+                <option value="FECHA Y HORA">FECHA Y HORA</option>
+                <option value="EMAIL">EMAIL</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.Label("Doctor", new { @class = "control-label col-md-2" })
+            @Html.DropDownList("usuarioid", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.usuarioid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-group col-md-9">
+
+            @if (ViewBag.id != null)
+            {
+
+                <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#" data-toggle="modal" data-target="#exampleModal1"><i class="fas fa-trash"></i></a>
+            }
+
+        </div>
+        <div class="form-group col-md-1">
+            <button type="submit" class="btn btn-info" id="enviar" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+
+
+        </div>
+    </div>
+</div>
 }
 
 
 <script>
             $(document).ready(function () {
-
+                $("#Tipo").val('@ViewBag.tipo');
                 $("#Nombre").focus();
 
                 $("#enviar").click(function () {
                     $("#exampleModal1").modal("hide");
                 });
+               
+
+              
             });
 
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "especiales", new { id="param-name"})";
+            var paciente = $("#Id").val();
+            url = url.replace("param-name", paciente);
+            $(".comprobante1").load(url)
+        });
+    });
 
 </script>

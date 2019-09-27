@@ -50,7 +50,7 @@ namespace RentCar.Controllers
         {
             if (Session["Username"] == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Logins","Login");
             }
             if (id == null)
             {
@@ -91,6 +91,7 @@ namespace RentCar.Controllers
             var apellido = (from s in db.Login where s.Username == Username && s.Password == Password select s.Apellido).FirstOrDefault();
             var userid = (from s in db.Login where s.Username == Username && s.Password == Password select s.LoginId).FirstOrDefault();
             var empresaid = (from s in db.Login where s.Username == Username && s.Password == Password select s.empresaid).FirstOrDefault();
+            var privilegio = (from s in db.Login where s.Username == Username && s.Password == Password select s.Privilegio).FirstOrDefault();
 
 
             if (a.Any())
@@ -100,6 +101,7 @@ namespace RentCar.Controllers
                 Session["apellido"] = apellido;
                 Session["userid"] = userid;
                 Session["empresaid"] = empresaid;
+                Session["privilegio"] = privilegio;
 
 
                 return RedirectToAction("Index", "pacientes");

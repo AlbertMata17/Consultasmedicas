@@ -24,6 +24,8 @@ namespace SpointLiteVersion.Models
             this.Login = new HashSet<Login>();
             this.paciente = new HashSet<paciente>();
             this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
+            this.especiales = new HashSet<especiales>();
+            this.DatosEspeciales = new HashSet<DatosEspeciales>();
         }
     
         public int IdEmpresa { get; set; }
@@ -48,5 +50,9 @@ namespace SpointLiteVersion.Models
         public virtual ICollection<paciente> paciente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<especiales> especiales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatosEspeciales> DatosEspeciales { get; set; }
     }
 }

@@ -63,7 +63,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control",@required=true } })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group col-md-5">
@@ -132,39 +132,7 @@
             </div>
             </div>
 </div>
-<div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog model" id="modal" role="document">
-        <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
-            <div class="modal-header" id="headmodal">
-                <div class="form-row">
-                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
-                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
-                    </div>
-                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
 
-                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-body" style="padding:0px !important;">
-
-
-                <div class="comprobante" id="contenido">
-
-
-                </div>
-                @*<div class=" btncrearconsult">
-                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
-                    </div>*@
-            </div>
-            @*<div class="modal-footer">
-                    <button class="mybtn" id="mybtn">Cerrar</button>
-                </div>*@
-        </div>
-    </div>
-</div>
 <script>
     function leerArchivo() {
         if (this.files && this.files[0]) {
@@ -186,7 +154,7 @@
             var url = "@Url.Action("Delete", "Logins", new { id="param-name"})";
             var paciente = $("#LoginId").val();
             url = url.replace("param-name", paciente);
-            $(".comprobante").load(url)
+            $(".comprobante1").load(url)
         });
     });
     

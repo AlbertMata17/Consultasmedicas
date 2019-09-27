@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CitasAgendadas1Controller.cs" />
     <Compile Include="Controllers\CitasAgendadasController.cs" />
     <Compile Include="Controllers\ciudadsController.cs" />
     <Compile Include="Controllers\ConsultasController.cs" />
@@ -197,6 +198,9 @@
     <Compile Include="Models\DatosEspeciales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetalleTemporales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Empresa.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -229,6 +233,15 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RecetasyExamenes.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_reporte_examenes_back_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_reporte_HistorialClinico_back_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_reporte_receta_back_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoConsulta.cs">
@@ -6592,6 +6605,13 @@
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\estilosimprimir.css" />
     <Content Include="Content\HospitalRed.png" />
+    <Content Include="Content\imagen1.PNG" />
+    <Content Include="Content\imagen2.PNG" />
+    <Content Include="Content\imagen3.PNG" />
+    <Content Include="Content\imagen4.PNG" />
+    <Content Include="Content\imagen5.PNG" />
+    <Content Include="Content\imagen6.PNG" />
+    <Content Include="Content\instagram.png" />
     <Content Include="Content\Login\css\main.css" />
     <Content Include="Content\Login\css\util.css" />
     <Content Include="Content\Login\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -7739,6 +7759,13 @@
     <Content Include="Views\especiales\Edit.cshtml" />
     <Content Include="Views\especiales\Index.cshtml" />
     <Content Include="Views\especiales\especiales.cshtml" />
+    <Content Include="Views\CitasAgendadas1\Create.cshtml" />
+    <Content Include="Views\CitasAgendadas1\Delete.cshtml" />
+    <Content Include="Views\CitasAgendadas1\Details.cshtml" />
+    <Content Include="Views\CitasAgendadas1\Edit.cshtml" />
+    <Content Include="Views\CitasAgendadas1\Index.cshtml" />
+    <Content Include="Views\especiales\DatosEspeciales.cshtml" />
+    <Content Include="Views\especiales\DetallesTemporales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\bower_components\fullcalendar\dist\fullcalendar.d.ts" />

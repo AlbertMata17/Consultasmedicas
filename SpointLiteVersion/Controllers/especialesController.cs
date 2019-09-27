@@ -26,12 +26,59 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            return View(db.especiales.ToList());
+            return View(db.especiales.Where(m=>m.estatus==1).ToList());
         }
-
-        public ActionResult especiales()
+        public ActionResult DetallesTemporales(int? id)
         {
-            return View(db.especiales.ToList());
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
+            return View(db.DetalleTemporales.Where(m => m.estatus == 1 && m.Usuarioid == usuarioid1 && m.idConsulta == id).ToList());
+        }
+        public ActionResult DatosEspeciales(int? id)
+        {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
+            var buscar = (from s in db.DetalleTemporales select s.Id).Count();
+            if (buscar > 0)
+            {
+                return RedirectToAction("DetallesTemporales",new { id=id});
+            }
+            else
+            {
+                return View(db.DatosEspeciales.Where(m => m.estatus == 1 && m.Usuarioid == usuarioid1 && m.idConsulta == id).ToList());
+
+            }
+        }
+        public ActionResult especiales(int? id)
+        {
+            if (Session["Username"] == null)
+            {
+                return RedirectToAction("Login", "Logins");
+            }
+            System.Diagnostics.Debug.Write("El id que quiero es:" + id);
+            var buscar = (from s in db.DetalleTemporales where s.idConsulta==id select s.Id).Count();
+            var buscar1 = (from s in db.DatosEspeciales where s.idConsulta==id select s.Id).Count();
+            if (buscar>0 || buscar1>0)
+            {
+                return RedirectToAction("DatosEspeciales",new {id=id});
+            }
+            else
+            {
+                var usuarioid = Session["userid"].ToString();
+                var empresaid = Session["empresaid"].ToString();
+                var usuarioid1 = Convert.ToInt32(usuarioid);
+                var empresaid1 = Convert.ToInt32(empresaid);
+                ViewBag.Valor = (from s in db.DatosEspeciales where s.idpaciente == id select s.Valor).FirstOrDefault();
+                return View(db.especiales.Where(m => m.estatus == 1 && m.usuarioid == usuarioid1).ToList());
+            }
         }
         [HttpPost]
         public ActionResult especiales(string valor,string nombre)
@@ -64,6 +111,8 @@ namespace SpointLiteVersion.Controllers
             }
             if (id == null)
             {
+                ViewBag.usuarioid = new SelectList(db.Login, "LoginId", "Username");
+
                 return View();
 
             }
@@ -75,28 +124,44 @@ namespace SpointLiteVersion.Controllers
             if (id != null)
             {
                 ViewBag.id = "algo";
+                ViewBag.usuarioid = new SelectList(db.Login, "LoginId", "Username",especial.usuarioid);
+                ViewBag.tipo = (from s in db.especiales where s.Id == id select s.Tipo).FirstOrDefault();
 
                 return View(especial);
             }
             return View();
         }
 
-        public ActionResult GuardarEspeciales(List<DatosEspeciales> ListadoDetalle)
+        public ActionResult GuardarEspeciales(string idConsulta,string paciente,List<DetalleTemporales> ListadoDetalle)
         {
             string Mensaje = "";
             var valor="";
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
+            var paciente2 = 0;
+           
+            if (paciente != "undefined" && paciente != "" && paciente != null)
+            {
+                paciente2 = Convert.ToInt32(paciente);
+            }
             foreach (var data in ListadoDetalle)
             {
                 if (data.Valor != "undefined" && data.Valor != null && data.Valor != "")
                 {
-                    var idespecial = Convert.ToInt32(data.IdDatosEspeciales.ToString());
+                   
+                   
+                        var idespecial = Convert.ToInt32(data.IdDatosEspeciales.ToString());
+                    var idconsult = Convert.ToInt32(idConsulta);
 
-
-                    valor = data.Valor.ToString();
-                    DatosEspeciales especial = new DatosEspeciales(idespecial, valor);
-                    db.DatosEspeciales.Add(especial);
-                    db.SaveChanges();
-                    Mensaje = "Guardado Con Exito";
+                        valor = data.Valor.ToString();
+                        System.Diagnostics.Debug.Write("id consulta es: " + paciente2);
+                        DetalleTemporales especial = new DetalleTemporales(idespecial, valor, usuarioid1, paciente2, empresaid1,1,idconsult);
+                        db.DetalleTemporales.Add(especial);
+                        db.SaveChanges();
+                        Mensaje = "Guardado Con Exito";
+                    
 
                 }
                 else
@@ -112,8 +177,12 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Tipo")] especiales especiales)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Tipo,estatus,empresaid,usuarioid")] especiales especiales)
         {
+            var usuarioid = Session["userid"].ToString();
+            var empresaid = Session["empresaid"].ToString();
+            var usuarioid1 = Convert.ToInt32(usuarioid);
+            var empresaid1 = Convert.ToInt32(empresaid);
             var t = (from s in db.especiales where s.Id == especiales.Id select s.Id).Count();
             if (t != 0)
             {
@@ -127,6 +196,8 @@ namespace SpointLiteVersion.Controllers
                     {
                         especiales.Tipo = especiales.Tipo.ToUpper();
                     }
+                    especiales.estatus = 1;
+                    especiales.empresaid = empresaid1;
                     especiales.estatus = 1;
                     db.Entry(especiales).State = EntityState.Modified;
                     db.SaveChanges();
@@ -146,6 +217,7 @@ namespace SpointLiteVersion.Controllers
                         especiales.Tipo = especiales.Tipo.ToUpper();
                     }
                     especiales.estatus = 1;
+                    especiales.empresaid = empresaid1;
                     db.especiales.Add(especiales);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -208,7 +280,7 @@ namespace SpointLiteVersion.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             especiales especiales = db.especiales.Find(id);
-            db.especiales.Remove(especiales);
+            especiales.estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

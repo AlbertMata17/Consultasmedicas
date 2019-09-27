@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="bc6c4bccf4ac415295b911ccd7baef2c" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="ConsultaMedicasModel.TipoConsulta" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="10.875" PointY="13.25" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="7.875" PointY="13.5" />
         <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="15.375" PointY="12.375" />
@@ -31,9 +30,17 @@
         <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id6" />
         <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.DatosEspeciales" Width="1.5" PointX="5.625" PointY="0.875" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.especiales" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.especiales" Width="1.5" PointX="10.125" PointY="17.375" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_empresaidmos" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_usuarioidmos1" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.TipoConsulta" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.DatosEspeciales" Width="1.5" PointX="21" PointY="14.125" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_consulta123" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_empresa12341" />
         <AssociationConnector Association="ConsultaMedicasModel.fk_Especiales" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_usuarioidmos" />
+        <EntityTypeShape EntityType="ConsultaMedicasModel.DetalleTemporales" Width="1.5" PointX="12.375" PointY="19.5" />
+        <AssociationConnector Association="ConsultaMedicasModel.fk_detalles124" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,7 +12,7 @@
     <title>Create</title>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create", "RecetasyExamenes", FormMethod.Post, new { id = "myForm" }))
     {
         @Html.AntiForgeryToken()
 
@@ -24,7 +24,7 @@
                 {
                     <div class="form-group col-md-2">
                         @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                        <input type="text" name="id" class="form-control" readonly value="@ViewBag.idreceta" />
+                        <input type="text" name="id" id="iddetalle" class="form-control" readonly value="@ViewBag.idreceta" />
                         @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
 
                     </div>
@@ -44,14 +44,15 @@
                 <div class="form-group col-md-4">
                     @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
                     <select class="form-control" name="Tipo" id="Tipo">
-                        <option value="EXAMENES">EXAMEN</option>
                         <option value="RECETA">RECETA</option>
+                        <option value="EXAMENES">EXAMEN</option>
+
                     </select>
                     @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-5">
                     <label class="control-label col-md-2">Fecha</label>
-                    <input type="date" class="form-control" name="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" />                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                    <input type="date" class="form-control" name="fecha" id="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" />                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
@@ -90,15 +91,11 @@
                     @if (ViewBag.id != null)
                     {
 
-                        <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#" style="margin-bottom:-58px;"><i class="fas fa-trash"></i></a>
                     }
 
                 </div>
-                <div class="form-group col-md-1">
-                    <button type="submit" class="btn btn-info" style="margin-left: 27px;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
-
-
-                </div>
+              
             </div>
         </div>
     }
@@ -125,9 +122,7 @@
 
 
                     </div>
-                    @*<div class=" btncrearconsult">
-                            <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
-                        </div>*@
+                 
                 </div>
                 @*<div class="modal-footer">
                         <button class="mybtn" id="mybtn">Cerrar</button>
@@ -146,6 +141,80 @@
 
     });
     </script>
+
+    <script>
+
+    $(document).ready(function () {
+
+
+        $("a[rel='pop-up']").click(function () {
+            var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
+            nueva = window.open(this.href, 'popup', caracteristicas);
+
+
+            return false;
+        });
+        //botones
+        $("#crear").click(function () {
+            //alertify.alert("Boton Iniciado");
+            //console.info('hola');
+            var i = 0;
+            var envio = "{idPaciente:'" + $("#idPaciente").val() + "',Receta:'" + $("#Examenes").val() + "',fecha:'" + $("#fecha").val() + "',idrecet:'" + $("#id").val() + "',IdCabecera:'2',tipo:'" + $('#Tipo').val() + "',";
+
+
+
+
+            envio += "}";
+            var json = eval("(" + envio + ')');
+
+            //alertify.alert("INGRESE DATOS");
+            console.info(json);
+            var miUrl = '@Url.Action("GuardarReceta", "Consultas")'
+
+            $.ajax({
+                url: miUrl,
+                data: JSON.stringify(json),
+                type: "POST",
+                async: false,//this makes the ajax-call blocking
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                success: function (response) {
+                    if (response == "DETALLE GUARDADOS CON EXITO..." || response == "RECETA GUARDADA CON EXITO...") {
+                        //    position: 'center',
+                        //    title: response,
+                        //    showConfirmButton: false,
+                        //    timer: 1500
+
+                        //})
+                        var logoutUrl = '@Url.Action("RecetasyExamen", "Consultas")';
+                        window.location.href = logoutUrl;
+                    }
+                    @*if (response == "Cita Guardada") {
+                        var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
+                        window.location.href=logoutUrl;
+
+
+                    }*@
+
+                },
+                error: function (error) {
+                    alertify.alert(error);
+                    //Swal.fire({
+                    //    position: 'top-end',
+                    //    type: 'success',
+                    //    title: error,
+                    //    showConfirmButton: false,
+                    //    timer: 1500
+                    //})
+
+                }
+            });
+
+        });
+
+    });
+    </script>
+
     <script>
     $(document).ready(function () {
          $('.modaleliminar').click(function () {
@@ -155,7 +224,7 @@
                 url=url.replace("param-name",paciente);
             $(".comprobante").load(url)
         });
-     
+
     });
     </script>
 </body>

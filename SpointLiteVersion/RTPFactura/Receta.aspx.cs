@@ -40,8 +40,8 @@ namespace SpointLiteVersion.RTPFactura
             ReportViewer3.LocalReport.DataSources.Add(rds);
             ReportViewer3.LocalReport.ReportPath = "RTPFactura/Report1.rdlc";
             PageSettings pg = new PageSettings();
-            pg.Margins.Left = 1;
-            pg.Margins.Right = 1;
+            pg.Margins.Left = 0;
+            pg.Margins.Right = 0;
             pg.Margins.Top = 1;
             pg.Margins.Bottom =1;
             this.ReportViewer3.SetPageSettings(pg);

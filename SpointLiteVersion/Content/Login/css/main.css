@@ -42,7 +42,7 @@ body, html {
 }
 .login100-form-title {
     background-image: url(../../HospitalRed.png);
-    background-size: 20vw 25vh;
+    background-size: 13vw 26vh;
     background-attachment: fixed;
     margin: 0;
 }
@@ -213,7 +213,7 @@ iframe {
     align-items: center;
     background-repeat: no-repeat;
     background-position: 50% 17%;
-    padding: 70px 15px 74px 15px;
+    padding: 75px 15px 74px 15px;
 }
 
 .login100-form-title-1 {

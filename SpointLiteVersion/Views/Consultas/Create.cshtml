@@ -37,7 +37,7 @@
                                 </div>
                             }
                             <div class="form-group col-md-4 botonesacciones">
-                                <button type="button" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+                                <button type="submit" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
 
 
                             </div>
@@ -55,7 +55,7 @@
                             {
                                 <div class="form-group col-md-2">
                                     @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                                    <input type="text" name="idaciente" class="form-control" readonly value="@ViewBag.idconsulta" />
+                                    <input type="text" name="idaciente" id="idConsulta" class="form-control" readonly value="@ViewBag.idconsulta" />
                                     @Html.ValidationMessageFor(model => model.idConsulta, "", new { @class = "text-danger" })
 
                                 </div>
@@ -225,18 +225,17 @@
                                 @Html.ValidationMessageFor(model => model.Examenes, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="form-row col-md-12">
-                            <a href="#" class="btn btn-info  Datoscomprobante " id="agendarconsult" data-toggle="modal" data-target="#exampleModal">Agendar Consulta</a>
-
+                        <div class="form-row col-md-12" style="margin-left:148px;">
+                            <div class="form-group col-md-3">
+                                <a href="#" class="btn btn-info  Datoscomprobante " id="agendarconsult" data-toggle="modal" data-target="#exampleModal">Agendar Consulta</a>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <a href="#" class="btn btn-info especiales" id="especiales" data-toggle="modal" data-target="#exampleModal2">Especiales</a>
+                            </div>  
                             @*<a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>*@
 
                         </div>
-                        <div class="form-row col-md-12">
-                            <a href="#" class="btn btn-info especiales" id="especiales" data-toggle="modal" data-target="#exampleModal2">Especiales</a>
-
-                            @*<a class="btn btn-danger btnelimina" href="@Url.Action("Delete","Consultas",new { id=Model.idConsulta})">Eliminar</a>*@
-
-                        </div>
+                      
                         @*<div class="form-row col-md-12">
 
                                 <div class="form-group col-md-8">
@@ -662,23 +661,9 @@
     });
 </script>
 <script>
+
     $(document).ready(function () {
-         $('.modaleliminar').click(function () {
-            var href = $(this).attr("href");
-            var url = "@Url.Action("Delete", "Consultas", new { id="param-name"})";
-             var paciente = $("#idConsulta").val();
-                url=url.replace("param-name",paciente);
-            $(".comprobante").load(url)
-         });
-         $(".especiales").click(function () {
-                    var url = "@Url.Action("especiales", "especiales")";
-            $(".comprobante1").load(url)
-        });
-        $(".Datoscomprobante").click(function () {
-                    var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name"})";
-            url = url.replace("param-name", $("#idpaciente").val());
-            $(".comprobante").load(url)
-        });
+        
     });
 </script>
 
@@ -701,7 +686,7 @@
             //console.info('hola');
             $("#exampleModal").modal("hide");
             var i = 0;
-            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val()+ "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 
@@ -762,9 +747,29 @@
 @*Datos Especiales*@
 
 <script>
-
     $(document).ready(function () {
+    var guardaste = false;
 
+         $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "Consultas", new { id="param-name"})";
+             var paciente = $("#idConsulta").val();
+                url=url.replace("param-name",paciente);
+            $(".comprobante").load(url)
+         });
+        $(".especiales").click(function () {
+            var url = "@Url.Action("especiales", "especiales",new { id="param-name"})";
+            var paciente = $("#idConsulta").val();
+            alert(""+paciente);
+            url = url.replace("param-name", paciente);
+                $(".comprobante1").load(url)
+           
+        });
+        $(".Datoscomprobante").click(function () {
+                    var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name"})";
+            url = url.replace("param-name", $("#idpaciente").val());
+            $(".comprobante").load(url)
+        });
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
             nueva = window.open(this.href, 'popup', caracteristicas);
@@ -777,14 +782,16 @@
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
             var i = 0;
-            var envio = "{fecha:'" + $("#Fecha").val()  + "',IdCabecera:'2',Total:'"+$("#total").val()  + "',";
+            var envio = "{idConsulta:'" + $("#idConsulta").val() + "',IdCabecera:'2',paciente:'" + $("#idpaciente").val()  + "',";
             $("#tabla tbody tr").each(function (index) {
                 if (i == 0) {
                     envio += "ListadoDetalle:[{IdDatosEspeciales:'" + $(this).find('td').eq(0).text() +
-                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val() + "'}";
+                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val()
+                        + "',Id:'" + $(this).find('td').eq(3).text()+ "'}";
                 } else {
                     envio += ",{IdDatosEspeciales:'" + $(this).find('td').eq(0).text() +
-                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val() +"'}"
+                        "',Valor:'" + $(this).find('td').find('input:not([value^=""])').val() +
+                        "',Id:'" + $(this).find('td').eq(3).text() +"'}"
                 }
                 i = 1;
             });
@@ -798,7 +805,6 @@
             //alertify.alert("INGRESE DATOS");
             console.info(json);
             var miUrl = '@Url.Action("GuardarEspeciales", "especiales")'
-
             $.ajax({
                 url: miUrl,
                 data: JSON.stringify(json),
@@ -809,7 +815,6 @@
                 success: function (response) {
 
                     alertify.alert(response);
-
                         //    position: 'center',
                         //    title: response,
                         //    showConfirmButton: false,

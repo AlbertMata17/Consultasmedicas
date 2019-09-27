@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.especiales>
+﻿@model IEnumerable<SpointLiteVersion.Models.DetalleTemporales>
 
 @{
     Layout = null;
@@ -9,20 +9,24 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>especiales</title>
+    <title>DetallesTemporales</title>
     <link href="~/Content/Style.css" rel="stylesheet" media="all" />
 
     <link href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css" rel="stylesheet" />
-
+    <style>
+        #especial {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    
+
     <table class="table  table-hover t tabla" id="tabla">
         <thead>
             <tr>
                 <th hidden>ID</th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nombre)
+                    @Html.DisplayNameFor(model => model.especiales.Nombre)
                 </th>
                 <th>
                     @Html.DisplayName("Valor")
@@ -30,40 +34,26 @@
 
             </tr>
         </thead>
+
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
+                <tr>
 
-                <td hidden>@Html.DisplayFor(modelItem => item.Id)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-
-
-                <td>
-                    @switch (item.Tipo)
-                    {
-                        case "FECHA":
-                            <input type="date" name="valor" class="form-control" />
-                            break;
-                        case "TEXTO":
-                            <input type="text" name="valor" class="form-control" />
-                            break;
-                        case "NUMERICO":
-                            <input type="number" name="valor" class="form-control" />
-                            break;
-                        case "FECHA Y HORA":
-                            <input type="datetime" name="valor" class="form-control" />
-                            break;
-                        case "EMAIL":
-                            <input type="email" name="valor" class="form-control" />
-                            break;
-                    }
-                </td>
+                    <td hidden>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.especiales.Nombre)</td>
 
 
-            </tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+
+
+                </tr>
             }
-        </tbody>    </table>
+        </tbody>
+
+    </table>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 
     <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
@@ -71,8 +61,8 @@
     <script>
         $(document).ready(function () {
             $('#tabla').DataTable({
-         pageLength: 5,
-            lengthMenu: [[5], [5]],
+                pageLength: 5,
+                lengthMenu: [[5], [5]],
                 "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
                 "language": {
                     "decimal": "",
@@ -100,23 +90,3 @@
     </script>
 </body>
 </html>
-@*
-    @switch (item.Tipo)
-    {
-        case "FECHA":
-            <input type="date" name="valor" class="form-control" />
-            break;
-        case "TEXTO":
-            <input type="text" name="valor" class="form-control" />
-            break;
-        case "NUMERICO":
-            <input type="number" name="valor" class="form-control" />
-            break;
-        case "FECHA Y HORA":
-            <input type="datetime" name="valor" class="form-control" />
-            break;
-        case "EMAIL":
-            <input type="email" name="valor" class="form-control" />
-            break;
-    }
-*@

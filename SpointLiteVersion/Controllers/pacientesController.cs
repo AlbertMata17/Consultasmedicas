@@ -84,8 +84,11 @@ namespace SpointLiteVersion.Controllers
             {
                 ViewBag.idciuddad = new SelectList(db.ciudad.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idciudad", "Nombre", paciente.idciuddad);
                 ViewBag.id = "algo";
-                ViewBag.foto = paciente.Foto;
-              var nacimiento = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.fechanacimiento).FirstOrDefault();
+                if(paciente.Foto!=null && paciente.Foto != "")
+                {
+                    ViewBag.foto = paciente.Foto;
+                }
+                var nacimiento = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.fechanacimiento).FirstOrDefault();
                 var edad1 = (from s in db.paciente where s.idPaciente == id && s.Usuarioid==usuarioid1 select s.edad).FirstOrDefault();
                 if (nacimiento != null)
                 {

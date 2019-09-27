@@ -14,6 +14,12 @@ namespace SpointLiteVersion.Models
     
     public partial class Consultas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Consultas()
+        {
+            this.DatosEspeciales = new HashSet<DatosEspeciales>();
+        }
+    
         public int idConsulta { get; set; }
         public string TipoConsulta { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
@@ -34,5 +40,7 @@ namespace SpointLiteVersion.Models
         public virtual Empresa Empresa { get; set; }
         public virtual paciente paciente { get; set; }
         public virtual Login Login { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DatosEspeciales> DatosEspeciales { get; set; }
     }
 }

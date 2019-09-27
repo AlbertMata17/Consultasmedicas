@@ -6,7 +6,6 @@
 }
 
 <style>
-
 </style>
 @using (Html.BeginForm("Create", "CitasAgendadas", FormMethod.Post, new { id = "myForm" }))
 {
@@ -70,7 +69,7 @@
                 @*@Html.DropDownList("idpaciente", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.idpaciente, "", new { @class = "text-danger" })
             </div>
-            <div class="form-group">
+            <div class="form-group" hidden>
                 @Html.Label("Paciente", new { @class = "control-label col-md-2" })
 
                 @Html.DropDownList("idpaciente1", null, "", htmlAttributes: new { @class = "form-control" })
@@ -93,36 +92,68 @@
 
                     @if (ViewBag.id != null)
                     {
+                        <a class="btn btn-danger btnelimina modaleliminar" id="elimin" href="#" style="margin-bottom:-53px;" ><i class="fas fa-trash"></i></a>
 
-                        <a class="btn btn-danger btnelimina" href="@Url.Action("Delete","CitasAgendadas",new { id=Model.idCita})">Eliminar</a>
                     }
-
                 </div>
                 @*<div class="form-group col-md-1">
-                    <button type="button" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
+                        <button type="button" class="btn btn-info" id="crear"><i class="fas fa-arrow-circle-left"></i></button>
 
-                </div>*@
+                    </div>*@
             </div>
         </div>
     </div>
 }
+<div class="modal fade modalciudad" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model" id="modal" role="document">
+        <div class="modal-content" id="contentmost" style="width:147%; margin-top:-72px;">
+            <div class="modal-header" id="headmodal">
+                <div class="form-row">
+                    <div class="form-group col-md-11" style="margin-bottom:0px !important; height:0px;">
+                        <p style="text-align:center; margin-top:-13px; margin-left:60px;">ELIMINAR</p>
+                    </div>
+                    <div class="form-group col-md-1" style="margin-bottom:0px !important;">
 
+                        <button type="button" id="cerrar1" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body" style="padding:0px !important;">
+
+
+                <div class="comprobante1" id="contenido">
+
+
+                </div>
+                @*<div class=" btncrearconsult">
+                        <button type="button" class="btn btn-info" id="crear" style="margin-bottom:20px;"><i class="fas fa-arrow-circle-left"></i></button>
+                    </div>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button class="mybtn" id="mybtn">Cerrar</button>
+                </div>*@
+        </div>
+    </div>
+</div>
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#idpaciente1").val("12");
+        //$("#idpaciente1 option[value=2]").attr("selected", true);
+        var datospaciente = $('select[name="idpaciente1"] option:selected').text();
+
+        $("#idpacientes1").val(datospaciente);
+        $("#idpacientes1").focus();
 
 
-       
-   
-       
     });
 </script>
 <script>
 
     $(document).ready(function () {
-  
+
 
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
@@ -135,9 +166,8 @@
         $("#crear").click(function () {
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
-            alert("hola");
             var i = 0;
-            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val()+ "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{fecha:'" + $("#fecha").val() + "',idpaciente1:'" + $("#paciente2 option[value='" + $('#idpacientes1').val() + "']").attr('data-id') + "',MotivoCita:'" + $("#MotivoCita").val() + "',idCita:'" + $("#idCita").val()+ "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 
@@ -169,7 +199,7 @@
                     @*if (response == "Cita Guardada") {
                         var logoutUrl = '@Url.Action("Index", "CitasAgendadas")';
                         window.location.href=logoutUrl;
-                      
+
 
                     }*@
 
@@ -187,6 +217,19 @@
                 }
             });
 
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+         $('.modaleliminar').click(function () {
+            var href = $(this).attr("href");
+            var url = "@Url.Action("Delete", "CitasAgendadas", new { id="param-name"})";
+             var paciente = $("#idCita").val();
+                url=url.replace("param-name",paciente);
+            $(".comprobante").load(url)
         });
 
     });

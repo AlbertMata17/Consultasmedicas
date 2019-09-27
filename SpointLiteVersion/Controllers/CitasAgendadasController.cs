@@ -29,7 +29,7 @@ namespace SpointLiteVersion.Controllers
             var citasAgendadas = db.CitasAgendadas.Include(c => c.paciente);
             return View(citasAgendadas.Where(m=>m.Usuarioid==usuarioid1 && m.Estatus==1).ToList());
         }
-        public ActionResult GuardarCita(string fecha, string idpaciente1, string MotivoCita)
+        public ActionResult GuardarCita(string fecha, string idpaciente1, string MotivoCita, string idCita)
         {
             string mensaje = "";
             var usuarioid = Session["userid"].ToString();
@@ -37,27 +37,50 @@ namespace SpointLiteVersion.Controllers
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
             CitasAgendadas citas = new CitasAgendadas();
-          
-            if (fecha != "undefined")
+            if (idCita != "" && idCita != "undefined" && idCita != null)
             {
-                citas.fecha = Convert.ToDateTime(fecha);
-            }
-            if (idpaciente1 != "undefined")
-            {
-                citas.idpaciente =Convert.ToInt32(idpaciente1);
-            }
-            if (MotivoCita != "undefined")
-            {
-                citas.MotivoCita = MotivoCita.ToUpper();
-            }
-            citas.Empresaid = empresaid1;
-            citas.Usuarioid = usuarioid1;
-            citas.Estatus = 1;
-            db.CitasAgendadas.Add(citas);
-            db.SaveChanges();
-            
+                citas.idCita = Convert.ToInt32(idCita);
+                if (fecha != "undefined")
+                {
+                    citas.fecha = Convert.ToDateTime(fecha);
+                }
+                if (idpaciente1 != "undefined")
+                {
+                    citas.idpaciente = Convert.ToInt32(idpaciente1);
+                }
+                if (MotivoCita != "undefined")
+                {
+                    citas.MotivoCita = MotivoCita.ToUpper();
+                }
+                citas.Empresaid = empresaid1;
+                citas.Usuarioid = usuarioid1;
+                citas.Estatus = 1;
+                db.Entry(citas).State = EntityState.Modified;
+                db.SaveChanges();
                 mensaje = "CITA GUARDADA CON EXITO...";
+            }
+            else
+            {
+                if (fecha != "undefined")
+                {
+                    citas.fecha = Convert.ToDateTime(fecha);
+                }
+                if (idpaciente1 != "undefined")
+                {
+                    citas.idpaciente = Convert.ToInt32(idpaciente1);
+                }
+                if (MotivoCita != "undefined")
+                {
+                    citas.MotivoCita = MotivoCita.ToUpper();
+                }
+                citas.Empresaid = empresaid1;
+                citas.Usuarioid = usuarioid1;
+                citas.Estatus = 1;
+                db.CitasAgendadas.Add(citas);
+                db.SaveChanges();
 
+                mensaje = "CITA GUARDADA CON EXITO...";
+            }
             
            
             
@@ -129,12 +152,13 @@ namespace SpointLiteVersion.Controllers
                 ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",citas.idpaciente);
                 ViewBag.id = "algo";
                 ViewBag.idpacientemost = idconsulta.ToString();
+                ViewBag.ejemplo = (from s in db.CitasAgendadas where s.Estatus==1 && s.Usuarioid==usuarioid1 select s.idpaciente).FirstOrDefault();
 
                 return View(citas);
             }
             ViewBag.idpaciente1 = new SelectList(db.paciente.Where(m => m.Estatus == 1 && m.Usuarioid == usuarioid1), "idPaciente", "nombre");
 
-            return View();
+            return View(citas);
         }
 
         // POST: CitasAgendadas/Create
