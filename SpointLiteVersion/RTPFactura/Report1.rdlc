@@ -23,7 +23,9 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!Detalle.Value, "DataSet2")</Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -33,14 +35,13 @@
         <Top>1.47949in</Top>
         <Left>0.20144in</Left>
         <Height>0.22127in</Height>
-        <Width>4.32503in</Width>
+        <Width>4.51253in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
           <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
         </Style>
       </Textbox>

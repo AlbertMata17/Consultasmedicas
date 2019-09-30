@@ -139,7 +139,9 @@
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
@@ -269,7 +271,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>0.92882in</Top>
-        <Left>2.43988in</Left>
+        <Left>2.47808in</Left>
         <Height>0.19792in</Height>
         <Width>1.54388in</Width>
         <ZIndex>8</ZIndex>
@@ -301,9 +303,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>0.92882in</Top>
-        <Left>4.01153in</Left>
+        <Left>4.03585in</Left>
         <Height>0.19792in</Height>
-        <Width>0.63416in</Width>
+        <Width>0.73485in</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -331,10 +333,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.92883in</Top>
-        <Left>4.67348in</Left>
+        <Top>0.92882in</Top>
+        <Left>4.7707in</Left>
         <Height>0.19792in</Height>
-        <Width>0.92236in</Width>
+        <Width>0.88069in</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -363,9 +365,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>0.92882in</Top>
-        <Left>5.62362in</Left>
+        <Left>5.66528in</Left>
         <Height>0.19792in</Height>
-        <Width>1.18749in</Width>
+        <Width>1.13125in</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -394,7 +396,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>1.15452in</Top>
-        <Left>3.44432in</Left>
+        <Left>3.34015in</Left>
         <Height>0.19792in</Height>
         <Width>0.20138in</Width>
         <ZIndex>12</ZIndex>
@@ -426,7 +428,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>1.15452in</Top>
-        <Left>3.67348in</Left>
+        <Left>3.56931in</Left>
         <Height>0.19792in</Height>
         <Width>0.95263in</Width>
         <ZIndex>13</ZIndex>
@@ -456,8 +458,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.15452in</Top>
-        <Left>4.65389in</Left>
+        <Top>1.15451in</Top>
+        <Left>4.54972in</Left>
         <Height>0.19792in</Height>
         <Width>0.96056in</Width>
         <ZIndex>14</ZIndex>
@@ -488,9 +490,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
         <Top>1.15452in</Top>
-        <Left>5.64222in</Left>
+        <Left>5.53806in</Left>
         <Height>0.19792in</Height>
-        <Width>1.16125in</Width>
+        <Width>1.26541in</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -634,8 +636,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.6198in</Top>
-        <Left>4.3032in</Left>
+        <Top>1.60591in</Top>
+        <Left>4.62611in</Left>
         <Height>0.19792in</Height>
         <Width>1.31125in</Width>
         <ZIndex>19</ZIndex>
@@ -665,10 +667,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.6198in</Top>
-        <Left>5.64222in</Left>
+        <Top>1.60591in</Top>
+        <Left>5.95125in</Left>
         <Height>0.19792in</Height>
-        <Width>1.15431in</Width>
+        <Width>0.74305in</Width>
         <ZIndex>20</ZIndex>
         <Style>
           <Border>

@@ -102,7 +102,11 @@
                     </div>
                     <div class="form-group col-md-5">
                         @Html.LabelFor(model => model.Privilegio, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Privilegio, new { htmlAttributes = new { @class = "form-control" } })
+                        <select name="Privilegio" id="Privilegio" class="form-control">
+                            <option value="admin">ADMIN</option>
+                            <option value="doctor">DOCTOR</option>
+
+                        </select>
                         @Html.ValidationMessageFor(model => model.Privilegio, "", new { @class = "text-danger" })
                     </div>
 

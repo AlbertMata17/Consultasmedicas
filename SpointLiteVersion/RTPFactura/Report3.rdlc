@@ -22,7 +22,9 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!Detalle.Value, "DataSet3")</Value>
-                <Style />
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -32,14 +34,13 @@
         <Top>1.47949in</Top>
         <Left>0.19165in</Left>
         <Height>0.22127in</Height>
-        <Width>4.32503in</Width>
+        <Width>4.47086in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
           <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
         </Style>
       </Textbox>
@@ -568,10 +569,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <LeftMargin>2.54cm</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>2.54cm</TopMargin>
-    <BottomMargin>2.54cm</BottomMargin>
+    <InteractiveHeight>8.5in</InteractiveHeight>
+    <InteractiveWidth>5.5in</InteractiveWidth>
+    <LeftMargin>0.7cm</LeftMargin>
+    <RightMargin>0.7cm</RightMargin>
+    <TopMargin>0.66cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>

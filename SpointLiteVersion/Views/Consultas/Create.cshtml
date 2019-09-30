@@ -27,7 +27,7 @@
                         <div class="form-row col-md-offset-9" style="margin-top:-60px;">
                             @if (ViewBag.id != null)
                             {
-                                <div class="form-group col-md-4 botonesacciones">
+                                <div class="form-group col-md-12 botonesacciones">
 
 
 
@@ -35,7 +35,21 @@
 
 
                                 </div>
+                                <div class="form-group col-md-4 botonesacciones">
+                                    <button type="submit" class="btn btn-info" style="display:none;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+
+
+                                </div>
+                                <div class="form-group col-md-2 botonesacciones">
+                                    <button type="button" style="display:none;" class="btn btn-info btnfin"  id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="fas fa-notes-medical"></i></button>
+
+                                    @*<button type="button" class="btn btn-info btnfin" id="finalizar" name="finalizar" title="Salvar e Imprimir"><i class="far fa-file-pdf"></i> </button>*@
+
+
+                                </div>
                             }
+                            @if (ViewBag.id == null)
+                            {
                             <div class="form-group col-md-4 botonesacciones">
                                 <button type="submit" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
 
@@ -48,6 +62,7 @@
 
 
                             </div>
+                            }
                         </div>
                         <div class="form-row">
 
@@ -71,7 +86,11 @@
                                     @Html.EditorFor(model => model.idConsulta, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
 
                                 </div>
+
+
                             }
+
+
                             <div class="form-group col-md-4">
                                 @Html.Label("Tipo", new { @class = "control-label col-md-2" })
                                 <select class="form-control" name="TipoConsulta" id="TipoConsulta">
@@ -760,7 +779,6 @@
         $(".especiales").click(function () {
             var url = "@Url.Action("especiales", "especiales",new { id="param-name"})";
             var paciente = $("#idConsulta").val();
-            alert(""+paciente);
             url = url.replace("param-name", paciente);
                 $(".comprobante1").load(url)
            
