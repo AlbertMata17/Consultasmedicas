@@ -24,33 +24,35 @@
                                     @Html.DisplayName("FECHA")
                                 </th>
                                 <th>
-                                    @Html.DisplayName("MOTIVO")
-                                </th>
-                                <th>
                                     @Html.DisplayName("PACIENTE")
                                 </th>
                                 <th>
+                                    @Html.DisplayName("MOTIVO")
+                                </th>
+
+                                <th hidden>
                                     @Html.DisplayName("ACCIONES")
                                 </th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
                         {
-                            <tr data-toggle="modal" data-target="#exampleModal">
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.fecha)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.MotivoCita)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.paciente.nombre)
-                                </td>
-                                <td>
-                                    <a hidden href="@Url.Action("Create","CitasAgendadas",new { id=item.idCita})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+                        <tr data-toggle="modal" data-target="#exampleModal">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.paciente.nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MotivoCita)
+                            </td>
 
-                                </td>
-                            </tr>
+                            <td hidden>
+                                <a hidden href="@Url.Action("Create","CitasAgendadas",new { id=item.idCita})" class="edit"><i class="fas fa-edit eliminar"></i></a>
+
+                            </td>
+                        </tr>
                         }
 
                     </table>

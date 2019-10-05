@@ -11,7 +11,8 @@ namespace SpointLiteVersion.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class RecetasyExamenes
     {
         public int id { get; set; }
@@ -21,6 +22,8 @@ namespace SpointLiteVersion.Models
         public Nullable<int> Estatus { get; set; }
         public Nullable<int> Empresaid { get; set; }
         public Nullable<int> Usuarioid { get; set; }
+        [DataType(DataType.Date)]
+
         public Nullable<System.DateTime> fecha { get; set; }
     
         public virtual Empresa Empresa { get; set; }

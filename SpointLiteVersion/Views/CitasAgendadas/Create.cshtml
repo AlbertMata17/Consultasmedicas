@@ -24,6 +24,7 @@
 
         </center>
         <div class="form-row">
+            <input type="text" id="prueb" name="name" hidden value="@ViewBag.idpacientemost" />
             @if (ViewBag.idpaciente != null)
             {
                 <div class="form-group col-md-2">
@@ -143,7 +144,7 @@
     $(document).ready(function () {
         //$("#idpaciente1 option[value=2]").attr("selected", true);
         var datospaciente = $('select[name="idpaciente1"] option:selected').text();
-
+        $("#idpaciente1").val(document.getElementById("prueb"));
         $("#idpacientes1").val(datospaciente);
         $("#idpacientes1").focus();
 
@@ -223,7 +224,7 @@
 </script>
 <script>
     $(document).ready(function () {
-
+        
          $('.modaleliminar').click(function () {
             var href = $(this).attr("href");
             var url = "@Url.Action("Delete", "CitasAgendadas", new { id="param-name"})";

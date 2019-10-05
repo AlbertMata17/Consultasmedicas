@@ -13,6 +13,113 @@
 .panelsecundario {
     margin-top: 82px;
 }
+@media (max-width:1322px) {
+    .modal-content {
+        width: 88% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:1251px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 111% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:1297px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 111% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:1247px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 105% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:1181px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 115% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:1067px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 102% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:979px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 118% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
+@media (max-width:877px) {
+    .modal-content {
+        margin-left: 2%;
+        width: 118% !important
+    }
+
+    .row {
+        width: 81% !important;
+    }
+   
+    #tabla_wrapper {
+        width: 104% !important;
+    }
+}
 .btncrearconsult {
     padding: 0px;
     border-top: none;

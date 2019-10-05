@@ -164,10 +164,7 @@ namespace SpointLiteVersion.Controllers
                     
 
                 }
-                else
-                {
-                    Mensaje = "Debes Llenar Algun Valor";
-                }
+               
               
             }
             return Json(Mensaje);

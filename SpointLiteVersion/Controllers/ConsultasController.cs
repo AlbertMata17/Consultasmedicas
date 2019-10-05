@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -255,6 +256,13 @@ namespace SpointLiteVersion.Controllers
             {
                 ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",paciente.idpaciente);
                 ViewBag.id = "algo";
+                if ((from s in db.Consultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault() != null)
+                {
+                    DateTime Horaprueba = Convert.ToDateTime((from s in db.Consultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault());
+                    ViewBag.hora = Horaprueba.ToString("hh:mm tt");
+                }
+                DateTime fechaprueba=Convert.ToDateTime((from s in db.Consultas where s.idConsulta == id && s.Estatus == 1 && s.Usuarioid == usuarioid1 select s.fecha).FirstOrDefault());
+                ViewBag.fecha = fechaprueba.ToString("yyyy-MM-dd");
                 var historia = (from his in db.Consultas where his.idConsulta == id && his.Estatus==1 && his.Usuarioid==usuarioid1 select his).FirstOrDefault();
                 if (historia != null)
                 {
@@ -269,7 +277,6 @@ namespace SpointLiteVersion.Controllers
                     ViewBag.idreceta1 = (from recet in db.RecetasyExamenes where recet.idPaciente == paciente.idpaciente && recet.Tipo=="EXAMENES" && recet.Detalle.ToString().ToUpper() == historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
                     TempData["idejemplo1"] = ViewBag.idreceta1.ToString();
                 }
-
                 return View(paciente);
 
             }
@@ -283,7 +290,7 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes")] Consultas consultas)
+        public ActionResult Create([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes,Hora")] Consultas consultas)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
@@ -310,6 +317,7 @@ namespace SpointLiteVersion.Controllers
                     {
                         consultas.Diagnostico = consultas.Diagnostico.ToUpper();
                     }
+                   
                     if (consultas.Receta != null)
                     {
                         receta1.id = Convert.ToInt32(TempData["idejemplo"].ToString());
@@ -474,7 +482,7 @@ namespace SpointLiteVersion.Controllers
             ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
             return View(consultas);
         }
-        public ActionResult GuardarConsultar(string TipoConsulta,string idConsulta1,string fecha,string idpaciente,string edad,string telefono,string SeguroMedico,string Compania,string Poliza,string Observaciones,string Diagnostico,string Receta,string Examenes)
+        public ActionResult GuardarConsultar(string TipoConsulta,string idConsulta1,string fecha,string idpaciente,string edad,string telefono,string SeguroMedico,string Compania,string Poliza,string Observaciones,string Diagnostico,string Hora,string Receta,string Examenes)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
@@ -562,6 +570,7 @@ namespace SpointLiteVersion.Controllers
                         {
                             receta1.fecha = Convert.ToDateTime(fecha);
                         }
+                        
                         db.RecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consult.Examenes = Examenes.ToUpper();
@@ -578,6 +587,7 @@ namespace SpointLiteVersion.Controllers
                     {
                         db.TemptoEspecial();
                     }
+                    consult.Hora = Hora;
                     db.Entry(consult).State = EntityState.Modified;
                     db.SaveChanges();
                     var idConsulta = consult.idConsulta;
@@ -641,6 +651,7 @@ namespace SpointLiteVersion.Controllers
                         db.TemptoEspecial();
                         
                     }
+                    consult.Hora = Hora;
                     db.Consultas.Add(consult);
                     db.SaveChanges();
 

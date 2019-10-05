@@ -19,12 +19,12 @@ namespace SpointLiteVersion.Models
         {
             this.CitasAgendadas = new HashSet<CitasAgendadas>();
             this.ciudad = new HashSet<ciudad>();
-            this.Consultas = new HashSet<Consultas>();
             this.HistoriaClinica = new HashSet<HistoriaClinica>();
             this.paciente = new HashSet<paciente>();
             this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
             this.especiales = new HashSet<especiales>();
             this.DatosEspeciales = new HashSet<DatosEspeciales>();
+            this.Consultas = new HashSet<Consultas>();
         }
     
         public int LoginId { get; set; }
@@ -41,8 +41,6 @@ namespace SpointLiteVersion.Models
         public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ciudad> ciudad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultas> Consultas { get; set; }
         public virtual Empresa Empresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HistoriaClinica> HistoriaClinica { get; set; }
@@ -54,5 +52,7 @@ namespace SpointLiteVersion.Models
         public virtual ICollection<especiales> especiales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatosEspeciales> DatosEspeciales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Consultas> Consultas { get; set; }
     }
 }

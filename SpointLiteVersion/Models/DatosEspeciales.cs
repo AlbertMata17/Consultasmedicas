@@ -23,7 +23,6 @@ namespace SpointLiteVersion.Models
         public Nullable<int> empresaid { get; set; }
         public Nullable<int> idConsulta { get; set; }
     
-        public virtual Consultas Consultas { get; set; }
         public virtual Empresa Empresa { get; set; }
         public virtual especiales especiales { get; set; }
         public virtual Login Login { get; set; }

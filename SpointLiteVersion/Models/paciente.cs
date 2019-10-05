@@ -18,8 +18,8 @@ namespace SpointLiteVersion.Models
         public paciente()
         {
             this.CitasAgendadas = new HashSet<CitasAgendadas>();
-            this.Consultas = new HashSet<Consultas>();
             this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
+            this.Consultas = new HashSet<Consultas>();
         }
     
         public int idPaciente { get; set; }
@@ -38,15 +38,76 @@ namespace SpointLiteVersion.Models
         public Nullable<int> Empresaid { get; set; }
         public Nullable<int> Usuarioid { get; set; }
         public string Foto { get; set; }
+        public string sector { get; set; }
+        public string calle { get; set; }
+        public string casa { get; set; }
+        public string ocupacion { get; set; }
+        public string idcuenta { get; set; }
+        public string idcuentacxc { get; set; }
+        public Nullable<int> dias { get; set; }
+        public Nullable<decimal> credito_usado { get; set; }
+        public string mayorista { get; set; }
+        public Nullable<int> idgarante { get; set; }
+        public Nullable<int> balance { get; set; }
+        public string web { get; set; }
+        public Nullable<int> idnacion { get; set; }
+        public string beneficiario { get; set; }
+        public Nullable<int> idClasificacion { get; set; }
+        public Nullable<decimal> montoAprobado { get; set; }
+        public Nullable<decimal> MoraPorciento { get; set; }
+        public Nullable<decimal> MoraDias { get; set; }
+        public Nullable<decimal> puntos { get; set; }
+        public Nullable<int> idoficial { get; set; }
+        public Nullable<int> idpersona { get; set; }
+        public string idpreferencial { get; set; }
+        public Nullable<int> idncf { get; set; }
+        public Nullable<decimal> limitexdia { get; set; }
+        public Nullable<int> idvendedor { get; set; }
+        public Nullable<int> idreferido { get; set; }
+        public Nullable<byte> referidor { get; set; }
+        public string AseguradoNombre { get; set; }
+        public string AseguradoTel { get; set; }
+        public string AseguradoDir { get; set; }
+        public Nullable<System.DateTime> AseguradofechaNac { get; set; }
+        public Nullable<int> AseguradoParentezco { get; set; }
+        public Nullable<byte> AseguradoSexo { get; set; }
+        public Nullable<int> idseguro1 { get; set; }
+        public Nullable<int> idseguro2 { get; set; }
+        public string contratoNo1 { get; set; }
+        public string contratoNo2 { get; set; }
+        public string GrupoNo1 { get; set; }
+        public string GrupoNo2 { get; set; }
+        public string GrupoNombre1 { get; set; }
+        public string GrupoNombre2 { get; set; }
+        public string NombreTarjeta1 { get; set; }
+        public string NombreTarjeta2 { get; set; }
+        public Nullable<int> deducible1 { get; set; }
+        public Nullable<int> deducible2 { get; set; }
+        public Nullable<System.DateTime> fechaComienza1 { get; set; }
+        public Nullable<System.DateTime> fechaComienza2 { get; set; }
+        public Nullable<System.DateTime> fechaExpira1 { get; set; }
+        public Nullable<System.DateTime> fechaExpira2 { get; set; }
+        public Nullable<int> idseguro3 { get; set; }
+        public string contratoNo3 { get; set; }
+        public string GrupoNo3 { get; set; }
+        public string GrupoNombre3 { get; set; }
+        public string NombreTarjeta3 { get; set; }
+        public Nullable<int> deducible3 { get; set; }
+        public Nullable<System.DateTime> fechaComienza3 { get; set; }
+        public Nullable<System.DateTime> fechaExpira3 { get; set; }
+        public Nullable<byte> nacimiento { get; set; }
+        public Nullable<byte> documento { get; set; }
+        public string NSSPoliza { get; set; }
+        public string tutor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual ciudad ciudad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultas> Consultas { get; set; }
         public virtual Empresa Empresa { get; set; }
         public virtual Login Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Consultas> Consultas { get; set; }
     }
 }

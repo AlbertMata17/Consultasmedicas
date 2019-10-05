@@ -29,16 +29,15 @@ namespace SpointLiteVersion.Models
     
         public virtual DbSet<CitasAgendadas> CitasAgendadas { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
-        public virtual DbSet<Consultas> Consultas { get; set; }
         public virtual DbSet<HistoriaClinica> HistoriaClinica { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<paciente> paciente { get; set; }
         public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
         public virtual DbSet<especiales> especiales { get; set; }
-        public virtual DbSet<TipoConsulta> TipoConsulta { get; set; }
         public virtual DbSet<DatosEspeciales> DatosEspeciales { get; set; }
         public virtual DbSet<DetalleTemporales> DetalleTemporales { get; set; }
+        public virtual DbSet<Consultas> Consultas { get; set; }
     
         public virtual int TemptoEspecial()
         {

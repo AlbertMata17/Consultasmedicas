@@ -11,10 +11,12 @@ namespace SpointLiteVersion.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CitasAgendadas
     {
         public int idCita { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> idpaciente { get; set; }
         public string MotivoCita { get; set; }

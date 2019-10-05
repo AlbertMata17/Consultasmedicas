@@ -27,6 +27,9 @@
                                         @Html.DisplayName("FECHA")
                                     </th>
                                     <th>
+                                        @Html.DisplayName("HORA")
+                                    </th>
+                                    <th>
                                         @Html.DisplayName("EDAD")
                                     </th>
                                     <th>
@@ -44,35 +47,38 @@
                             </thead>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.paciente.nombre)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fecha)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.edad)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.telefono)
-                                        </td>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.paciente.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hora)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.edad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.telefono)
+                                </td>
 
 
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TipoConsulta)
-                                        </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoConsulta)
+                                </td>
 
-                                        <td>
-                                            <p id="editar">
-                                                <a hidden href="@Url.Action("Create", "Consultas", new { id = item.idConsulta, idpaciente = "" })" class="edit" id="edita"><i class="fas fa-edit eliminar"></i></a>
+                                <td>
+                                    <p id="editar">
+                                        <a hidden href="@Url.Action("Create", "Consultas", new { id = item.idConsulta, idpaciente = "" })" class="edit" id="edita"><i class="fas fa-edit eliminar"></i></a>
 
-                                            </p>
-                                            <a href="@Url.Action("reporteActual", "Consultas", new { id = item.idConsulta })" class="" title="Ver"><i class="fas fa-eye eliminar"></i></a>
+                                    </p>
+                                    <a href="@Url.Action("reporteActual", "Consultas", new { id = item.idConsulta })" class="" title="Ver"><i class="fas fa-eye eliminar"></i></a>
 
-                                        </td>
-                                    </tr>
+                                </td>
+                            </tr>
                                 }
                         </table>
                      
@@ -87,11 +93,14 @@
 <script>
     $(document).ready(function () {
         $('#tabla').DataTable({
+            "pageLength": 25,
+
                        "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
             "language": {
                 "decimal": "",
                 "emptyTable": "NO HAY INFORMACION",
                 "info": "MOSTRANDO _START_ A _END_ de _TOTAL_ ENTRADAS",
+
                 "infoEmpty": "MOSTRANDO 0 to 0 of 0 ENTRADAS",
                 "infoFiltered": "(FILTRADO DE _MAX_ TOTAL ENTRADAS)",
                 "infoPostFix": "",

@@ -263,6 +263,7 @@ namespace SpointLiteVersion.Controllers
             if (citasAgendadas == null)
             {
                 return HttpNotFound();
+                
             }
             return View(citasAgendadas);
         }

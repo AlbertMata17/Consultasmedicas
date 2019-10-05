@@ -36,7 +36,7 @@
 
                                 </div>
                                 <div class="form-group col-md-4 botonesacciones">
-                                    <button type="submit" class="btn btn-info" style="display:none;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+                                    @*<button type="submit" class="btn btn-info" style="display:none;" id="crear" title="Salvar"><i class="far fa-save"></i> </button>*@
 
 
                                 </div>
@@ -70,7 +70,7 @@
                             {
                                 <div class="form-group col-md-2">
                                     @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                                    <input type="text" name="idaciente" id="idConsulta" class="form-control" readonly value="@ViewBag.idconsulta" />
+                                    <input type="text" name="idaciente" style="width:57px;" id="idConsulta" class="form-control" readonly value="@ViewBag.idconsulta" />
                                     @Html.ValidationMessageFor(model => model.idConsulta, "", new { @class = "text-danger" })
 
                                 </div>
@@ -80,10 +80,10 @@
                                 <div class="form-group col-md-2">
 
 
-                                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
 
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    @Html.EditorFor(model => model.idConsulta, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                    @Html.EditorFor(model => model.idConsulta, new { htmlAttributes = new { @class = "form-control", @readonly = true, @style = "width:57px;" } })
 
                                 </div>
 
@@ -91,7 +91,7 @@
                             }
 
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-4" style="margin-left:-98px;">
                                 @Html.Label("Tipo", new { @class = "control-label col-md-2" })
                                 <select class="form-control" name="TipoConsulta" id="TipoConsulta">
                                     <option value="Consulta en Clínica">Consulta en Clínica</option>
@@ -102,14 +102,41 @@
                                 @Html.ValidationMessageFor(model => model.TipoConsulta, "", new { @class = "text-danger" })
                             </div>
                             <input type="text" name="SeguroMedico" value="" id="pruebadeseguro" hidden />
+                            @if (ViewBag.fecha == null)
+                            {
+                                <div class="form-group col-md-2" style="margin-left:-16px;">
+                                    @Html.Label("Fecha", new { @class = "control-label col-md-2" })
 
-                            <div class="form-group col-md-3">
-                                @Html.Label("Fecha", new { @class = "control-label col-md-2" })
+                                    <input type="date" name="fecha" id="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" min="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            @if (ViewBag.fecha != null)
+                            {
+                                <div class="form-group col-md-2" style="margin-left:-16px;">
+                                    @Html.Label("Fecha", new { @class = "control-label col-md-2" })
 
-                                <input type="date" name="fecha" id="fecha" value="@DateTime.Now.Year-@DateTime.Now.Month.ToString("00")-@DateTime.Now.Day.ToString("00")" class="form-control" />
-                                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-                            </div>
+                                    <input type="date" name="fecha" id="fecha" value="@ViewBag.fecha" min="@ViewBag.fecha" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            @if (ViewBag.hora == null)
+                            {
+                                <div class="form-group col-md-2" style="margin-left:-22px;">
+                                    @Html.Label("Hora", new { @class = "control-label col-md-2" })
 
+                                    <input type="time" name="Hora" id="Hora" value="" min="" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                </div>
+                            }
+                            @if (ViewBag.hora != null)
+                            {
+                                <div class="form-group col-md-2" style="margin-left:-22px;">
+                                    @Html.Label("Hora", new { @class = "control-label col-md-2" })
+
+                                    <input type="text" name="Hora" id="Hora" value="@ViewBag.hora" min="" class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                                </div>}
                             <div class="form-group col-md-4">
                                 @Html.Label("Paciente", new { @class = "control-label col-md-2" })
                                 <input type="text" list="paciente1" name="idpacientes" required id="idpacientes" class="form-control" autocomplete="off" />
@@ -244,7 +271,7 @@
                                 @Html.ValidationMessageFor(model => model.Examenes, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="form-row col-md-12" style="margin-left:148px;">
+                        <div class="form-row col-md-12" hidden style="margin-left:148px;">
                             <div class="form-group col-md-3">
                                 <a href="#" class="btn btn-info  Datoscomprobante " id="agendarconsult" data-toggle="modal" data-target="#exampleModal">Agendar Consulta</a>
                             </div>
@@ -329,7 +356,7 @@
             <div class="modal-body" style="padding:0px !important;">
 
 
-                <div class="comprobante" id="contenido">
+                <div class="comprobante2" id="contenido">
 
                 </div>
                 <div class=" btncrearconsult">
@@ -362,9 +389,12 @@
                 <div class="comprobante1" id="contenido" style="padding:13px; padding-left:30px;padding-right:30px;">
 
                 </div>
+                @if (ViewBag.id == null)
+                {
                 <div class=" btncrearconsult">
                     <button type="button" class="btn btn-info" data-dismiss="modal" id="especial" style="margin-bottom:20px; margin-left:50px;"><i class="fas fa-arrow-circle-left"></i></button>
                 </div>
+                }
             </div>
 
         </div>
@@ -472,7 +502,7 @@
             //console.info('hola');
 
             var i = 0;
-            var envio = "{TipoConsulta:'" + $("#TipoConsulta").val() + "',idConsulta1:'" + $("#idConsulta").val() +"',fecha:'" + $("#fecha").val() + "',idpaciente:'" + $("#idpaciente").val() + "',edad:'" + $("#edad").val() + "',telefono:'" + $("#telefono").val() + "',SeguroMedico:'" + $("#pruebadeseguro").val() + "',Compania:'" + $("#Compania").val() + "',Poliza:'" + $("#Poliza").val() + "',Observaciones:'" + $("#Observaciones").val() + "',Diagnostico:'" + $("#Diagnostico").val() + "',Receta:'" + $("#Receta").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
+            var envio = "{TipoConsulta:'" + $("#TipoConsulta").val() + "',idConsulta1:'" + $("#idConsulta").val() + "',fecha:'" + $("#fecha").val() + "',idpaciente:'" + $("#idpaciente").val() + "',edad:'" + $("#edad").val() + "',telefono:'" + $("#telefono").val() + "',SeguroMedico:'" + $("#pruebadeseguro").val() + "',Compania:'" + $("#Compania").val() + "',Poliza:'" + $("#Poliza").val() + "',Observaciones:'" + $("#Observaciones").val() + "',Diagnostico:'" + $("#Diagnostico").val() + "',Hora:'" + $("#Hora").val() + "',Receta:'" + $("#Receta").val() + "',IdCabecera:'2',Examenes:'" + $('#Examenes').val() + "',";
 
 
 
@@ -492,7 +522,6 @@
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 success: function (response) {
-                    alertify.alert(response)
                         //    position: 'center',
                         //    title: response,
                         //    showConfirmButton: false,
@@ -645,7 +674,6 @@
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 success: function (response) {
-                    alertify.alert(response)
                         //    position: 'center',
                         //    title: response,
                         //    showConfirmButton: false,
@@ -786,7 +814,7 @@
         $(".Datoscomprobante").click(function () {
                     var url = "@Url.Action("Create", "CitasAgendadas", new { id="", idconsulta= "param-name"})";
             url = url.replace("param-name", $("#idpaciente").val());
-            $(".comprobante").load(url)
+            $(".comprobante2").load(url)
         });
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
