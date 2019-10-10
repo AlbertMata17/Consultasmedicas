@@ -7615,16 +7615,6 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\productos\Create.cshtml" />
-    <Content Include="Views\productos\Delete.cshtml" />
-    <Content Include="Views\productos\Details.cshtml" />
-    <Content Include="Views\productos\Edit.cshtml" />
-    <Content Include="Views\productos\Index.cshtml" />
-    <Content Include="Views\suplidores\Create.cshtml" />
-    <Content Include="Views\suplidores\Delete.cshtml" />
-    <Content Include="Views\suplidores\Details.cshtml" />
-    <Content Include="Views\suplidores\Edit.cshtml" />
-    <Content Include="Views\suplidores\Index.cshtml" />
     <Content Include="Views\ciudads1\Create.cshtml" />
     <Content Include="Views\ciudads1\Delete.cshtml" />
     <Content Include="Views\ciudads1\Details.cshtml" />
@@ -7647,28 +7637,6 @@
     <Content Include="webfonts\fa-solid-900.ttf" />
     <Content Include="webfonts\fa-solid-900.woff" />
     <Content Include="webfonts\fa-solid-900.woff2" />
-    <Content Include="Views\productos1\Create.cshtml" />
-    <Content Include="Views\productos1\Delete.cshtml" />
-    <Content Include="Views\productos1\Details.cshtml" />
-    <Content Include="Views\productos1\Edit.cshtml" />
-    <Content Include="Views\productos1\Index.cshtml" />
-    <Content Include="Views\tiposproductos\Create.cshtml" />
-    <Content Include="Views\tiposproductos\Delete.cshtml" />
-    <Content Include="Views\tiposproductos\Details.cshtml" />
-    <Content Include="Views\tiposproductos\Edit.cshtml" />
-    <Content Include="Views\tiposproductos\Index.cshtml" />
-    <Content Include="Views\vendedores\Create.cshtml" />
-    <Content Include="Views\vendedores\Delete.cshtml" />
-    <Content Include="Views\vendedores\Details.cshtml" />
-    <Content Include="Views\vendedores\Edit.cshtml" />
-    <Content Include="Views\vendedores\Index.cshtml" />
-    <Content Include="Views\facturas\Create.cshtml" />
-    <Content Include="Views\facturas\Delete.cshtml" />
-    <Content Include="Views\facturas\Details.cshtml" />
-    <Content Include="Views\facturas\Edit.cshtml" />
-    <Content Include="Views\facturas\Index.cshtml" />
-    <Content Include="Views\facturas\VistaPdf.cshtml" />
-    <Content Include="Views\productos1\Inventario.cshtml" />
     <Content Include="Views\itbis\Create.cshtml" />
     <Content Include="Views\itbis\Delete.cshtml" />
     <Content Include="Views\itbis\Details.cshtml" />
@@ -7679,26 +7647,11 @@
     <Content Include="Views\compras\Details.cshtml" />
     <Content Include="Views\compras\Edit.cshtml" />
     <Content Include="Views\compras\Index.cshtml" />
-    <Content Include="Views\suplidores1\Create.cshtml" />
-    <Content Include="Views\suplidores1\Delete.cshtml" />
-    <Content Include="Views\suplidores1\Details.cshtml" />
-    <Content Include="Views\suplidores1\Edit.cshtml" />
-    <Content Include="Views\suplidores1\Index.cshtml" />
-    <Content Include="Views\productos1\DatosMostrarInventario.cshtml" />
-    <Content Include="Views\productos1\View.cshtml" />
-    <Content Include="Views\productos1\DatosDetalle.cshtml" />
-    <Content Include="Views\TipoSuplidors\Create.cshtml" />
-    <Content Include="Views\TipoSuplidors\Delete.cshtml" />
-    <Content Include="Views\TipoSuplidors\Details.cshtml" />
-    <Content Include="Views\TipoSuplidors\Edit.cshtml" />
-    <Content Include="Views\TipoSuplidors\Index.cshtml" />
     <Content Include="Views\NCFs\Create.cshtml" />
     <Content Include="Views\NCFs\Delete.cshtml" />
     <Content Include="Views\NCFs\Details.cshtml" />
     <Content Include="Views\NCFs\Edit.cshtml" />
     <Content Include="Views\NCFs\Index.cshtml" />
-    <Content Include="Views\facturas\CotizacionesIndex.cshtml" />
-    <Content Include="Views\facturas\PrefacturaIndex.cshtml" />
     <Content Include="Views\Logins\Create.cshtml" />
     <Content Include="Views\Logins\Delete.cshtml" />
     <Content Include="Views\Logins\Details.cshtml" />
@@ -7710,11 +7663,6 @@
     <Content Include="Views\NCFs1\Details.cshtml" />
     <Content Include="Views\NCFs1\Edit.cshtml" />
     <Content Include="Views\NCFs1\Index.cshtml" />
-    <Content Include="Views\DetalleNcfs\Create.cshtml" />
-    <Content Include="Views\DetalleNcfs\Delete.cshtml" />
-    <Content Include="Views\DetalleNcfs\Details.cshtml" />
-    <Content Include="Views\DetalleNcfs\Edit.cshtml" />
-    <Content Include="Views\DetalleNcfs\Index.cshtml" />
     <Content Include="Views\NcFsecuencias\Create.cshtml" />
     <Content Include="Views\NcFsecuencias\Delete.cshtml" />
     <Content Include="Views\NcFsecuencias\Details.cshtml" />
@@ -7764,11 +7712,6 @@
     <Content Include="Views\especiales\Edit.cshtml" />
     <Content Include="Views\especiales\Index.cshtml" />
     <Content Include="Views\especiales\especiales.cshtml" />
-    <Content Include="Views\CitasAgendadas1\Create.cshtml" />
-    <Content Include="Views\CitasAgendadas1\Delete.cshtml" />
-    <Content Include="Views\CitasAgendadas1\Details.cshtml" />
-    <Content Include="Views\CitasAgendadas1\Edit.cshtml" />
-    <Content Include="Views\CitasAgendadas1\Index.cshtml" />
     <Content Include="Views\especiales\DatosEspeciales.cshtml" />
     <Content Include="Views\especiales\DetallesTemporales.cshtml" />
   </ItemGroup>
@@ -7781,7 +7724,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="RTPFactura\prefactura.rdlc" />
     <EmbeddedResource Include="RTPFactura\Report1.rdlc" />
     <EmbeddedResource Include="RTPFactura\Report2.rdlc" />
     <EmbeddedResource Include="RTPFactura\Report3.rdlc" />
