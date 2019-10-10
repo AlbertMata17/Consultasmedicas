@@ -1,4 +1,4 @@
-﻿@model SpointLiteVersion.Models.Consultas
+﻿@model SpointLiteVersion.Models.HosConsultas
 
 @{
     ViewBag.Title = "Create";
@@ -271,7 +271,7 @@
                                 @Html.ValidationMessageFor(model => model.Examenes, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="form-row col-md-12" hidden style="margin-left:148px;">
+                        <div class="form-row col-md-12"  style="margin-left:148px;">
                             <div class="form-group col-md-3">
                                 <a href="#" class="btn btn-info  Datoscomprobante " id="agendarconsult" data-toggle="modal" data-target="#exampleModal">Agendar Consulta</a>
                             </div>
@@ -447,9 +447,9 @@
                     /**/
                     document.getElementById("edad").value = row.edad;
                     /**/
-                    $("#idpaciente").append("<option value= '" + row.idPaciente + "'>" + row.nombre + "</option>")
+                    $("#idpaciente").append("<option value= '" + row.idcliente + "'>" + row.nombre + "</option>")
 
-                    document.getElementById("telefono").value = row.telefono;
+                    document.getElementById("telefono").value = row.tel;
 
 
 
@@ -470,9 +470,9 @@
                     /**/
                     document.getElementById("edad").value = row.edad;
                     /**/
-                    $("#idpaciente").append("<option value= '" + row.idPaciente + "'>" + row.nombre + "</option>")
+                    $("#idpaciente").append("<option value= '" + row.idcliente + "'>" + row.nombre + "</option>")
 
-                    document.getElementById("telefono").value = row.telefono;
+                    document.getElementById("telefono").value = row.tel;
 
 
 

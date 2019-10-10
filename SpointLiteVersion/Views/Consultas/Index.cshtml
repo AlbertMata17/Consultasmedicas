@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.Consultas>
+﻿@model IEnumerable<SpointLiteVersion.Models.HosConsultas>
 
 @{
     ViewBag.Title = "Consultas";
@@ -49,7 +49,7 @@
                                 {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.paciente.nombre)
+                                    @Html.DisplayFor(modelItem => item.clientes.nombre)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.fecha)

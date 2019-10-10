@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.especiales>
+﻿@model IEnumerable<SpointLiteVersion.Models.Hosespeciales>
 
 @{
     ViewBag.Title = "Index";
@@ -43,12 +43,12 @@
                                 @Html.DisplayFor(modelItem => item.Tipo)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Login.Nombre)
-                                @Html.DisplayFor(modelItem => item.Login.Apellido)
+                                @Html.DisplayFor(modelItem => item.HosLogin.Nombre)
+                                @Html.DisplayFor(modelItem => item.HosLogin.Apellido)
 
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Login.Username)
+                                @Html.DisplayFor(modelItem => item.HosLogin.Username)
                             </td>
                             <td>
                                 <a hidden href="@Url.Action("Create","especiales",new { id=item.Id})" class="edit"><i class="fas fa-edit eliminar"></i></a>
@@ -135,6 +135,8 @@
 <script>
     $(document).ready(function () {
         $('#tabla').DataTable({
+            "pageLength": 25,
+
             "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
             "language": {
                 "decimal": "",

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.Login>
+﻿@model IEnumerable<SpointLiteVersion.Models.HosLogin>
 
 @{
     /**/
@@ -28,7 +28,7 @@
                                 <th>
                                     @Html.DisplayName("PRIVILEGIO")
                                 </th>
-                                <th>ACCIONES</th>
+                                <th hidden>ACCIONES</th>
                             </tr>
                         </thead>
                         @foreach (var item in Model)
@@ -41,7 +41,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Privilegio)
                                 </td>
-                                <td>
+                                <td hidden>
                                     <a hidden href="@Url.Action("Create","Logins",new { id=item.LoginId})" class="edit"><i class="fas fa-edit eliminar"></i></a>
 
                                 </td>
@@ -124,6 +124,8 @@
 <script>
     $(document).ready(function () {
         $('#tabla').DataTable({
+            "pageLength": 25,
+
             "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
             "language": {
                 "decimal": "",

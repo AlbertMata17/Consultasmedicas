@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.RecetasyExamenes>
+﻿@model IEnumerable<SpointLiteVersion.Models.HosRecetasyExamenes>
 
 @{
     ViewBag.Title = "RecetasyExamen";
@@ -27,7 +27,7 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.paciente.nombre)
+                                    @Html.DisplayNameFor(model => model.clientes.nombre)
                                 </th>
                                 <th>ACCIONES</th>
                             </tr>
@@ -44,7 +44,7 @@
                             </td>
 
                             <td>
-                                @Html.DisplayFor(modelItem => item.paciente.nombre)
+                                @Html.DisplayFor(modelItem => item.clientes.nombre)
                             </td>
                             <td>
                                 <a hidden href="@Url.Action("Create", "RecetasyExamenes",new { id=item.id})" class="edit"><i class="fas fa-edit eliminar"></i></a>
@@ -107,6 +107,8 @@
 <script>
     $(document).ready(function () {
         $('#tabla').DataTable({
+            "pageLength": 25,
+
             "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
             "language": {
                 "decimal": "",

@@ -4,42 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bc6c4bccf4ac415295b911ccd7baef2c" Name="Diagram1" ZoomLevel="40">
-        <EntityTypeShape EntityType="ConsultaMedicasModel.CitasAgendadas" Width="1.5" PointX="10.875" PointY="13.25" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.ciudad" Width="1.5" PointX="7.875" PointY="13.5" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.HistoriaClinica" Width="1.5" PointX="7.875" PointY="5.75" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Empresa" Width="1.5" PointX="5.625" PointY="9.625" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id1" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id2" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id4" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Login" Width="1.5" PointX="7.875" PointY="17.375" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.paciente" Width="1.5" PointX="13.125" PointY="13" />
-        <AssociationConnector Association="ConsultaMedicasModel.FK__CitasAgen__idpac__60A75C0F" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id1" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_ciudad" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id2" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_empresa" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id5" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id4" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id5" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.RecetasyExamenes" Width="1.5" PointX="18.375" PointY="14" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id6" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id6" />
-        <AssociationConnector Association="ConsultaMedicasModel.FK__RecetasyE__idPac__7A672E12" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.especiales" Width="1.5" PointX="10.125" PointY="17.375" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_empresaidmos" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_usuarioidmos1" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.DatosEspeciales" Width="1.5" PointX="21" PointY="14.125" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_empresa12341" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Especiales" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_usuarioidmos" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.DetalleTemporales" Width="1.5" PointX="9.875" PointY="22" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_detalles124" />
-        <EntityTypeShape EntityType="ConsultaMedicasModel.Consultas" Width="1.5" PointX="15.375" PointY="17.375" />
-        <AssociationConnector Association="ConsultaMedicasModel.FK__Consultas__idpac__3F466844" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Empresa_id3" />
-        <AssociationConnector Association="ConsultaMedicasModel.fk_Usuario_id3" />
-        </Diagram>
+      <Diagram DiagramId="0700710f30e646ff8d2320ca7e0b684e" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="hospointModel.HosCitasAgendadas" Width="1.5" PointX="5.25" PointY="24.125" />
+        <EntityTypeShape EntityType="hospointModel.Hosciudad" Width="1.5" PointX="5.25" PointY="20.375" />
+        <EntityTypeShape EntityType="hospointModel.HosConsultas" Width="1.5" PointX="18.75" PointY="23.25" />
+        <EntityTypeShape EntityType="hospointModel.HosDatosEspeciales" Width="1.5" PointX="8.25" PointY="24" />
+        <EntityTypeShape EntityType="hospointModel.HosDetalleTemporales" Width="1.5" PointX="10.5" PointY="20.25" />
+        <EntityTypeShape EntityType="hospointModel.HosEmpresa" Width="1.5" PointX="0.75" PointY="18" />
+        <EntityTypeShape EntityType="hospointModel.Hosespeciales" Width="1.5" PointX="8.25" PointY="20.125" />
+        <EntityTypeShape EntityType="hospointModel.HosHistoriaClinica" Width="1.5" PointX="5.25" PointY="28.625" />
+        <EntityTypeShape EntityType="hospointModel.HosLogin" Width="1.5" PointX="3" PointY="28.75" />
+        <EntityTypeShape EntityType="hospointModel.HosRecetasyExamenes" Width="1.5" PointX="15.75" PointY="24" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id1" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id1" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id2" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id2" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id3" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id3" />
+        <AssociationConnector Association="hospointModel.fk_empresa12341" />
+        <AssociationConnector Association="hospointModel.fk_Especiales" />
+        <AssociationConnector Association="hospointModel.fk_usuarioidmos" />
+        <AssociationConnector Association="hospointModel.fk_detalles124" />
+        <AssociationConnector Association="hospointModel.fk_empresa" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id4" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id6" />
+        <AssociationConnector Association="hospointModel.fk_empresaidmos" />
+        <AssociationConnector Association="hospointModel.fk_usuarioidmos1" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id4" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id6" />
+        <EntityTypeShape EntityType="hospointModel.Hospaciente" Width="1.5" PointX="13.5" PointY="16.75" />
+        <AssociationConnector Association="hospointModel.FK__HosCitasA__idpac__2838E5BA" />
+        <AssociationConnector Association="hospointModel.fk_ciudad" />
+        <AssociationConnector Association="hospointModel.FK__Consultas__idpac__3F466844" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id5" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id5" />
+        <AssociationConnector Association="hospointModel.FK__HosReceta__idPac__3B4BBA2E" />
+        <EntityTypeShape EntityType="hospointModel.ciudad" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hospointModel.clientes" Width="1.5" PointX="5.25" PointY="36.125" />
+        <AssociationConnector Association="hospointModel.cita_2" />
+        <AssociationConnector Association="hospointModel.FK__Consultas__idpac__3F46684412" />
+        <AssociationConnector Association="hospointModel.fk_Empresa_id6234" />
+        <AssociationConnector Association="hospointModel.fk_Usuario_id523" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

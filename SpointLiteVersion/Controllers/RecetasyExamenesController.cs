@@ -12,12 +12,12 @@ namespace SpointLiteVersion.Controllers
 {
     public class RecetasyExamenesController : Controller
     {
-        private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
+        private hospointEntities db = new hospointEntities();
 
         // GET: RecetasyExamenes
         public ActionResult Index()
         {
-            var recetasyExamenes = db.RecetasyExamenes.Include(r => r.Empresa).Include(r => r.Login).Include(r => r.paciente);
+            var recetasyExamenes = db.HosRecetasyExamenes.Include(r => r.HosEmpresa).Include(r => r.HosLogin).Include(r => r.clientes);
             return View(recetasyExamenes.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RecetasyExamenes recetasyExamenes = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes recetasyExamenes = db.HosRecetasyExamenes.Find(id);
             if (recetasyExamenes == null)
             {
                 return HttpNotFound();
@@ -50,14 +50,14 @@ namespace SpointLiteVersion.Controllers
             if (id == null)
             {
 
-                ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre");
-                ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username");
-                ViewBag.idPaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre");
-                var s = (from datosid in db.RecetasyExamenes select datosid.id).FirstOrDefault();
+                ViewBag.Empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre");
+                ViewBag.Usuarioid = new SelectList(db.HosLogin, "LoginId", "Username");
+                ViewBag.idPaciente = new SelectList(db.clientes.Where(m=>m.estado=="1" && m.Usuarioid==usuarioid1 || m.estado=="1" && m.Usuarioid==null), "idcliente", "nombre");
+                var s = (from datosid in db.HosRecetasyExamenes select datosid.id).FirstOrDefault();
                 var idmostrar = 0;
                 if (s > 0)
                 {
-                    idmostrar = (from datosid in db.RecetasyExamenes select datosid.id).Max() + 1;
+                    idmostrar = (from datosid in db.HosRecetasyExamenes select datosid.id).Max() + 1;
                 }
                 else
                 {
@@ -68,18 +68,18 @@ namespace SpointLiteVersion.Controllers
                 return View();
 
             }
-            RecetasyExamenes citas = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes citas = db.HosRecetasyExamenes.Find(id);
             if (citas == null)
             {
                 return HttpNotFound();
             }
             if (id != null)
             {
-                ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre");
-                ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username");
-                ViewBag.idPaciente = new SelectList(db.paciente.Where(m => m.Estatus == 1 && m.Usuarioid == usuarioid1), "idPaciente", "nombre",citas.idPaciente);
-                ViewBag.tipo = (from s in db.RecetasyExamenes where s.id==id select s.Tipo).FirstOrDefault();
-                ViewBag.Detalle = (from s in db.RecetasyExamenes where s.id == id select s.Detalle).FirstOrDefault();
+                ViewBag.Empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre");
+                ViewBag.Usuarioid = new SelectList(db.HosLogin, "LoginId", "Username");
+                ViewBag.idPaciente = new SelectList(db.clientes.Where(m => m.estado == "1" && m.Usuarioid == usuarioid1 || m.estado=="1" && m.Usuarioid==null), "idcliente", "nombre",citas.idPaciente);
+                ViewBag.tipo = (from s in db.HosRecetasyExamenes where s.id==id select s.Tipo).FirstOrDefault();
+                ViewBag.Detalle = (from s in db.HosRecetasyExamenes where s.id == id select s.Detalle).FirstOrDefault();
                 
                 ViewBag.id = "algo";
 
@@ -94,13 +94,13 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Tipo,Detalle,idPaciente,Estatus,Empresaid,Usuarioid,fecha")] RecetasyExamenes recetasyExamenes)
+        public ActionResult Create([Bind(Include = "id,Tipo,Detalle,idPaciente,Estatus,Empresaid,Usuarioid,fecha")] HosRecetasyExamenes recetasyExamenes)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            var t = (from s in db.RecetasyExamenes where s.id == recetasyExamenes.id select s.id).Count();
+            var t = (from s in db.HosRecetasyExamenes where s.id == recetasyExamenes.id select s.id).Count();
 
             if (ModelState.IsValid)
             {
@@ -136,15 +136,15 @@ namespace SpointLiteVersion.Controllers
                         recetasyExamenes.Detalle = recetasyExamenes.Detalle.ToUpper();
                     }
                     recetasyExamenes.Estatus = 1;
-                    db.RecetasyExamenes.Add(recetasyExamenes);
+                    db.HosRecetasyExamenes.Add(recetasyExamenes);
                     db.SaveChanges();
                     return RedirectToAction("RecetasyExamen","Consultas");
                 }
             }
 
-            ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
-            ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username", recetasyExamenes.Usuarioid);
-            ViewBag.idPaciente = new SelectList(db.paciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
+            ViewBag.Empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
+            ViewBag.Usuarioid = new SelectList(db.HosLogin, "LoginId", "Username", recetasyExamenes.Usuarioid);
+            ViewBag.idPaciente = new SelectList(db.clientes, "idcliente", "nombre", recetasyExamenes.idPaciente);
             return RedirectToAction("RecetasyExamen","Consultas");
         }
 
@@ -155,14 +155,14 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RecetasyExamenes recetasyExamenes = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes recetasyExamenes = db.HosRecetasyExamenes.Find(id);
             if (recetasyExamenes == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
-            ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username", recetasyExamenes.Usuarioid);
-            ViewBag.idPaciente = new SelectList(db.paciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
+            ViewBag.Empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
+            ViewBag.Usuarioid = new SelectList(db.HosLogin, "LoginId", "Username", recetasyExamenes.Usuarioid);
+            ViewBag.idPaciente = new SelectList(db.Hospaciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
             return View(recetasyExamenes);
         }
 
@@ -171,7 +171,7 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Tipo,Detalle,idPaciente,Estatus,Empresaid,Usuarioid,fecha")] RecetasyExamenes recetasyExamenes)
+        public ActionResult Edit([Bind(Include = "id,Tipo,Detalle,idPaciente,Estatus,Empresaid,Usuarioid,fecha")] HosRecetasyExamenes recetasyExamenes)
         {
             if (ModelState.IsValid)
             {
@@ -179,9 +179,9 @@ namespace SpointLiteVersion.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
-            ViewBag.Usuarioid = new SelectList(db.Login, "LoginId", "Username", recetasyExamenes.Usuarioid);
-            ViewBag.idPaciente = new SelectList(db.paciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
+            ViewBag.Empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", recetasyExamenes.Empresaid);
+            ViewBag.Usuarioid = new SelectList(db.HosLogin, "LoginId", "Username", recetasyExamenes.Usuarioid);
+            ViewBag.idPaciente = new SelectList(db.Hospaciente, "idPaciente", "nombre", recetasyExamenes.idPaciente);
             return View(recetasyExamenes);
         }
 
@@ -192,7 +192,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RecetasyExamenes recetasyExamenes = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes recetasyExamenes = db.HosRecetasyExamenes.Find(id);
             if (recetasyExamenes == null)
             {
                 return HttpNotFound();
@@ -205,7 +205,7 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RecetasyExamenes recetasyExamenes = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes recetasyExamenes = db.HosRecetasyExamenes.Find(id);
             recetasyExamenes.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("RecetasyExamen","Consultas");

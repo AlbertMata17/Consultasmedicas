@@ -1,17 +1,10 @@
-﻿@model SpointLiteVersion.Models.RecetasyExamenes
+﻿@model SpointLiteVersion.Models.HosRecetasyExamenes
 
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
     @using (Html.BeginForm("Create", "RecetasyExamenes", FormMethod.Post, new { id = "myForm" }))
     {
         @Html.AntiForgeryToken()
@@ -159,7 +152,7 @@
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
             var i = 0;
-            var envio = "{idPaciente:'" + $("#idPaciente").val() + "',Receta:'" + $("#Examenes").val() + "',fecha:'" + $("#fecha").val() + "',idrecet:'" + $("#id").val() + "',IdCabecera:'2',tipo:'" + $('#Tipo').val() + "',";
+            var envio = "{idPaciente:'" + $("#idPaciente").val() + "',Receta:'" + $("#Examenes").val().trim() + "',fecha:'" + $("#fecha").val() + "',idrecet:'" + $("#id").val() + "',IdCabecera:'2',tipo:'" + $('#Tipo').val() + "',";
 
 
 
@@ -227,7 +220,5 @@
 
     });
     </script>
-</body>
-</html>
 
 

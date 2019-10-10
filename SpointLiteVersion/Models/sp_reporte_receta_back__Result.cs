@@ -11,7 +11,7 @@ namespace SpointLiteVersion.Models
 {
     using System;
     
-    public partial class sp_reporte_examenes_back_Result
+    public partial class sp_reporte_receta_back__Result
     {
         public int idPaciente { get; set; }
         public string nombre { get; set; }

@@ -21,7 +21,7 @@ namespace SpointLiteVersion.RTPFactura
         string nombreempresa;
         protected void Page_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=ConsultaMedicas;Integrated Security=True");
+            con = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=hospoint;Integrated Security=True");
             if (!IsPostBack)
             {
                 renderReport();
@@ -57,7 +57,7 @@ namespace SpointLiteVersion.RTPFactura
         public DataTable cargar(string codigoventa)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=ConsultaMedicas;Integrated Security=True"))
+            using (SqlConnection cn = new SqlConnection("Data Source=DESKTOP-MF01SN4\\SQLANALYSIS;Initial Catalog=hospoint;Integrated Security=True"))
             {
 
                 SqlCommand cmd = new SqlCommand("sp_reporte_examenes_back", con);

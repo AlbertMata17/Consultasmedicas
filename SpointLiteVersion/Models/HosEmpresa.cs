@@ -12,20 +12,20 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Empresa
+    public partial class HosEmpresa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
+        public HosEmpresa()
         {
-            this.CitasAgendadas = new HashSet<CitasAgendadas>();
-            this.ciudad = new HashSet<ciudad>();
-            this.HistoriaClinica = new HashSet<HistoriaClinica>();
-            this.Login = new HashSet<Login>();
-            this.paciente = new HashSet<paciente>();
-            this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
-            this.especiales = new HashSet<especiales>();
-            this.DatosEspeciales = new HashSet<DatosEspeciales>();
-            this.Consultas = new HashSet<Consultas>();
+            this.HosCitasAgendadas = new HashSet<HosCitasAgendadas>();
+            this.Hosciudad = new HashSet<Hosciudad>();
+            this.HosConsultas = new HashSet<HosConsultas>();
+            this.HosDatosEspeciales = new HashSet<HosDatosEspeciales>();
+            this.HosLogin = new HashSet<HosLogin>();
+            this.HosHistoriaClinica = new HashSet<HosHistoriaClinica>();
+            this.HosRecetasyExamenes = new HashSet<HosRecetasyExamenes>();
+            this.Hosespeciales = new HashSet<Hosespeciales>();
+            this.Hospaciente = new HashSet<Hospaciente>();
         }
     
         public int IdEmpresa { get; set; }
@@ -37,22 +37,22 @@ namespace SpointLiteVersion.Models
         public Nullable<int> estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
+        public virtual ICollection<HosCitasAgendadas> HosCitasAgendadas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ciudad> ciudad { get; set; }
+        public virtual ICollection<Hosciudad> Hosciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoriaClinica> HistoriaClinica { get; set; }
+        public virtual ICollection<HosConsultas> HosConsultas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Login> Login { get; set; }
+        public virtual ICollection<HosDatosEspeciales> HosDatosEspeciales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<paciente> paciente { get; set; }
+        public virtual ICollection<HosLogin> HosLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
+        public virtual ICollection<HosHistoriaClinica> HosHistoriaClinica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<especiales> especiales { get; set; }
+        public virtual ICollection<HosRecetasyExamenes> HosRecetasyExamenes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatosEspeciales> DatosEspeciales { get; set; }
+        public virtual ICollection<Hosespeciales> Hosespeciales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultas> Consultas { get; set; }
+        public virtual ICollection<Hospaciente> Hospaciente { get; set; }
     }
 }

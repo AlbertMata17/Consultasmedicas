@@ -13,8 +13,8 @@ namespace SpointLiteVersion.Controllers
 {
     public class ConsultasController : Controller
     {
-        private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
-        RecetasyExamenes receta1 = new RecetasyExamenes();
+        private hospointEntities db = new hospointEntities();
+        HosRecetasyExamenes receta1 = new HosRecetasyExamenes();
 
         // GET: Consultas
         public ActionResult Index()
@@ -27,12 +27,12 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            var busca = (from s in db.DetalleTemporales select s.Id).Count();
+            var busca = (from s in db.HosDetalleTemporales select s.Id).Count();
             if (busca > 0)
             {
                 db.VaciarTablaTemporal();
             }
-            var consultas = db.Consultas.Include(c => c.paciente);
+            var consultas = db.HosConsultas.Include(c => c.clientes);
             return View(consultas.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1).ToList());
         }
         public JsonResult GetPaciente(int idpaciente)
@@ -44,12 +44,11 @@ namespace SpointLiteVersion.Controllers
 
 
             //var numeros =Convert.ToInt32(s).ToString("D10");
-            var numero = 0;
            
             
            
             db.Configuration.ProxyCreationEnabled = false;
-            List<paciente> productos = db.paciente.Where(m => m.idPaciente == idpaciente && m.Estatus==1 && m.Usuarioid==usuarioid1).ToList();
+            List<clientes> productos = db.clientes.Where(m => m.idcliente == idpaciente && m.estado=="1" && m.Usuarioid==usuarioid1 || m.idcliente == idpaciente && m.estado == "1" && m.Usuarioid == null).ToList();
           
             //ViewBag.FK_Vehiculo = new SelectList(db.Vehiculo.Where(a => a.Clase == Clase && a.Estatus == "Disponible"), "VehiculoId", "Marca");
             return Json(productos, JsonRequestBehavior.AllowGet);
@@ -63,15 +62,15 @@ namespace SpointLiteVersion.Controllers
 
 
 
-            var datosconsulta = db.Consultas.Where(m => m.idpaciente == idpaciente && m.Estatus==1 && m.Usuarioid==usuarioid1).FirstOrDefault();
-            Consultas consultas = new Consultas();
+            var datosconsulta = db.HosConsultas.Where(m => m.idpaciente == idpaciente && m.Estatus==1 && m.Usuarioid==usuarioid1).FirstOrDefault();
+            HosConsultas consultas = new HosConsultas();
             consultas.Compania = datosconsulta.Compania.ToString();
             consultas.Examenes = datosconsulta.Examenes.ToString();
             consultas.Diagnostico = datosconsulta.Diagnostico.ToString();
             consultas.Receta = datosconsulta.Receta.ToString();
 
             db.Configuration.ProxyCreationEnabled = false;
-            List<Consultas> productos = new List<Consultas>();
+            List<HosConsultas> productos = new List<HosConsultas>();
             productos.Add(consultas);
             return Json(productos, JsonRequestBehavior.AllowGet);
         }
@@ -87,7 +86,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultas consultas = db.Consultas.Find(id);
+            HosConsultas consultas = db.HosConsultas.Find(id);
             if (consultas == null)
             {
                 return HttpNotFound();
@@ -97,7 +96,7 @@ namespace SpointLiteVersion.Controllers
         public ActionResult VistaImpresion(int? id)
         {
             id = 20;
-            return View(db.paciente.Where(m=>m.idPaciente==id).ToList());
+            return View(db.clientes.Where(m=>m.idcliente==id).ToList());
         }
         public JsonResult Obtenerdatos(int idpaciente)
         {
@@ -108,8 +107,8 @@ namespace SpointLiteVersion.Controllers
 
 
 
-            var datosconsulta = db.HistoriaClinica.Where(m => m.idpaciente == idpaciente && m.Estatus==1 && m.Usuarioid==usuarioid1).FirstOrDefault();
-            HistoriaClinica consultas = new HistoriaClinica();
+            var datosconsulta = db.HosHistoriaClinica.Where(m => m.idpaciente == idpaciente && m.Estatus==1 && m.Usuarioid==usuarioid1).FirstOrDefault();
+            HosHistoriaClinica consultas = new HosHistoriaClinica();
             consultas.antsociales = datosconsulta.antsociales.ToString();
             consultas.antecedentesfamiliares = datosconsulta.antecedentesfamiliares.ToString();
             consultas.historia = datosconsulta.historia.ToString();
@@ -117,7 +116,7 @@ namespace SpointLiteVersion.Controllers
 
 
             db.Configuration.ProxyCreationEnabled = false;
-            List<HistoriaClinica> productos = new List<HistoriaClinica>();
+            List<HosHistoriaClinica> productos = new List<HosHistoriaClinica>();
             productos.Add(consultas);
             return Json(productos, JsonRequestBehavior.AllowGet);
         }
@@ -232,12 +231,12 @@ namespace SpointLiteVersion.Controllers
             if (id == null)
             {
                 ViewBag.idmostrarseleccion = idpaciente;
-                ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre");
-                var s = (from datosid in db.Consultas where datosid.Estatus==1 select datosid.idConsulta).FirstOrDefault();
+                ViewBag.idpaciente = new SelectList(db.clientes.Where(m=>m.estado=="1" && m.Usuarioid==usuarioid1 || m.estado == "1" && m.Usuarioid == null), "idcliente", "nombre");
+                var s = (from datosid in db.HosConsultas where datosid.Estatus==1 select datosid.idConsulta).FirstOrDefault();
                 var idmostrar = 0;
                 if (s > 0)
                 {
-                    idmostrar = (from datosid in db.Consultas where datosid.Estatus==1 select datosid.idConsulta).Max() + 1;
+                    idmostrar = (from datosid in db.HosConsultas where datosid.Estatus==1 select datosid.idConsulta).Max() + 1;
                 }
                 else
                 {
@@ -247,23 +246,23 @@ namespace SpointLiteVersion.Controllers
                 return View();
 
             }
-            Consultas paciente = db.Consultas.Find(id);
+            HosConsultas paciente = db.HosConsultas.Find(id);
             if (paciente == null)
             {
                 return HttpNotFound();
             }
             if (id != null)
             {
-                ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre",paciente.idpaciente);
+                ViewBag.idpaciente = new SelectList(db.clientes.Where(m=>m.estado=="1" && m.Usuarioid==usuarioid1 || m.estado=="1" && m.Usuarioid==null), "idcliente", "nombre",paciente.idpaciente);
                 ViewBag.id = "algo";
-                if ((from s in db.Consultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault() != null)
+                if ((from s in db.HosConsultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault() != null)
                 {
-                    DateTime Horaprueba = Convert.ToDateTime((from s in db.Consultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault());
+                    DateTime Horaprueba = Convert.ToDateTime((from s in db.HosConsultas where s.idConsulta == id && s.Usuarioid == usuarioid1 && s.Estatus == 1 select s.Hora).FirstOrDefault());
                     ViewBag.hora = Horaprueba.ToString("hh:mm tt");
                 }
-                DateTime fechaprueba=Convert.ToDateTime((from s in db.Consultas where s.idConsulta == id && s.Estatus == 1 && s.Usuarioid == usuarioid1 select s.fecha).FirstOrDefault());
+                DateTime fechaprueba=Convert.ToDateTime((from s in db.HosConsultas where s.idConsulta == id && s.Estatus == 1 && s.Usuarioid == usuarioid1 select s.fecha).FirstOrDefault());
                 ViewBag.fecha = fechaprueba.ToString("yyyy-MM-dd");
-                var historia = (from his in db.Consultas where his.idConsulta == id && his.Estatus==1 && his.Usuarioid==usuarioid1 select his).FirstOrDefault();
+                var historia = (from his in db.HosConsultas where his.idConsulta == id && his.Estatus==1 && his.Usuarioid==usuarioid1 select his).FirstOrDefault();
                 if (historia != null)
                 {
                     ViewBag.Observaciones = historia.Observaciones;
@@ -272,16 +271,16 @@ namespace SpointLiteVersion.Controllers
                     ViewBag.Examenes = historia.Examenes;
                     ViewBag.SeguroMedico = historia.SeguroMedico;
                     ViewBag.Compania = historia.Compania;
-                    ViewBag.idreceta = (from recet in db.RecetasyExamenes where recet.idPaciente==paciente.idpaciente && recet.Tipo=="RECETA" && recet.Detalle.ToString().ToUpper()==historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
+                    ViewBag.idreceta = (from recet in db.HosRecetasyExamenes where recet.idPaciente==paciente.idpaciente && recet.Tipo=="RECETA" && recet.Detalle.ToString().ToUpper()==historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
                     TempData["idejemplo"] = ViewBag.idreceta.ToString();
-                    ViewBag.idreceta1 = (from recet in db.RecetasyExamenes where recet.idPaciente == paciente.idpaciente && recet.Tipo=="EXAMENES" && recet.Detalle.ToString().ToUpper() == historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
+                    ViewBag.idreceta1 = (from recet in db.HosRecetasyExamenes where recet.idPaciente == paciente.idpaciente && recet.Tipo=="EXAMENES" && recet.Detalle.ToString().ToUpper() == historia.Receta.ToString().ToUpper() select recet.id).FirstOrDefault();
                     TempData["idejemplo1"] = ViewBag.idreceta1.ToString();
                 }
                 return View(paciente);
 
             }
 
-            ViewBag.idpaciente = new SelectList(db.paciente.Where(m=>m.Estatus==1 && m.Usuarioid==usuarioid1), "idPaciente", "nombre");
+            ViewBag.idpaciente = new SelectList(db.clientes.Where(m=>m.estado=="1" && m.Usuarioid==usuarioid1 || m.estado == "1" && m.Usuarioid == null), "idcliente", "nombre");
             return View();
         }
 
@@ -290,13 +289,13 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes,Hora")] Consultas consultas)
+        public ActionResult Create([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes,Hora")] HosConsultas consultas)
         {
             var usuarioid = Session["userid"].ToString();
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            var t = (from s in db.Consultas where s.idConsulta == consultas.idConsulta && s.Estatus==1 select s.idConsulta).Count();
+            var t = (from s in db.HosConsultas where s.idConsulta == consultas.idConsulta && s.Estatus==1 select s.idConsulta).Count();
             if (t != 0)
             {
                 if (ModelState.IsValid)
@@ -358,7 +357,7 @@ namespace SpointLiteVersion.Controllers
                     consultas.Estatus = 1;
                     consultas.Empresaid = empresaid1;
                     consultas.Usuarioid = usuarioid1;
-                    var buscar = (from s in db.DetalleTemporales select s.Id).Count();
+                    var buscar = (from s in db.HosDetalleTemporales select s.Id).Count();
                     if (buscar > 0)
                     {
                         db.TemptoEspecial();
@@ -400,7 +399,7 @@ namespace SpointLiteVersion.Controllers
                         {
                             receta1.fecha = consultas.fecha;
                         }
-                        db.RecetasyExamenes.Add(receta1);
+                        db.HosRecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consultas.Receta = consultas.Receta.ToUpper();
                     }
@@ -416,19 +415,19 @@ namespace SpointLiteVersion.Controllers
                         {
                             receta1.fecha = consultas.fecha;
                         }
-                        db.RecetasyExamenes.Add(receta1);
+                        db.HosRecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consultas.Examenes = consultas.Examenes.ToUpper();
                     }
                     consultas.Estatus = 1;
                     consultas.Empresaid = empresaid1;
                     consultas.Usuarioid = usuarioid1;
-                    var buscar = (from s in db.DetalleTemporales select s.Id).Count();
+                    var buscar = (from s in db.HosDetalleTemporales select s.Id).Count();
                     if (buscar > 0)
                     {
                         db.TemptoEspecial();
                     }
-                    db.Consultas.Add(consultas);
+                    db.HosConsultas.Add(consultas);
                     db.SaveChanges();
                     var id = consultas.idpaciente;
 
@@ -441,7 +440,7 @@ namespace SpointLiteVersion.Controllers
 
                 }
             }
-            ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
+            ViewBag.idpaciente = new SelectList(db.clientes, "idcliente", "nombre", consultas.idpaciente);
             return View(consultas);
         }
 
@@ -456,12 +455,12 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultas consultas = db.Consultas.Find(id);
+            HosConsultas consultas = db.HosConsultas.Find(id);
             if (consultas == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
+            ViewBag.idpaciente = new SelectList(db.clientes, "idPaciente", "nombre", consultas.idpaciente);
             return View(consultas);
         }
 
@@ -470,7 +469,7 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes")] Consultas consultas)
+        public ActionResult Edit([Bind(Include = "idConsulta,TipoConsulta,fecha,idpaciente,edad,telefono,SeguroMedico,Compania,Poliza,Observaciones,Diagnostico,Receta,Examenes")] HosConsultas consultas)
         {
             if (ModelState.IsValid)
             {
@@ -479,7 +478,7 @@ namespace SpointLiteVersion.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idpaciente = new SelectList(db.paciente, "idPaciente", "nombre", consultas.idpaciente);
+            ViewBag.idpaciente = new SelectList(db.Hospaciente, "idPaciente", "nombre", consultas.idpaciente);
             return View(consultas);
         }
         public ActionResult GuardarConsultar(string TipoConsulta,string idConsulta1,string fecha,string idpaciente,string edad,string telefono,string SeguroMedico,string Compania,string Poliza,string Observaciones,string Diagnostico,string Hora,string Receta,string Examenes)
@@ -489,7 +488,7 @@ namespace SpointLiteVersion.Controllers
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
             string mensaje = "";
-            Consultas consult = new Consultas();
+            HosConsultas consult = new HosConsultas();
             if (idpaciente == "undefined" || idpaciente=="")
             {
                 mensaje = "Seleccione Un Paciente";
@@ -501,10 +500,10 @@ namespace SpointLiteVersion.Controllers
                 {
                     consultas = Convert.ToInt32(idConsulta1);
                 }
-                var t = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).Count();
+                var t = (from s in db.HosConsultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).Count();
                 if (t != 0)
                 {
-                    var consultaval = (from s in db.Consultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).FirstOrDefault();
+                    var consultaval = (from s in db.HosConsultas where s.idConsulta == consultas && s.Estatus == 1 select s.idConsulta).FirstOrDefault();
 
                     consult.idConsulta = consultaval;
                     if (TipoConsulta != "undefined" || TipoConsulta!="")
@@ -555,7 +554,7 @@ namespace SpointLiteVersion.Controllers
                         {
                             receta1.fecha = Convert.ToDateTime(fecha);
                         }
-                        db.RecetasyExamenes.Add(receta1);
+                        db.HosRecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                     }
                     if (Examenes != "undefined" || Examenes!="")
@@ -571,7 +570,7 @@ namespace SpointLiteVersion.Controllers
                             receta1.fecha = Convert.ToDateTime(fecha);
                         }
                         
-                        db.RecetasyExamenes.Add(receta1);
+                        db.HosRecetasyExamenes.Add(receta1);
                         db.SaveChanges();
                         consult.Examenes = Examenes.ToUpper();
                     }
@@ -582,7 +581,7 @@ namespace SpointLiteVersion.Controllers
                     consult.Estatus = 1;
                     consult.Empresaid = empresaid1;
                     consult.Usuarioid = usuarioid1;
-                    var buscar = (from s in db.DetalleTemporales select s.Id).Count();
+                    var buscar = (from s in db.HosDetalleTemporales select s.Id).Count();
                     if (buscar > 0)
                     {
                         db.TemptoEspecial();
@@ -645,14 +644,14 @@ namespace SpointLiteVersion.Controllers
                     consult.Estatus = 1;
                     consult.Empresaid = empresaid1;
                     consult.Usuarioid = usuarioid1;
-                    var buscar = (from s in db.DetalleTemporales select s.Id).Count();
+                    var buscar = (from s in db.HosDetalleTemporales select s.Id).Count();
                     if (buscar > 0)
                     {
                         db.TemptoEspecial();
                         
                     }
                     consult.Hora = Hora;
-                    db.Consultas.Add(consult);
+                    db.HosConsultas.Add(consult);
                     db.SaveChanges();
 
                     var idConsulta = consult.idConsulta;
@@ -671,7 +670,7 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            RecetasyExamenes consulta = new RecetasyExamenes();
+            HosRecetasyExamenes consulta = new HosRecetasyExamenes();
             if (idrecet != null && idrecet != "" && idrecet != "undefined")
             {
                 if (idpaciente == "undefined" || idpaciente == "" || Receta == "undefined" || Receta == "")
@@ -699,10 +698,10 @@ namespace SpointLiteVersion.Controllers
                         consulta.Tipo = tipo.ToString().ToUpper();
 
                     }
-                    else
-                    {
-                        consulta.Tipo = "RECETA";
-                    }
+                    //else
+                    //{
+                    //    consulta.Tipo = "RECETA";
+                    //}
                     consulta.Estatus = 1;
                     consulta.Empresaid = empresaid1;
                     consulta.Usuarioid = usuarioid1;
@@ -740,7 +739,12 @@ namespace SpointLiteVersion.Controllers
                     consulta.Estatus = 1;
                     consulta.Empresaid = empresaid1;
                     consulta.Usuarioid = usuarioid1;
-                    db.RecetasyExamenes.Add(consulta);
+                    if (tipo != "" && tipo != "undefined" && tipo != null)
+                    {
+                        consulta.Tipo = tipo.ToString().ToUpper();
+
+                    }
+                    db.HosRecetasyExamenes.Add(consulta);
                     db.SaveChanges();
                     var id = consulta.id;
                     mensaje = "RECETA GUARDADA CON EXITO...";
@@ -761,7 +765,7 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            return View(db.RecetasyExamenes.Where(m=>m.Usuarioid==usuarioid1 && m.Estatus==1).ToList());
+            return View(db.HosRecetasyExamenes.Where(m=>m.Usuarioid==usuarioid1 && m.Estatus==1).ToList());
         }
         public ActionResult GuardarExamen(string idpaciente, string Examenes,string fecha)
         {
@@ -770,7 +774,7 @@ namespace SpointLiteVersion.Controllers
             var empresaid = Session["empresaid"].ToString();
             var usuarioid1 = Convert.ToInt32(usuarioid);
             var empresaid1 = Convert.ToInt32(empresaid);
-            RecetasyExamenes consulta = new RecetasyExamenes();
+            HosRecetasyExamenes consulta = new HosRecetasyExamenes();
             if (idpaciente == "undefined" || idpaciente == "" || Examenes == "undefined" || Examenes=="undefined")
             {
                 if (idpaciente == "undefined" || idpaciente=="") mensaje = "Seleccione Un Paciente";
@@ -795,7 +799,7 @@ namespace SpointLiteVersion.Controllers
 
                 consulta.Empresaid = empresaid1;
                 consulta.Usuarioid = usuarioid1;
-                db.RecetasyExamenes.Add(consulta);
+                db.HosRecetasyExamenes.Add(consulta);
                 db.SaveChanges();
                 var id = consulta.id;
                 mensaje = "EXAMEN GUARDADO CON EXITO...";
@@ -815,7 +819,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultas consultas = db.Consultas.Find(id);
+            HosConsultas consultas = db.HosConsultas.Find(id);
             if (consultas == null)
             {
                 return HttpNotFound();
@@ -828,7 +832,7 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Consultas consultas = db.Consultas.Find(id);
+            HosConsultas consultas = db.HosConsultas.Find(id);
             consultas.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -845,7 +849,7 @@ namespace SpointLiteVersion.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            RecetasyExamenes consultas = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes consultas = db.HosRecetasyExamenes.Find(id);
             if (consultas == null)
             {
                 return HttpNotFound();
@@ -857,7 +861,7 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BorrarConfirmed(int id)
         {
-            RecetasyExamenes consultas = db.RecetasyExamenes.Find(id);
+            HosRecetasyExamenes consultas = db.HosRecetasyExamenes.Find(id);
             consultas.Estatus = 0;
             db.SaveChanges();
             return RedirectToAction("Index");

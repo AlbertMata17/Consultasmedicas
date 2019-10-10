@@ -12,7 +12,7 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DatosEspeciales
+    public partial class HosDetalleTemporales
     {
         public int Id { get; set; }
         public Nullable<int> IdDatosEspeciales { get; set; }
@@ -22,9 +22,22 @@ namespace SpointLiteVersion.Models
         public Nullable<int> estatus { get; set; }
         public Nullable<int> empresaid { get; set; }
         public Nullable<int> idConsulta { get; set; }
-    
-        public virtual Empresa Empresa { get; set; }
-        public virtual especiales especiales { get; set; }
-        public virtual Login Login { get; set; }
+
+        public HosDetalleTemporales(int? idDatosEspeciales, string valor, int? usuarioid, int? idpaciente, int? estatus, int? empresaid, int? idConsulta)
+        {
+            IdDatosEspeciales = idDatosEspeciales;
+            Valor = valor;
+            Usuarioid = usuarioid;
+            this.idpaciente = idpaciente;
+            this.estatus = estatus;
+            this.empresaid = empresaid;
+            this.idConsulta = idConsulta;
+        }
+
+        public HosDetalleTemporales()
+        {
+        }
+
+        public virtual Hosespeciales Hosespeciales { get; set; }
     }
 }

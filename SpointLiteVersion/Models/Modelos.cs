@@ -7,8 +7,8 @@ namespace SpointLiteVersion.Models
 {
     public class modelos
     {
-        public Consultas consultas { get; set; }
-        public paciente paciente { get; set; }
+        public  HosConsultas consultas { get; set; }
+        public Hospaciente paciente { get; set; }
       
         private string datos;
 

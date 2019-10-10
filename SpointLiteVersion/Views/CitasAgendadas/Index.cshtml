@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SpointLiteVersion.Models.CitasAgendadas>
+﻿@model IEnumerable<SpointLiteVersion.Models.HosCitasAgendadas>
 
 @{
     ViewBag.Title = "Agendar";
@@ -42,7 +42,7 @@
                                 @Html.DisplayFor(modelItem => item.fecha)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.paciente.nombre)
+                                @Html.DisplayFor(modelItem => item.clientes.nombre)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.MotivoCita)
@@ -90,6 +90,8 @@
 <script>
     $(document).ready(function () {
         $('#tabla').DataTable({
+            "pageLength": 25,
+
             "pagingType": "full_numbers", // "simple" option for 'Previous' and 'Next' buttons only
             "language": {
                 "decimal": "",

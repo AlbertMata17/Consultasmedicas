@@ -1,4 +1,4 @@
-﻿@model SpointLiteVersion.Models.paciente
+﻿@model SpointLiteVersion.Models.clientes
 
 @{
     ViewBag.Title = "Create";
@@ -30,7 +30,7 @@
 
                             </center>
                         }
-                        @if(ViewBag.foto==null)
+                        @if (ViewBag.foto == null)
                         {
                             <center>
                                 <div>
@@ -44,7 +44,7 @@
 
                             </center>
                         }
-                          
+
                         <div class="form-row col-md-offset-9" style="margin-top:-60px;">
                             @if (ViewBag.id != null)
                             {
@@ -59,11 +59,11 @@
                                 </div>
                             }
                             <div class="form-group col-md-4 botonesacciones">
-                                <button type="button" class="btn btn-info"  id="crear" title="Salvar"><i class="far fa-save"></i> </button>
+                                <button type="button" class="btn btn-info" id="crear" title="Salvar"><i class="far fa-save"></i> </button>
 
                             </div>
                             <div class="form-group col-md-2 botonesacciones">
-                                <button type="button" class="btn btn-info"  id="agregarconsulta" title="Salvar y Consultar"><i class="fas fa-notes-medical"></i></button>
+                                <button type="button" class="btn btn-info" id="agregarconsulta" title="Salvar y Consultar"><i class="fas fa-notes-medical"></i></button>
 
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 @Html.Label("Id", htmlAttributes: new { @class = "control-label col-md-2" })
 
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @Html.EditorFor(model => model.idPaciente, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                @Html.EditorFor(model => model.idcliente, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
 
                             </div>
                         }
@@ -115,16 +115,16 @@
                         <div class="form-group col-md-3">
                             @Html.Label("Teléfono", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 3 } })
-                            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 3 } })
+                            @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
 
 
                         </div>
                         <div class="form-group col-md-3">
                             @Html.Label("Teléfono #2", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
 
-                            @Html.EditorFor(model => model.telefono2, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 4 } })
-                            @Html.ValidationMessageFor(model => model.telefono2, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.tel2, new { htmlAttributes = new { @class = "form-control", @placeholder = "(999) 999-9999", tabindex = 4 } })
+                            @Html.ValidationMessageFor(model => model.tel2, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-2">
@@ -137,8 +137,8 @@
                         <div class="form-group col-md-2 form1">
                             @Html.Label("Ciudad", htmlAttributes: new { @class = "control-label col-md-2" })
 
-                            @Html.DropDownList("idciuddad", null, htmlAttributes: new { @class = "form-control", tabindex = 6 })
-                            @Html.ValidationMessageFor(model => model.idciuddad, "", new { @class = "text-danger" })
+                            @Html.DropDownList("idciudad", null, htmlAttributes: new { @class = "form-control", tabindex = 6, @required = true })
+                            @Html.ValidationMessageFor(model => model.idciudad, "", new { @class = "text-danger" })
 
 
                         </div>
@@ -153,13 +153,13 @@
                             @Html.Label("Nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
                             @if (ViewBag.nacimiento != null)
                             {
-                                <input type="date" name="fechanacimiento" id="fechanacimiento" value="@ViewBag.nacimiento" class="form-control" tabindex="7" />
+                                <input type="date" name="fechanacimiento" id="fecha_nac" value="@ViewBag.nacimiento" class="form-control" tabindex="7" />
                             }@if (ViewBag.nacimiento == null)
                             {
-                                <input type="date" name="fechanacimiento" id="fechanacimiento" value="" class="form-control" tabindex="7" />
+                                <input type="date" name="fechanacimiento" id="fecha_nac" value="" class="form-control" tabindex="7" />
 
                             }
-                            @Html.ValidationMessageFor(model => model.fechanacimiento, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.fecha_nac, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-1">
@@ -170,27 +170,30 @@
                             }@if (ViewBag.edad1 == null)
                             {<input type="text" name="edad1" id="edad1" value="" class="form-control" readonly disabled />
                             }
-                            @Html.ValidationMessageFor(model => model.fechanacimiento, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.fecha_nac, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-3">
                             @Html.Label("Género", htmlAttributes: new { @class = "control-label col-md-2" })
                             <select class="form-control" name="sexo" id="sexo" tabindex="8">
-                                <option value="MASCULINO">MASCULINO</option>
-                                <option value="FEMENINO">FEMENINO</option>
-                                <option value="PREFIERO NO DECIRLO">PREFIERO NO DECIRLO</option>
+                                <option value="1">MASCULINO</option>
+                                <option value="0">FEMENINO</option>
                             </select>
                             @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group col-md-3">
                             @Html.Label("Estado Civil", htmlAttributes: new { @class = "control-label col-md-12", @style = "text-align:left;" })
-                            <select class="form-control" name="EstadoCivil" id="EstadoCivil" tabindex="9">
-                                <option value="SOLTERO">SOLTERO</option>
-                                <option value="CASADO">CASADO</option>
-                                <option value="DIVORCIADO">DIVORCIADO</option>
+                            <select class="form-control" name="estadoCivil" id="EstadoCivil" tabindex="9">
+                                <option value="0">DESCONOCIDO</option>
+
+                                <option value="1">SOLTERO</option>
+                                <option value="2">CASADO</option>
+                                <option value="3">VIUDO</option>
+
+                                <option value="4">DIVORCIADO</option>
                             </select>
-                            @Html.ValidationMessageFor(model => model.EstadoCivil, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.estadoCivil, "", new { @class = "text-danger" })
 
                         </div>
 
@@ -573,7 +576,8 @@
 </div>
 <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="~/Scripts/alertify/alertify.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 <script src="~/Scripts/inputmask/inputmask.js"></script>
 <script src="~/Scripts/inputmask/inputmask.extensions.js"></script>
 <script src="~/Scripts/inputmask/jquery.inputmask.js"></script>
@@ -691,8 +695,8 @@
 <script>
     $(":input").inputmask();
 
-    $("#telefono").inputmask({ "mask": "(999) 999-9999" });
-    $("#telefono2").inputmask({ "mask": "(999) 999-9999" });
+    $("#tel").inputmask({ "mask": "(999) 999-9999" });
+    $("#tel2").inputmask({ "mask": "(999) 999-9999" });
     $("#cedula").inputmask({ "mask": "999-9999999-9" });
     $("#cedula").numeric({ altDecimal: '-' });
 
@@ -706,7 +710,7 @@
             var url = "@Url.Action("Delete", "pacientes", new { id="param-name"})";
             var paciente = $("#idPaciente").val();
                 url=url.replace("param-name",paciente);
-            $(".comprobante").load(url)            
+            $(".comprobante").load(url)
         });
         $(".Datoscomprobante").click(function () {
             $(".comprobante1").load("/ciudads/Create")
@@ -719,7 +723,7 @@
         $(document).ready(function () {
 
 
-       
+
         });
     </script>*@
 <script>
@@ -727,7 +731,7 @@
     $(document).keyup(function (tecla) {
         if (tecla.keyCode == 187 || tecla.keyCode == 107) {
             $(".Datoscomprobante").click();
-         
+
         }
     });
 
@@ -748,8 +752,8 @@
 </script>
 <script>
 
-    $("#fechanacimiento").change(function () {
-        $.post("/pacientes/Getedad", { fechanacimiento: $("#fechanacimiento").val() }, function (data) {
+    $("#fecha_nac").change(function () {
+        $.post("/pacientes/Getedad", { fechanacimiento: $("#fecha_nac").val() }, function (data) {
             $("#edad1").empty();
 
 
@@ -800,8 +804,16 @@
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
 
-            var i = 0;
-            var envio = "{consulta:'" + $("#consulta").val() + "',idpaciente:'" + $("#idPaciente").val() + "',idPacient:'" + $("#idpaciente").val() + "',antecedentesmedicos:'" + $("#antecedentesmedicos").val() + "',estatura:'" + $("#estatura").val() + "',centimetro:'" + $("#centimetro").val() + "',peso:'" + $("#peso").val() + "',peso1:'" + $("#peso1").val() + "',temperatura:'" + $("#temperatura").val() + "',temperatura1:'" + $("#temperatura1").val() + "',nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',gruposanguineo:'" + $("#gruposanguineo").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',antecedentesginecologico:'" + $("#antecedentesginecologico").val() + "',alergias:'" + $("#alergias").val() + "',Medicamentos:'" + $("#Medicamentos").val() + "',Revision:'" + $("#Revision").val() + "',Enfermedad:'" + $("#Enfermedad").val() + "',personales:'" + $("#personales").val() + "',familiares:'" + $("#familiares").val() + "',Vacunas:'" + $("#Vacunas").val() + "',Habitos:'" + $("#Habitos").val() + "',Foto:'" + $("#Foto").val() + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
+          
+            //window.swal({
+            //    title: "Checking...",
+            //    text: "Please wait",
+            //    imageUrl: "images/ajaxloader.gif",
+            //    showConfirmButton: false,
+            //    allowOutsideClick: false
+            //});
+              var i = 0;
+            var envio = "{consulta:'" + $("#consulta").val() + "',idpaciente:'" + $("#idcliente").val() + "',idPacient:'" + $("#idpaciente").val() + "',antecedentesmedicos:'" + $("#antecedentesmedicos").val() + "',estatura:'" + $("#estatura").val() + "',centimetro:'" + $("#centimetro").val() + "',peso:'" + $("#peso").val() + "',peso1:'" + $("#peso1").val() + "',temperatura:'" + $("#temperatura").val() + "',temperatura1:'" + $("#temperatura1").val() + "',nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fecha_nac").val() + "',gruposanguineo:'" + $("#gruposanguineo").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#tel").val() + "',telefono2:'" + $("#tel2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciudad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',antecedentesginecologico:'" + $("#antecedentesginecologico").val() + "',alergias:'" + $("#alergias").val() + "',Medicamentos:'" + $("#Medicamentos").val() + "',Revision:'" + $("#Revision").val() + "',Enfermedad:'" + $("#Enfermedad").val() + "',personales:'" + $("#personales").val() + "',familiares:'" + $("#familiares").val() + "',Vacunas:'" + $("#Vacunas").val() + "',Habitos:'" + $("#Habitos").val() + "',Foto:'" + $("#Foto").val() + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
 
 
 
@@ -812,7 +824,7 @@
             //alertify.alert("INGRESE DATOS");
             console.info(json);
             var miUrl = '@Url.Action("Historia", "pacientes")'
-
+           
             $.ajax({
                 url: miUrl,
                 data: JSON.stringify(json),
@@ -861,8 +873,12 @@
 <script>
 
     $(document).ready(function () {
-
-
+        if ("@ViewBag.estadoCivil"!= "") {
+            $("#EstadoCivil").val(@ViewBag.estadoCivil);
+        }
+        if ("@ViewBag.sexo"!= "") {
+            $("#sexo").val(@ViewBag.sexo);
+        }
         $("a[rel='pop-up']").click(function () {
             var caracteristicas = "height=550,width=1000,scrollTo,resizable=1,scrollbars=1,location=0";
             nueva = window.open(this.href, 'popup', caracteristicas);
@@ -875,7 +891,7 @@
             //alertify.alert("Boton Iniciado");
             //console.info('hola');
             var i = 0;
-            var envio = "{nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fechanacimiento").val() + "',idpaciente:'" + $("#idPaciente").val() + "',idPacient:'" + $("#idpaciente").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#telefono").val() + "',telefono2:'" + $("#telefono2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciuddad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',Foto:'" + $("#Foto").val()  + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
+            var envio = "{nombre:'" + $("#nombre").val() + "',fechanacimiento:'" + $("#fecha_nac").val() + "',idpaciente:'" + $("#idcliente").val() + "',idPacient:'" + $("#idpaciente").val() + "',direccion:'" + $("#direccion").val() + "',telefono:'" + $("#tel").val() + "',telefono2:'" + $("#tel2").val() + "',cedula:'" + $("#cedula").val() + "',idciuddad:'" + $("#idciudad").val() + "',email:'" + $("#email").val() + "',sexo:'" + $("#sexo").val() + "',EstadoCivil:'" + $("#EstadoCivil").val() + "',Foto:'" + $("#Foto").val()  + "',IdCabecera:'2',Habitos1:'" + $('#Habitos').val() + "',";
 
 
 

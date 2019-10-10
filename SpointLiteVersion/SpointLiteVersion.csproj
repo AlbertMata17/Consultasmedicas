@@ -186,31 +186,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CitasAgendadas.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ciudad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Consultas.cs">
+    <Compile Include="Models\clientes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DatosEspeciales.cs">
+    <Compile Include="Models\HosCitasAgendadas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DetalleTemporales.cs">
+    <Compile Include="Models\Hosciudad.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Empresa.cs">
+    <Compile Include="Models\HosConsultas.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\especiales.cs">
+    <Compile Include="Models\HosDatosEspeciales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HistoriaClinica.cs">
+    <Compile Include="Models\HosDetalleTemporales.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Login.cs">
+    <Compile Include="Models\HosEmpresa.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hosespeciales.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HosHistoriaClinica.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HosLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hospaciente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HosRecetasyExamenes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -229,19 +241,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\modelos.cs" />
-    <Compile Include="Models\paciente.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RecetasyExamenes.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sp_reporte_examenes_back_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_reporte_HistorialClinico_back_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_reporte_receta_back_Result.cs">
+    <Compile Include="Models\sp_reporte_receta_back__Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -6529,6 +6535,7 @@
     <Content Include="Content\build\js\PushMenu.js" />
     <Content Include="Content\build\js\TodoList.js" />
     <Content Include="Content\build\js\Tree.js" />
+    <Content Include="Content\cargando.gif" />
     <Content Include="Content\cleave.js" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />

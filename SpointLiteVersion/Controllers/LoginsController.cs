@@ -12,7 +12,7 @@ namespace RentCar.Controllers
 {
     public class LoginsController : Controller
     {
-        private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
+        private hospointEntities db = new hospointEntities();
 
         // GET: Logins
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace RentCar.Controllers
                 return RedirectToAction("Login");
             }
 
-            return View(db.Login.ToList());
+            return View(db.HosLogin.ToList());
         }
 
         // GET: Logins/Details/5
@@ -37,7 +37,7 @@ namespace RentCar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
@@ -54,18 +54,18 @@ namespace RentCar.Controllers
             }
             if (id == null)
             {
-                ViewBag.empresaid = new SelectList(db.Empresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre");
+                ViewBag.empresaid = new SelectList(db.HosEmpresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre");
                 return View();
 
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
             }
             if (id != null)
             {
-                ViewBag.empresaid = new SelectList(db.Empresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre",login.empresaid);
+                ViewBag.empresaid = new SelectList(db.HosEmpresa.Where(m => m.estatus == 1), "IdEmpresa", "Nombre",login.empresaid);
                 ViewBag.id = "algo";
                 ViewBag.foto = login.Foto;
 
@@ -85,13 +85,13 @@ namespace RentCar.Controllers
         [HttpPost]
         public ActionResult Verify(string Username, string Password)
         {
-            var a = from Login in db.Login.Where(x => x.Username == Username && x.Password == Password ) select Login;
-            var p = from Login in db.Login select Login.Privilegio;
-            var nombre = (from s in db.Login where s.Username==Username && s.Password==Password select s.Nombre).FirstOrDefault();
-            var apellido = (from s in db.Login where s.Username == Username && s.Password == Password select s.Apellido).FirstOrDefault();
-            var userid = (from s in db.Login where s.Username == Username && s.Password == Password select s.LoginId).FirstOrDefault();
-            var empresaid = (from s in db.Login where s.Username == Username && s.Password == Password select s.empresaid).FirstOrDefault();
-            var privilegio = (from s in db.Login where s.Username == Username && s.Password == Password select s.Privilegio).FirstOrDefault();
+            var a = from Login in db.HosLogin.Where(x => x.Username == Username && x.Password == Password ) select Login;
+            var p = from Login in db.HosLogin select Login.Privilegio;
+            var nombre = (from s in db.HosLogin where s.Username==Username && s.Password==Password select s.Nombre).FirstOrDefault();
+            var apellido = (from s in db.HosLogin where s.Username == Username && s.Password == Password select s.Apellido).FirstOrDefault();
+            var userid = (from s in db.HosLogin where s.Username == Username && s.Password == Password select s.LoginId).FirstOrDefault();
+            var empresaid = (from s in db.HosLogin where s.Username == Username && s.Password == Password select s.empresaid).FirstOrDefault();
+            var privilegio = (from s in db.HosLogin where s.Username == Username && s.Password == Password select s.Privilegio).FirstOrDefault();
 
 
             if (a.Any())
@@ -127,9 +127,9 @@ namespace RentCar.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid,Foto")] Login login)
+        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid,Foto")] HosLogin login)
         {
-            var t = (from s in db.Login where s.LoginId == login.LoginId select s.LoginId).Count();
+            var t = (from s in db.HosLogin where s.LoginId == login.LoginId select s.LoginId).Count();
             if (t != 0)
             {
 
@@ -147,12 +147,12 @@ namespace RentCar.Controllers
                 if (ModelState.IsValid)
                 {
                     login.estatus = 1;
-                    db.Login.Add(login);
+                    db.HosLogin.Add(login);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
             }
-            ViewBag.empresaid = new SelectList(db.Empresa.Where(m=>m.estatus==1), "IdEmpresa", "Nombre", login.empresaid);
+            ViewBag.empresaid = new SelectList(db.HosEmpresa.Where(m=>m.estatus==1), "IdEmpresa", "Nombre", login.empresaid);
 
             return View(login);
         }
@@ -169,7 +169,7 @@ namespace RentCar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
@@ -182,7 +182,7 @@ namespace RentCar.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LoginId,Username,Password,Privilegio")] Login login)
+        public ActionResult Edit([Bind(Include = "LoginId,Username,Password,Privilegio")] HosLogin login)
         {
             if (ModelState.IsValid)
             {
@@ -205,7 +205,7 @@ namespace RentCar.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
@@ -218,8 +218,8 @@ namespace RentCar.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Login login = db.Login.Find(id);
-            db.Login.Remove(login);
+            HosLogin login = db.HosLogin.Find(id);
+            db.HosLogin.Remove(login);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -12,13 +12,13 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class especiales
+    public partial class Hosespeciales
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public especiales()
+        public Hosespeciales()
         {
-            this.DatosEspeciales = new HashSet<DatosEspeciales>();
-            this.DetalleTemporales = new HashSet<DetalleTemporales>();
+            this.HosDatosEspeciales = new HashSet<HosDatosEspeciales>();
+            this.HosDetalleTemporales = new HashSet<HosDetalleTemporales>();
         }
     
         public int Id { get; set; }
@@ -28,11 +28,11 @@ namespace SpointLiteVersion.Models
         public Nullable<int> empresaid { get; set; }
         public Nullable<int> usuarioid { get; set; }
     
-        public virtual Empresa Empresa { get; set; }
-        public virtual Login Login { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DatosEspeciales> DatosEspeciales { get; set; }
+        public virtual ICollection<HosDatosEspeciales> HosDatosEspeciales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetalleTemporales> DetalleTemporales { get; set; }
+        public virtual ICollection<HosDetalleTemporales> HosDetalleTemporales { get; set; }
+        public virtual HosEmpresa HosEmpresa { get; set; }
+        public virtual HosLogin HosLogin { get; set; }
     }
 }

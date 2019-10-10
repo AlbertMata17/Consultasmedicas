@@ -589,7 +589,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>92c76330-445b-4ada-bc26-f6cb05648713</rd:DataSourceID>
+      <rd:DataSourceID>a7a3f485-715b-4c8d-ac1f-b693cfe84ac2</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -599,25 +599,93 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="idPaciente">
-          <DataField>idPaciente</DataField>
+        <Field Name="idcliente">
+          <DataField>idcliente</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="nombre">
           <DataField>nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono">
-          <DataField>telefono</DataField>
+        <Field Name="nombre2">
+          <DataField>nombre2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono2">
-          <DataField>telefono2</DataField>
+        <Field Name="apellido1">
+          <DataField>apellido1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="idciuddad">
-          <DataField>idciuddad</DataField>
+        <Field Name="apellido2">
+          <DataField>apellido2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha">
+          <DataField>fecha</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="tel">
+          <DataField>tel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cel">
+          <DataField>cel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ciudad">
+          <DataField>ciudad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sector">
+          <DataField>sector</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="calle">
+          <DataField>calle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="casa">
+          <DataField>casa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="estado">
+          <DataField>estado</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ocupacion">
+          <DataField>ocupacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="credito">
+          <DataField>credito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idcuenta">
+          <DataField>idcuenta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idcuentacxc">
+          <DataField>idcuentacxc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dias">
+          <DataField>dias</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="credito_usado">
+          <DataField>credito_usado</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="mayorista">
+          <DataField>mayorista</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idgarante">
+          <DataField>idgarante</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="balance">
+          <DataField>balance</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="cedula">
           <DataField>cedula</DataField>
@@ -627,32 +695,236 @@
           <DataField>direccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="observacion">
+          <DataField>observacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="email">
           <DataField>email</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fechanacimiento">
-          <DataField>fechanacimiento</DataField>
+        <Field Name="web">
+          <DataField>web</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha_nac">
+          <DataField>fecha_nac</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="Estatus">
-          <DataField>Estatus</DataField>
+        <Field Name="idnacion">
+          <DataField>idnacion</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="edad">
-          <DataField>edad</DataField>
+        <Field Name="beneficiario">
+          <DataField>beneficiario</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idciudad">
+          <DataField>idciudad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idClasificacion">
+          <DataField>idClasificacion</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="montoAprobado">
+          <DataField>montoAprobado</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MoraPorciento">
+          <DataField>MoraPorciento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MoraDias">
+          <DataField>MoraDias</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="puntos">
+          <DataField>puntos</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="idoficial">
+          <DataField>idoficial</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idpersona">
+          <DataField>idpersona</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idpreferencial">
+          <DataField>idpreferencial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idncf">
+          <DataField>idncf</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="limitexdia">
+          <DataField>limitexdia</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="idvendedor">
+          <DataField>idvendedor</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idreferido">
+          <DataField>idreferido</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="referidor">
+          <DataField>referidor</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
         </Field>
         <Field Name="sexo">
           <DataField>sexo</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="estadoCivil">
+          <DataField>estadoCivil</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoNombre">
+          <DataField>AseguradoNombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="EstadoCivil">
-          <DataField>EstadoCivil</DataField>
+        <Field Name="AseguradoTel">
+          <DataField>AseguradoTel</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Empresaid">
-          <DataField>Empresaid</DataField>
+        <Field Name="AseguradoDir">
+          <DataField>AseguradoDir</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AseguradofechaNac">
+          <DataField>AseguradofechaNac</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoParentezco">
+          <DataField>AseguradoParentezco</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoSexo">
+          <DataField>AseguradoSexo</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="tel2">
+          <DataField>tel2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idseguro1">
+          <DataField>idseguro1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idseguro2">
+          <DataField>idseguro2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo1">
+          <DataField>contratoNo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo2">
+          <DataField>contratoNo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo1">
+          <DataField>GrupoNo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo2">
+          <DataField>GrupoNo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre1">
+          <DataField>GrupoNombre1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre2">
+          <DataField>GrupoNombre2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta1">
+          <DataField>NombreTarjeta1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta2">
+          <DataField>NombreTarjeta2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="deducible1">
+          <DataField>deducible1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="deducible2">
+          <DataField>deducible2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza1">
+          <DataField>fechaComienza1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza2">
+          <DataField>fechaComienza2</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira1">
+          <DataField>fechaExpira1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira2">
+          <DataField>fechaExpira2</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="idseguro3">
+          <DataField>idseguro3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo3">
+          <DataField>contratoNo3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo3">
+          <DataField>GrupoNo3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre3">
+          <DataField>GrupoNombre3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta3">
+          <DataField>NombreTarjeta3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="deducible3">
+          <DataField>deducible3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza3">
+          <DataField>fechaComienza3</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira3">
+          <DataField>fechaExpira3</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="nacimiento">
+          <DataField>nacimiento</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="documento">
+          <DataField>documento</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="NSSPoliza">
+          <DataField>NSSPoliza</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tutor">
+          <DataField>tutor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="edad">
+          <DataField>edad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Usuarioid">
@@ -675,24 +947,24 @@
           <DataField>Detalle</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="idPaciente1">
-          <DataField>idPaciente1</DataField>
+        <Field Name="idPaciente">
+          <DataField>idPaciente</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Estatus1">
-          <DataField>Estatus1</DataField>
+        <Field Name="Estatus">
+          <DataField>Estatus</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Empresaid1">
-          <DataField>Empresaid1</DataField>
+        <Field Name="Empresaid">
+          <DataField>Empresaid</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Usuarioid1">
           <DataField>Usuarioid1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="fecha">
-          <DataField>fecha</DataField>
+        <Field Name="fecha1">
+          <DataField>fecha1</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="idConsulta">
@@ -703,20 +975,20 @@
           <DataField>TipoConsulta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fecha1">
-          <DataField>fecha1</DataField>
+        <Field Name="fecha2">
+          <DataField>fecha2</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="idpaciente2">
-          <DataField>idpaciente2</DataField>
+        <Field Name="idpaciente1">
+          <DataField>idpaciente1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="edad1">
           <DataField>edad1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono1">
-          <DataField>telefono1</DataField>
+        <Field Name="telefono">
+          <DataField>telefono</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SeguroMedico">
@@ -747,17 +1019,21 @@
           <DataField>Examenes</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Estatus2">
-          <DataField>Estatus2</DataField>
+        <Field Name="Estatus1">
+          <DataField>Estatus1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Empresaid2">
-          <DataField>Empresaid2</DataField>
+        <Field Name="Empresaid1">
+          <DataField>Empresaid1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Usuarioid2">
           <DataField>Usuarioid2</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Hora">
+          <DataField>Hora</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

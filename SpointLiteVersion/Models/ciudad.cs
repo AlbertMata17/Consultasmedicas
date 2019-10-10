@@ -14,21 +14,8 @@ namespace SpointLiteVersion.Models
     
     public partial class ciudad
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ciudad()
-        {
-            this.paciente = new HashSet<paciente>();
-        }
-    
-        public int idciudad { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> Estatus { get; set; }
-        public Nullable<int> Empresaid { get; set; }
-        public Nullable<int> Usuarioid { get; set; }
-    
-        public virtual Empresa Empresa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<paciente> paciente { get; set; }
-        public virtual Login Login { get; set; }
+        public decimal idciudad { get; set; }
+        public string nombre { get; set; }
+        public string estado { get; set; }
     }
 }

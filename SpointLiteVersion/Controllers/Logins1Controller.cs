@@ -12,12 +12,12 @@ namespace SpointLiteVersion.Controllers
 {
     public class Logins1Controller : Controller
     {
-        private ConsultaMedicasEntities db = new ConsultaMedicasEntities();
+        private hospointEntities db = new hospointEntities();
 
         // GET: Logins1
         public ActionResult Index()
         {
-            var login = db.Login.Include(l => l.Empresa);
+            var login = db.HosLogin.Include(l => l.HosEmpresa);
             return View(login.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
@@ -39,7 +39,7 @@ namespace SpointLiteVersion.Controllers
         // GET: Logins1/Create
         public ActionResult Create()
         {
-            ViewBag.empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre");
+            ViewBag.empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre");
             return View();
         }
 
@@ -48,16 +48,16 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid")] Login login)
+        public ActionResult Create([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid")] HosLogin login)
         {
             if (ModelState.IsValid)
             {
-                db.Login.Add(login);
+                db.HosLogin.Add(login);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", login.empresaid);
+            ViewBag.empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", login.empresaid);
             return View(login);
         }
 
@@ -68,12 +68,12 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", login.empresaid);
+            ViewBag.empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", login.empresaid);
             return View(login);
         }
 
@@ -82,7 +82,7 @@ namespace SpointLiteVersion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid")] Login login)
+        public ActionResult Edit([Bind(Include = "LoginId,Username,Password,Privilegio,Nombre,Apellido,empresaid")] HosLogin login)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace SpointLiteVersion.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.empresaid = new SelectList(db.Empresa, "IdEmpresa", "Nombre", login.empresaid);
+            ViewBag.empresaid = new SelectList(db.HosEmpresa, "IdEmpresa", "Nombre", login.empresaid);
             return View(login);
         }
 
@@ -101,7 +101,7 @@ namespace SpointLiteVersion.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Login login = db.Login.Find(id);
+            HosLogin login = db.HosLogin.Find(id);
             if (login == null)
             {
                 return HttpNotFound();
@@ -114,8 +114,8 @@ namespace SpointLiteVersion.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Login login = db.Login.Find(id);
-            db.Login.Remove(login);
+            HosLogin login = db.HosLogin.Find(id);
+            db.HosLogin.Remove(login);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

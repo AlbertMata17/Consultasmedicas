@@ -12,7 +12,7 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class HistoriaClinica
+    public partial class HosHistoriaClinica
     {
         public int idHistorio { get; set; }
         public string AntecedentesMedicos { get; set; }
@@ -39,7 +39,7 @@ namespace SpointLiteVersion.Models
         public Nullable<int> Empresaid { get; set; }
         public Nullable<int> Usuarioid { get; set; }
     
-        public virtual Empresa Empresa { get; set; }
-        public virtual Login Login { get; set; }
+        public virtual HosEmpresa HosEmpresa { get; set; }
+        public virtual HosLogin HosLogin { get; set; }
     }
 }

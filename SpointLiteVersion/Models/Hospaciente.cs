@@ -12,14 +12,14 @@ namespace SpointLiteVersion.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class paciente
+    public partial class Hospaciente
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public paciente()
+        public Hospaciente()
         {
-            this.CitasAgendadas = new HashSet<CitasAgendadas>();
-            this.RecetasyExamenes = new HashSet<RecetasyExamenes>();
-            this.Consultas = new HashSet<Consultas>();
+            this.HosCitasAgendadas = new HashSet<HosCitasAgendadas>();
+            this.HosConsultas = new HashSet<HosConsultas>();
+            this.HosRecetasyExamenes = new HashSet<HosRecetasyExamenes>();
         }
     
         public int idPaciente { get; set; }
@@ -99,15 +99,19 @@ namespace SpointLiteVersion.Models
         public Nullable<byte> documento { get; set; }
         public string NSSPoliza { get; set; }
         public string tutor { get; set; }
+        public string nombre2 { get; set; }
+        public string apellido1 { get; set; }
+        public string apellido2 { get; set; }
+        public string cel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CitasAgendadas> CitasAgendadas { get; set; }
-        public virtual ciudad ciudad { get; set; }
-        public virtual Empresa Empresa { get; set; }
-        public virtual Login Login { get; set; }
+        public virtual ICollection<HosCitasAgendadas> HosCitasAgendadas { get; set; }
+        public virtual Hosciudad Hosciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RecetasyExamenes> RecetasyExamenes { get; set; }
+        public virtual ICollection<HosConsultas> HosConsultas { get; set; }
+        public virtual HosEmpresa HosEmpresa { get; set; }
+        public virtual HosLogin HosLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consultas> Consultas { get; set; }
+        public virtual ICollection<HosRecetasyExamenes> HosRecetasyExamenes { get; set; }
     }
 }

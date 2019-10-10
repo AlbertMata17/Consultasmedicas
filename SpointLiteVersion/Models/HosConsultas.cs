@@ -13,11 +13,12 @@ namespace SpointLiteVersion.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Consultas
+    public partial class HosConsultas
     {
         public int idConsulta { get; set; }
         public string TipoConsulta { get; set; }
         [DataType(DataType.Date)]
+
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> idpaciente { get; set; }
         public string edad { get; set; }
@@ -34,8 +35,9 @@ namespace SpointLiteVersion.Models
         public Nullable<int> Usuarioid { get; set; }
         public string Hora { get; set; }
     
-        public virtual paciente paciente { get; set; }
-        public virtual Empresa Empresa { get; set; }
-        public virtual Login Login { get; set; }
+        public virtual HosEmpresa HosEmpresa { get; set; }
+        public virtual HosLogin HosLogin { get; set; }
+        public virtual Hospaciente Hospaciente { get; set; }
+        public virtual clientes clientes { get; set; }
     }
 }

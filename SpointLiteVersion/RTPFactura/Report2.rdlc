@@ -19,7 +19,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>2.20014in</Top>
+        <Top>3.50222in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19444in</Height>
         <Width>1.20833in</Width>
         <Style>
@@ -48,7 +49,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.40847in</Top>
+        <Top>3.71055in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>1.32292in</Width>
         <ZIndex>1</ZIndex>
@@ -75,21 +77,21 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.40799in</Top>
-        <Left>0.0139in</Left>
+        <Top>1.91148in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>0.61458in</Width>
+        <Width>0.5868in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
@@ -110,16 +112,15 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.40799in</Top>
-        <Left>0.65626in</Left>
+        <Top>1.91148in</Top>
+        <Left>1.14303in</Left>
         <Height>0.19792in</Height>
-        <Width>1.96054in</Width>
+        <Width>3.81471in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingTop>2pt</PaddingTop>
         </Style>
       </Textbox>
       <Textbox Name="Textbox21">
@@ -140,13 +141,13 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.64757in</Top>
-        <Left>0.0139in</Left>
+        <Top>2.13719in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>0.41666in</Width>
         <ZIndex>4</ZIndex>
@@ -154,7 +155,6 @@
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
@@ -178,8 +178,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.64756in</Top>
-        <Left>1.39112in</Left>
+        <Top>2.13718in</Top>
+        <Left>1.80843in</Left>
         <Height>0.19792in</Height>
         <Width>0.41666in</Width>
         <ZIndex>5</ZIndex>
@@ -198,7 +198,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!sexo.Value, "DataSet1")</Value>
+                <Value>=IIF((First(Fields!sexo.Value, "DataSet1")="1"),"MASCULINO","FEMENINO")</Value>
                 <Style>
                   <Format>d</Format>
                 </Style>
@@ -210,10 +210,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.64757in</Top>
-        <Left>0.45834in</Left>
+        <Top>2.13719in</Top>
+        <Left>0.97289in</Left>
         <Height>0.19792in</Height>
-        <Width>0.905in</Width>
+        <Width>0.80777in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -239,8 +239,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.64757in</Top>
-        <Left>1.83556in</Left>
+        <Top>2.13719in</Top>
+        <Left>2.2529in</Left>
         <Height>0.19792in</Height>
         <Width>0.41666in</Width>
         <ZIndex>7</ZIndex>
@@ -265,14 +265,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.87326in</Top>
+        <Top>2.36288in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>1.48833in</Width>
+        <Width>1.47443in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -289,7 +290,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!fechanacimiento.Value, "DataSet1")</Value>
+                <Value>=First(Fields!fecha_nac.Value, "DataSet1")</Value>
                 <Style>
                   <Format>d</Format>
                 </Style>
@@ -301,10 +302,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.87326in</Top>
-        <Left>1.52999in</Left>
+        <Top>2.36288in</Top>
+        <Left>2.04454in</Left>
         <Height>0.19792in</Height>
-        <Width>0.73485in</Width>
+        <Width>0.62502in</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -332,8 +333,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.87326in</Top>
-        <Left>2.29262in</Left>
+        <Top>2.36288in</Top>
+        <Left>2.69734in</Left>
         <Height>0.19792in</Height>
         <Width>0.88069in</Width>
         <ZIndex>10</ZIndex>
@@ -351,7 +352,15 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!EstadoCivil.Value, "DataSet1")</Value>
+                <Value>=Switch(
+First(Fields!estadoCivil.Value, "DataSet1")=0,"DESCONOCIDO",
+First(Fields!estadoCivil.Value, "DataSet1")=1,"SOLTERO",
+First(Fields!estadoCivil.Value, "DataSet1")=2,"CASADO",
+First(Fields!estadoCivil.Value, "DataSet1")=3,"VIUDO",
+First(Fields!estadoCivil.Value, "DataSet1")=4,"DIVORCIADO"
+
+
+)</Value>
                 <Style>
                   <Format>d</Format>
                 </Style>
@@ -363,8 +372,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>0.87326in</Top>
-        <Left>3.20109in</Left>
+        <Top>2.36288in</Top>
+        <Left>3.6058in</Left>
         <Height>0.19792in</Height>
         <Width>1.13125in</Width>
         <ZIndex>11</ZIndex>
@@ -389,13 +398,13 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.09897in</Top>
-        <Left>0.0139in</Left>
+        <Top>2.58859in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>0.20138in</Width>
         <ZIndex>12</ZIndex>
@@ -426,8 +435,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.09897in</Top>
-        <Left>0.2557in</Left>
+        <Top>2.58859in</Top>
+        <Left>0.74372in</Left>
         <Height>0.19792in</Height>
         <Width>0.95263in</Width>
         <ZIndex>13</ZIndex>
@@ -457,8 +466,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.09897in</Top>
-        <Left>1.23611in</Left>
+        <Top>2.58859in</Top>
+        <Left>1.72413in</Left>
         <Height>0.19792in</Height>
         <Width>0.96056in</Width>
         <ZIndex>14</ZIndex>
@@ -488,8 +497,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.09897in</Top>
-        <Left>2.22445in</Left>
+        <Top>2.58859in</Top>
+        <Left>2.71246in</Left>
         <Height>0.19792in</Height>
         <Width>1.26541in</Width>
         <ZIndex>15</ZIndex>
@@ -540,7 +549,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox33</rd:DefaultName>
-        <Left>1.57167in</Left>
+        <Top>1.43749in</Top>
+        <Left>2.17581in</Left>
         <Height>0.25in</Height>
         <Width>3.05444in</Width>
         <ZIndex>16</ZIndex>
@@ -551,7 +561,6 @@
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Textbox Name="Textbox34">
@@ -568,14 +577,15 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Right</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.33856in</Top>
+        <Top>2.81428in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>0.62848in</Width>
+        <Width>0.64236in</Width>
         <ZIndex>17</ZIndex>
         <Style>
           <Border>
@@ -591,7 +601,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!telefono.Value, "DataSet1")</Value>
+                <Value>=First(Fields!tel.Value, "DataSet1")</Value>
                 <Style>
                   <Format>d</Format>
                 </Style>
@@ -603,10 +613,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.33856in</Top>
-        <Left>0.65626in</Left>
+        <Top>2.81429in</Top>
+        <Left>1.19859in</Left>
         <Height>0.19792in</Height>
-        <Width>1.16125in</Width>
+        <Width>0.96334in</Width>
         <ZIndex>18</ZIndex>
         <Style>
           <Border>
@@ -622,7 +632,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Fecha de consulta</Value>
+                <Value>Fecha de consulta:</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -634,10 +644,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.33857in</Top>
-        <Left>1.84529in</Left>
+        <Top>2.81429in</Top>
+        <Left>2.17581in</Left>
         <Height>0.19792in</Height>
-        <Width>1.31125in</Width>
+        <Width>1.26958in</Width>
         <ZIndex>19</ZIndex>
         <Style>
           <Border>
@@ -665,8 +675,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>1.33857in</Top>
-        <Left>3.18432in</Left>
+        <Top>2.81429in</Top>
+        <Left>3.48706in</Left>
         <Height>0.19792in</Height>
         <Width>0.74305in</Width>
         <ZIndex>20</ZIndex>
@@ -697,7 +707,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.84598in</Top>
+        <Top>4.16195in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>1.79167in</Width>
         <ZIndex>21</ZIndex>
@@ -730,7 +741,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.29737in</Top>
+        <Top>4.61334in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>1.79167in</Width>
         <ZIndex>22</ZIndex>
@@ -763,7 +775,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.74877in</Top>
+        <Top>5.05085in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>1.79167in</Width>
         <ZIndex>23</ZIndex>
@@ -796,7 +809,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>4.20016in</Top>
+        <Top>5.51613in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
         <Width>1.79167in</Width>
         <ZIndex>24</ZIndex>
@@ -826,7 +840,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>4.65156in</Top>
+        <Top>5.96753in</Top>
+        <Left>0.52845in</Left>
         <Height>0.18055in</Height>
         <Width>1.20833in</Width>
         <ZIndex>25</ZIndex>
@@ -853,7 +868,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>5.08559in</Top>
+        <Top>6.40156in</Top>
+        <Left>0.52845in</Left>
         <Height>0.18055in</Height>
         <Width>1.20833in</Width>
         <ZIndex>26</ZIndex>
@@ -883,9 +899,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.62028in</Top>
+        <Top>3.93625in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>27</ZIndex>
         <Style>
           <Border>
@@ -914,9 +931,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.07167in</Top>
+        <Top>4.38764in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>28</ZIndex>
         <Style>
           <Border>
@@ -945,9 +963,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.52307in</Top>
+        <Top>4.83904in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>29</ZIndex>
         <Style>
           <Border>
@@ -976,9 +995,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.97446in</Top>
+        <Top>5.29043in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>30</ZIndex>
         <Style>
           <Border>
@@ -1007,9 +1027,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>4.42586in</Top>
+        <Top>5.74183in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>31</ZIndex>
         <Style>
           <Border>
@@ -1038,9 +1059,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>4.85989in</Top>
+        <Top>6.17586in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>32</ZIndex>
         <Style>
           <Border>
@@ -1069,9 +1091,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>5.29392in</Top>
+        <Top>6.60989in</Top>
+        <Left>0.52845in</Left>
         <Height>0.19792in</Height>
-        <Width>6.82971in</Width>
+        <Width>5.72553in</Width>
         <ZIndex>33</ZIndex>
         <Style>
           <Border>
@@ -1080,8 +1103,21 @@
           <PaddingRight>2pt</PaddingRight>
         </Style>
       </Textbox>
+      <Image Name="Image1">
+        <Source>Embedded</Source>
+        <Value>logos</Value>
+        <Sizing>FitProportional</Sizing>
+        <Height>1.05208in</Height>
+        <Width>2.7904in</Width>
+        <ZIndex>34</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
     </ReportItems>
-    <Height>5.55208in</Height>
+    <Height>6.89583in</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -1090,10 +1126,9 @@
   </Body>
   <Width>6.85417in</Width>
   <Page>
-    <LeftMargin>2.54cm</LeftMargin>
-    <RightMargin>0.25in</RightMargin>
-    <TopMargin>2.54cm</TopMargin>
-    <BottomMargin>2.54cm</BottomMargin>
+    <LeftMargin>1cm</LeftMargin>
+    <TopMargin>0.5cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
@@ -1103,7 +1138,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>7715da70-0ca8-46d5-a691-7092b78b107b</rd:DataSourceID>
+      <rd:DataSourceID>8889fe6d-e366-4009-a1cf-70fbb9056160</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1113,25 +1148,93 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="idPaciente">
-          <DataField>idPaciente</DataField>
+        <Field Name="idcliente">
+          <DataField>idcliente</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="nombre">
           <DataField>nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono">
-          <DataField>telefono</DataField>
+        <Field Name="nombre2">
+          <DataField>nombre2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono2">
-          <DataField>telefono2</DataField>
+        <Field Name="apellido1">
+          <DataField>apellido1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="idciuddad">
-          <DataField>idciuddad</DataField>
+        <Field Name="apellido2">
+          <DataField>apellido2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha">
+          <DataField>fecha</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="tel">
+          <DataField>tel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cel">
+          <DataField>cel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ciudad">
+          <DataField>ciudad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sector">
+          <DataField>sector</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="calle">
+          <DataField>calle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="casa">
+          <DataField>casa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="estado">
+          <DataField>estado</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ocupacion">
+          <DataField>ocupacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="credito">
+          <DataField>credito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idcuenta">
+          <DataField>idcuenta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idcuentacxc">
+          <DataField>idcuentacxc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="dias">
+          <DataField>dias</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="credito_usado">
+          <DataField>credito_usado</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="mayorista">
+          <DataField>mayorista</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idgarante">
+          <DataField>idgarante</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="balance">
+          <DataField>balance</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="cedula">
           <DataField>cedula</DataField>
@@ -1141,28 +1244,244 @@
           <DataField>direccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="observacion">
+          <DataField>observacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="email">
           <DataField>email</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fechanacimiento">
-          <DataField>fechanacimiento</DataField>
+        <Field Name="web">
+          <DataField>web</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fecha_nac">
+          <DataField>fecha_nac</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="Estatus">
-          <DataField>Estatus</DataField>
+        <Field Name="idnacion">
+          <DataField>idnacion</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="beneficiario">
+          <DataField>beneficiario</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idciudad">
+          <DataField>idciudad</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idClasificacion">
+          <DataField>idClasificacion</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="montoAprobado">
+          <DataField>montoAprobado</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MoraPorciento">
+          <DataField>MoraPorciento</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MoraDias">
+          <DataField>MoraDias</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="puntos">
+          <DataField>puntos</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="idoficial">
+          <DataField>idoficial</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idpersona">
+          <DataField>idpersona</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idpreferencial">
+          <DataField>idpreferencial</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idncf">
+          <DataField>idncf</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="limitexdia">
+          <DataField>limitexdia</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="idvendedor">
+          <DataField>idvendedor</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idreferido">
+          <DataField>idreferido</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="referidor">
+          <DataField>referidor</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="sexo">
+          <DataField>sexo</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="estadoCivil">
+          <DataField>estadoCivil</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoNombre">
+          <DataField>AseguradoNombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoTel">
+          <DataField>AseguradoTel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoDir">
+          <DataField>AseguradoDir</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AseguradofechaNac">
+          <DataField>AseguradofechaNac</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoParentezco">
+          <DataField>AseguradoParentezco</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="AseguradoSexo">
+          <DataField>AseguradoSexo</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="tel2">
+          <DataField>tel2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="idseguro1">
+          <DataField>idseguro1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="idseguro2">
+          <DataField>idseguro2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo1">
+          <DataField>contratoNo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo2">
+          <DataField>contratoNo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo1">
+          <DataField>GrupoNo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo2">
+          <DataField>GrupoNo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre1">
+          <DataField>GrupoNombre1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre2">
+          <DataField>GrupoNombre2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta1">
+          <DataField>NombreTarjeta1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta2">
+          <DataField>NombreTarjeta2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="deducible1">
+          <DataField>deducible1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="deducible2">
+          <DataField>deducible2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza1">
+          <DataField>fechaComienza1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza2">
+          <DataField>fechaComienza2</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira1">
+          <DataField>fechaExpira1</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira2">
+          <DataField>fechaExpira2</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="idseguro3">
+          <DataField>idseguro3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="contratoNo3">
+          <DataField>contratoNo3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNo3">
+          <DataField>GrupoNo3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GrupoNombre3">
+          <DataField>GrupoNombre3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreTarjeta3">
+          <DataField>NombreTarjeta3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="deducible3">
+          <DataField>deducible3</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="fechaComienza3">
+          <DataField>fechaComienza3</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="fechaExpira3">
+          <DataField>fechaExpira3</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="nacimiento">
+          <DataField>nacimiento</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="documento">
+          <DataField>documento</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="NSSPoliza">
+          <DataField>NSSPoliza</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tutor">
+          <DataField>tutor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="edad">
           <DataField>edad</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="sexo">
-          <DataField>sexo</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="Usuarioid">
+          <DataField>Usuarioid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="EstadoCivil">
-          <DataField>EstadoCivil</DataField>
+        <Field Name="Foto">
+          <DataField>Foto</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="idConsulta">
@@ -1173,20 +1492,20 @@
           <DataField>TipoConsulta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="fecha">
-          <DataField>fecha</DataField>
+        <Field Name="fecha1">
+          <DataField>fecha1</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="idpaciente1">
-          <DataField>idpaciente1</DataField>
+        <Field Name="idpaciente">
+          <DataField>idpaciente</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="edad1">
           <DataField>edad1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="telefono1">
-          <DataField>telefono1</DataField>
+        <Field Name="telefono">
+          <DataField>telefono</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SeguroMedico">
@@ -1217,6 +1536,22 @@
           <DataField>Examenes</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Estatus">
+          <DataField>Estatus</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Empresaid">
+          <DataField>Empresaid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Usuarioid1">
+          <DataField>Usuarioid1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Hora">
+          <DataField>Hora</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="idHistorio">
           <DataField>idHistorio</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -1229,8 +1564,8 @@
           <DataField>antecedentesGinecologico</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="idpaciente2">
-          <DataField>idpaciente2</DataField>
+        <Field Name="idpaciente1">
+          <DataField>idpaciente1</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="alergia">
@@ -1301,17 +1636,52 @@
           <DataField>motivoconsulta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Estatus1">
+          <DataField>Estatus1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Empresaid1">
+          <DataField>Empresaid1</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Usuarioid2">
+          <DataField>Usuarioid2</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Toshiba\Documents\SpointLiteVersion\SpointLiteVersion\DataSet\DataSet1.xsd</rd:SchemaPath>
-        <rd:TableName>sp_reporte_HistorialClinico_back </rd:TableName>
+        <rd:TableName>sp_reporte_HistorialClinico_back</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>sp_reporte_HistorialClinico_back_TableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>sp_reporte_HistorialClinico_backTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logos">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>80dee277-b5dd-40c3-ba19-158a8502e6f7</rd:ReportID>
 </Report>

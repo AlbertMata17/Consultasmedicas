@@ -15,10 +15,10 @@ namespace SpointLiteVersion.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ConsultaMedicasEntities : DbContext
+    public partial class hospointEntities : DbContext
     {
-        public ConsultaMedicasEntities()
-            : base("name=ConsultaMedicasEntities")
+        public hospointEntities()
+            : base("name=hospointEntities")
         {
         }
     
@@ -27,27 +27,19 @@ namespace SpointLiteVersion.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CitasAgendadas> CitasAgendadas { get; set; }
+        public virtual DbSet<HosCitasAgendadas> HosCitasAgendadas { get; set; }
+        public virtual DbSet<Hosciudad> Hosciudad { get; set; }
+        public virtual DbSet<HosConsultas> HosConsultas { get; set; }
+        public virtual DbSet<HosDatosEspeciales> HosDatosEspeciales { get; set; }
+        public virtual DbSet<HosDetalleTemporales> HosDetalleTemporales { get; set; }
+        public virtual DbSet<HosEmpresa> HosEmpresa { get; set; }
+        public virtual DbSet<Hosespeciales> Hosespeciales { get; set; }
+        public virtual DbSet<HosHistoriaClinica> HosHistoriaClinica { get; set; }
+        public virtual DbSet<HosLogin> HosLogin { get; set; }
+        public virtual DbSet<HosRecetasyExamenes> HosRecetasyExamenes { get; set; }
+        public virtual DbSet<Hospaciente> Hospaciente { get; set; }
         public virtual DbSet<ciudad> ciudad { get; set; }
-        public virtual DbSet<HistoriaClinica> HistoriaClinica { get; set; }
-        public virtual DbSet<Empresa> Empresa { get; set; }
-        public virtual DbSet<Login> Login { get; set; }
-        public virtual DbSet<paciente> paciente { get; set; }
-        public virtual DbSet<RecetasyExamenes> RecetasyExamenes { get; set; }
-        public virtual DbSet<especiales> especiales { get; set; }
-        public virtual DbSet<DatosEspeciales> DatosEspeciales { get; set; }
-        public virtual DbSet<DetalleTemporales> DetalleTemporales { get; set; }
-        public virtual DbSet<Consultas> Consultas { get; set; }
-    
-        public virtual int TemptoEspecial()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TemptoEspecial");
-        }
-    
-        public virtual int VaciarTablaTemporal()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VaciarTablaTemporal");
-        }
+        public virtual DbSet<clientes> clientes { get; set; }
     
         public virtual ObjectResult<sp_reporte_examenes_back_Result> sp_reporte_examenes_back(Nullable<decimal> id)
         {
@@ -67,13 +59,32 @@ namespace SpointLiteVersion.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_HistorialClinico_back_Result>("sp_reporte_HistorialClinico_back", idConsultaParameter);
         }
     
-        public virtual ObjectResult<sp_reporte_receta_back_Result> sp_reporte_receta_back(Nullable<decimal> id)
+        public virtual ObjectResult<sp_reporte_receta_back__Result> sp_reporte_receta_back_(Nullable<decimal> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_receta_back_Result>("sp_reporte_receta_back", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_reporte_receta_back__Result>("sp_reporte_receta_back_", idParameter);
+        }
+    
+        public virtual int TemptoEspecial()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("TemptoEspecial");
+        }
+    
+        public virtual int VaciarTablaTemporal()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VaciarTablaTemporal");
+        }
+    
+        public virtual int Predeterminado(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Predeterminado", idParameter);
         }
     }
 }

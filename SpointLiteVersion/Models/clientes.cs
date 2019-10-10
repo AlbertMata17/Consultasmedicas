@@ -10,39 +10,49 @@
 namespace SpointLiteVersion.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_reporte_examenes_back_Result
+    public partial class clientes
     {
-        public int idPaciente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public clientes()
+        {
+            this.HosCitasAgendadas = new HashSet<HosCitasAgendadas>();
+            this.HosConsultas = new HashSet<HosConsultas>();
+            this.HosRecetasyExamenes = new HashSet<HosRecetasyExamenes>();
+        }
+    
+        public int idcliente { get; set; }
         public string nombre { get; set; }
-        public string telefono { get; set; }
-        public string telefono2 { get; set; }
-        public Nullable<int> idciuddad { get; set; }
-        public string cedula { get; set; }
-        public string direccion { get; set; }
-        public string email { get; set; }
-        public Nullable<System.DateTime> fechanacimiento { get; set; }
-        public Nullable<int> Estatus { get; set; }
-        public Nullable<int> edad { get; set; }
-        public string sexo { get; set; }
-        public string EstadoCivil { get; set; }
-        public Nullable<int> Empresaid { get; set; }
-        public Nullable<int> Usuarioid { get; set; }
-        public string Foto { get; set; }
+        public string nombre2 { get; set; }
+        public string apellido1 { get; set; }
+        public string apellido2 { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public string tel { get; set; }
+        public string cel { get; set; }
+        public string ciudad { get; set; }
         public string sector { get; set; }
         public string calle { get; set; }
         public string casa { get; set; }
+        public string estado { get; set; }
         public string ocupacion { get; set; }
+        public string credito { get; set; }
         public string idcuenta { get; set; }
         public string idcuentacxc { get; set; }
         public Nullable<int> dias { get; set; }
         public Nullable<decimal> credito_usado { get; set; }
         public string mayorista { get; set; }
         public Nullable<int> idgarante { get; set; }
-        public Nullable<int> balance { get; set; }
+        public Nullable<decimal> balance { get; set; }
+        public string cedula { get; set; }
+        public string direccion { get; set; }
+        public string observacion { get; set; }
+        public string email { get; set; }
         public string web { get; set; }
+        public Nullable<System.DateTime> fecha_nac { get; set; }
         public Nullable<int> idnacion { get; set; }
         public string beneficiario { get; set; }
+        public Nullable<int> idciudad { get; set; }
         public Nullable<int> idClasificacion { get; set; }
         public Nullable<decimal> montoAprobado { get; set; }
         public Nullable<decimal> MoraPorciento { get; set; }
@@ -56,12 +66,15 @@ namespace SpointLiteVersion.Models
         public Nullable<int> idvendedor { get; set; }
         public Nullable<int> idreferido { get; set; }
         public Nullable<byte> referidor { get; set; }
+        public Nullable<byte> sexo { get; set; }
+        public Nullable<int> estadoCivil { get; set; }
         public string AseguradoNombre { get; set; }
         public string AseguradoTel { get; set; }
         public string AseguradoDir { get; set; }
         public Nullable<System.DateTime> AseguradofechaNac { get; set; }
         public Nullable<int> AseguradoParentezco { get; set; }
         public Nullable<byte> AseguradoSexo { get; set; }
+        public string tel2 { get; set; }
         public Nullable<int> idseguro1 { get; set; }
         public Nullable<int> idseguro2 { get; set; }
         public string contratoNo1 { get; set; }
@@ -90,30 +103,16 @@ namespace SpointLiteVersion.Models
         public Nullable<byte> documento { get; set; }
         public string NSSPoliza { get; set; }
         public string tutor { get; set; }
-        public int id { get; set; }
-        public string Tipo { get; set; }
-        public string Detalle { get; set; }
-        public Nullable<int> idPaciente1 { get; set; }
-        public Nullable<int> Estatus1 { get; set; }
-        public Nullable<int> Empresaid1 { get; set; }
-        public Nullable<int> Usuarioid1 { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
-        public Nullable<int> idConsulta { get; set; }
-        public string TipoConsulta { get; set; }
-        public Nullable<System.DateTime> fecha1 { get; set; }
-        public Nullable<int> idpaciente2 { get; set; }
-        public string edad1 { get; set; }
-        public string telefono1 { get; set; }
-        public string SeguroMedico { get; set; }
-        public string Compania { get; set; }
-        public string Poliza { get; set; }
-        public string Observaciones { get; set; }
-        public string Diagnostico { get; set; }
-        public string Receta { get; set; }
-        public string Examenes { get; set; }
-        public Nullable<int> Estatus2 { get; set; }
-        public Nullable<int> Empresaid2 { get; set; }
-        public Nullable<int> Usuarioid2 { get; set; }
-        public string Hora { get; set; }
+        public Nullable<int> edad { get; set; }
+        public Nullable<int> Usuarioid { get; set; }
+        public string Foto { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HosCitasAgendadas> HosCitasAgendadas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HosConsultas> HosConsultas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HosRecetasyExamenes> HosRecetasyExamenes { get; set; }
+        public virtual HosLogin HosLogin { get; set; }
     }
 }
